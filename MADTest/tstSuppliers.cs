@@ -22,5 +22,6 @@ namespace MADTest
             Supplier1.Active = TestData;
             Assert.AreEqual(Supplier1.Active, TestData);
         }
+        //Test
     }
 }
