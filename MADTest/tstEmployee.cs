@@ -5,13 +5,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MADTest
 {
     [TestClass]
-    public class tstEmployee
+    public class TstEmployee
     {
         [TestMethod]
         public void InstanceOK()
         {
             //create an instance of the class
-            clsEmployee AnEmployee = new clsEmployee();
+            ClsEmployee AnEmployee = new ClsEmployee();
             //test to see if it exists
             Assert.IsNotNull(AnEmployee);
         }
@@ -23,7 +23,7 @@ namespace MADTest
 
             //an instance of the class
 
-            clsEmployee AnEmployee = new clsEmployee();
+            ClsEmployee AnEmployee = new ClsEmployee();
 
             //test data
 
@@ -45,7 +45,7 @@ namespace MADTest
 
             //an instance of the class
 
-            clsEmployee AnEmployee = new clsEmployee();
+            ClsEmployee AnEmployee = new ClsEmployee();
 
             //test data
 
@@ -61,13 +61,13 @@ namespace MADTest
         }
 
         [TestMethod]
-        public void job_Name_PropertyOK()
+        public void Job_Name_PropertyOK()
 
         {
 
             //an instance of the class
 
-            clsEmployee AnEmployee = new clsEmployee();
+            ClsEmployee AnEmployee = new ClsEmployee();
 
             //test data
 
@@ -83,13 +83,13 @@ namespace MADTest
         }
 
         [TestMethod]
-        public void manager_ID_PropertyOK()
+        public void Manager_ID_PropertyOK()
 
         {
 
             //an instance of the class
 
-            clsEmployee AnEmployee = new clsEmployee();
+            ClsEmployee AnEmployee = new ClsEmployee();
 
             //test data
 
@@ -105,13 +105,13 @@ namespace MADTest
         }
 
         [TestMethod]
-        public void hire_Date_PropertyOK()
+        public void Hire_Date_PropertyOK()
 
         {
 
             //an instance of the class
 
-            clsEmployee AnEmployee = new clsEmployee();
+            ClsEmployee AnEmployee = new ClsEmployee();
 
             //test data
 
@@ -127,13 +127,13 @@ namespace MADTest
         }
 
         [TestMethod]
-        public void salary_PropertyOK()
+        public void Salary_PropertyOK()
 
         {
 
             //an instance of the class
 
-            clsEmployee AnEmployee = new clsEmployee();
+            ClsEmployee AnEmployee = new ClsEmployee();
 
             //test data
 
@@ -149,13 +149,13 @@ namespace MADTest
         }
 
         [TestMethod]
-        public void dep_ID_PropertyOK()
+        public void Dep_ID_PropertyOK()
 
         {
 
             //an instance of the class
 
-            clsEmployee AnEmployee = new clsEmployee();
+            ClsEmployee AnEmployee = new ClsEmployee();
 
             //test data
 
@@ -170,5 +170,41 @@ namespace MADTest
             Assert.AreEqual(AnEmployee.dep_ID, TestData);
         }
 
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            //creates an instance
+            ClsEmployee AnEmployee = new ClsEmployee();
+            //boolean variable to store the result
+            Boolean Found = false;
+            //test data
+            Int32 emp_ID = 38;
+            //invoke the method
+            Found = AnEmployee.Find(emp_ID);
+            //test to see that the result is correct
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestEmployeeNoFound()
+        {
+            //create an instance
+            ClsEmployee AnEmployee = new ClsEmployee();
+            //bool variable to store the result of the search
+            Boolean Found = false;
+            //bool variable to record if the data is OK
+            Boolean OK = true;
+            //test data
+            Int32 emp_ID = 21;
+            //invoke the method
+            Found = AnEmployee.Find(emp_ID);
+            //check the employee ID
+            if (AnEmployee.emp_ID != 21)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
     }
 }
