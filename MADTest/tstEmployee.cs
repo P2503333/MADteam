@@ -178,7 +178,7 @@ namespace MADTest
             //boolean variable to store the result
             Boolean Found = false;
             //test data
-            Int32 emp_ID = 38;
+            int emp_ID = 38;
             //invoke the method
             Found = AnEmployee.Find(emp_ID);
             //test to see that the result is correct
@@ -195,7 +195,7 @@ namespace MADTest
             //bool variable to record if the data is OK
             Boolean OK = true;
             //test data
-            Int32 emp_ID = 21;
+            int emp_ID = 21;
             //invoke the method
             Found = AnEmployee.Find(emp_ID);
             //check the employee ID
@@ -205,6 +205,19 @@ namespace MADTest
             }
             //test to see that the result is correct
             Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class
+            ClsEmployee AnEmployee = new ClsEmployee();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = AnEmployee.Valid(emp_ID, emp_Name, );
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
         }
     }
 }

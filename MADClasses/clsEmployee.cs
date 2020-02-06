@@ -121,13 +121,24 @@ namespace MADClasses
             {
                 //copy the data from the database to the private data members (These need to be edited)
                 memp_ID = Convert.ToInt32(DB.DataTable.Rows[0]["emp_ID"]);
-                memp_ID = Convert.ToInt32(DB.DataTable.Rows[0]["emp_ID"]);
-                memp_ID = Convert.ToInt32(DB.DataTable.Rows[0]["emp_ID"]);
-                memp_ID = Convert.ToInt32(DB.DataTable.Rows[0]["emp_ID"]);
-                memp_ID = Convert.ToInt32(DB.DataTable.Rows[0]["emp_ID"]);
-                memp_ID = Convert.ToInt32(DB.DataTable.Rows[0]["emp_ID"]);
+                memp_Name = Convert.ToString(DB.DataTable.Rows[0]["emp_Name"]);
+                mjob_Name = Convert.ToString(DB.DataTable.Rows[0]["job_Name"]);
+                mmanager_ID = Convert.ToInt32(DB.DataTable.Rows[0]["manager_ID"]);
+                mhire_Date = Convert.ToDateTime(DB.DataTable.Rows[0]["hire_Date"]);
+                msalary = Convert.ToInt32(DB.DataTable.Rows[0]["salary"]);
+                mdep_ID = Convert.ToInt32(DB.DataTable.Rows[0]["dep_ID"]);
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return flse indicating a problem
+                return false;
             }
         }
+
+        public String Valid()
 
     }
 }
