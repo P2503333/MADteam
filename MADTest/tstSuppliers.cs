@@ -5,8 +5,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MADTest
 {
     [TestClass]
-    public class UnitTest1
+    public class tstSuppliers
     {
+
+        //Testing the initialisation
         [TestMethod]
         public void InstanceOK()
         {
@@ -14,6 +16,7 @@ namespace MADTest
             Assert.IsNotNull(Supplier1);
         }
 
+        //Testing the active property
         [TestMethod]
         public void ActivePropertyOK()
         {
@@ -22,6 +25,43 @@ namespace MADTest
             Supplier1.Active = TestData;
             Assert.AreEqual(Supplier1.Active, TestData);
         }
-        //Test
+
+        //Testing the SupplierName property
+        [TestMethod]
+        public void SupplierNamePropertyOK()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            Boolean TestData = true;
+            Supplier1.Active = TestData;
+            Assert.AreEqual(Supplier1.Active, TestData);
+        }
+
+        //Testing the LastDelivery property
+        [TestMethod]
+        public void LastDeliveryPropertyOK()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            Boolean TestData = true;
+            Supplier1.Active = TestData;
+            Assert.AreEqual(Supplier1.Active, TestData);
+        }
+
+        //Testing the Email property
+        [TestMethod]
+        public void EmailPropertyOK()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            Boolean TestData = true;
+            Supplier1.Active = TestData;
+            Assert.AreEqual(Supplier1.Active, TestData);
+        }
+
+        //Testing the SupplierID property
+        [TestMethod]
+        public void SupplierIDPropertyOK()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            Assert.IsNotNull(Supplier1.ID);
+        }
     }
 }
