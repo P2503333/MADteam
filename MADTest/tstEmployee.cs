@@ -7,6 +7,18 @@ namespace MADTest
     [TestClass]
     public class TstEmployee
     {
+
+        //good test data
+        //TEST DATA
+        int emp_ID = 21; 
+        string emp_Name = "Wilson Fisher";
+        string job_Name = "HR Support";
+        int manager_ID = 1;
+        string hire_Date = DateTime.Now.Date.ToString();
+        int salary = 15000;
+        int dep_ID = 1;
+
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -31,11 +43,11 @@ namespace MADTest
 
             //assigning data 
 
-            AnEmployee.emp_ID = TestData;
+            AnEmployee.Emp_ID = TestData;
 
             //test
 
-            Assert.AreEqual(AnEmployee.emp_ID, TestData);
+            Assert.AreEqual(AnEmployee.Emp_ID, TestData);
         }
 
         [TestMethod]
@@ -53,11 +65,11 @@ namespace MADTest
 
             //assigning data 
 
-            AnEmployee.emp_Name = TestData;
+            AnEmployee.Emp_Name = TestData;
 
             //test
 
-            Assert.AreEqual(AnEmployee.emp_Name, TestData);
+            Assert.AreEqual(AnEmployee.Emp_Name, TestData);
         }
 
         [TestMethod]
@@ -75,11 +87,11 @@ namespace MADTest
 
             //assigning data 
 
-            AnEmployee.job_Name = TestData;
+            AnEmployee.Job_Name = TestData;
 
             //test
 
-            Assert.AreEqual(AnEmployee.job_Name, TestData);
+            Assert.AreEqual(AnEmployee.Job_Name, TestData);
         }
 
         [TestMethod]
@@ -97,11 +109,11 @@ namespace MADTest
 
             //assigning data 
 
-            AnEmployee.manager_ID = TestData;
+            AnEmployee.Manager_ID = TestData;
 
             //test
 
-            Assert.AreEqual(AnEmployee.manager_ID, TestData);
+            Assert.AreEqual(AnEmployee.Manager_ID, TestData);
         }
 
         [TestMethod]
@@ -119,11 +131,11 @@ namespace MADTest
 
             //assigning data 
 
-            AnEmployee.hire_Date = TestData;
+            AnEmployee.Hire_Date = TestData;
 
             //test
 
-            Assert.AreEqual(AnEmployee.hire_Date, TestData);
+            Assert.AreEqual(AnEmployee.Hire_Date, TestData);
         }
 
         [TestMethod]
@@ -141,11 +153,11 @@ namespace MADTest
 
             //assigning data 
 
-            AnEmployee.salary = TestData;
+            AnEmployee.Salary = TestData;
 
             //test
 
-            Assert.AreEqual(AnEmployee.salary, TestData);
+            Assert.AreEqual(AnEmployee.Salary, TestData);
         }
 
         [TestMethod]
@@ -163,11 +175,11 @@ namespace MADTest
 
             //assigning data 
 
-            AnEmployee.dep_ID = TestData;
+            AnEmployee.Dep_ID = TestData;
 
             //test
 
-            Assert.AreEqual(AnEmployee.dep_ID, TestData);
+            Assert.AreEqual(AnEmployee.Dep_ID, TestData);
         }
 
         [TestMethod]
@@ -186,7 +198,7 @@ namespace MADTest
         }
 
         [TestMethod]
-        public void TestEmployeeNoFound()
+        public void TestEmployeeIDFound()
         {
             //create an instance
             ClsEmployee AnEmployee = new ClsEmployee();
@@ -199,7 +211,140 @@ namespace MADTest
             //invoke the method
             Found = AnEmployee.Find(emp_ID);
             //check the employee ID
-            if (AnEmployee.emp_ID != 21)
+            if (AnEmployee.Emp_ID != 21)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestEmployeeNameFound()
+        {
+            //create an instance
+            ClsEmployee AnEmployee = new ClsEmployee();
+            //bool variable to store the result of the search
+            Boolean Found = false;
+            //bool variable to record if the data is OK
+            Boolean OK = true;
+            //test data
+            int emp_ID = 21;
+            //invoke the method
+            Found = AnEmployee.Find(emp_ID);
+            //check the employee ID
+            if (AnEmployee.Emp_Name != "Wilson Fischer")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestJobNameFound()
+        {
+            //create an instance
+            ClsEmployee AnEmployee = new ClsEmployee();
+            //bool variable to store the result of the search
+            Boolean Found = false;
+            //bool variable to record if the data is OK
+            Boolean OK = true;
+            //test data
+            int emp_ID = 21;
+            //invoke the method
+            Found = AnEmployee.Find(emp_ID);
+            //check the employee ID
+            if (AnEmployee.Emp_Name != "HP Support")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestManagerIDFound()
+        {
+            //create an instance
+            ClsEmployee AnEmployee = new ClsEmployee();
+            //bool variable to store the result of the search
+            Boolean Found = false;
+            //bool variable to record if the data is OK
+            Boolean OK = true;
+            //test data
+            int emp_ID = 21;
+            //invoke the method
+            Found = AnEmployee.Find(emp_ID);
+            //check the employee ID
+            if (AnEmployee.Manager_ID != 1)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestHireDateFound()
+        {
+            //create an instance
+            ClsEmployee AnEmployee = new ClsEmployee();
+            //bool variable to store the result of the search
+            Boolean Found = false;
+            //bool variable to record if the data is OK
+            Boolean OK = true;
+            //test data
+            int emp_ID = 21;
+            //invoke the method
+            Found = AnEmployee.Find(emp_ID);
+            DateTime DateTemp = Convert.ToDateTime(hire_Date);
+            //check the employee ID
+            if (AnEmployee.Hire_Date != DateTemp)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestSalaryFound()
+        {
+            //create an instance
+            ClsEmployee AnEmployee = new ClsEmployee();
+            //bool variable to store the result of the search
+            Boolean Found = false;
+            //bool variable to record if the data is OK
+            Boolean OK = true;
+            //test data
+            int emp_ID = 21;
+            //invoke the method
+            Found = AnEmployee.Find(emp_ID);
+            //check the employee ID
+           if (AnEmployee.Salary != 15000)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDepartmentIDFound()
+        {
+            //create an instance
+            ClsEmployee AnEmployee = new ClsEmployee();
+            //bool variable to store the result of the search
+            Boolean Found = false;
+            //bool variable to record if the data is OK
+            Boolean OK = true;
+            //test data
+            int emp_ID = 21;
+            //invoke the method
+            Found = AnEmployee.Find(emp_ID);
+            //check the employee ID
+            if (AnEmployee.Dep_ID != 1)
             {
                 OK = false;
             }
@@ -215,7 +360,7 @@ namespace MADTest
             //string variable to store any error message
             String Error = "";
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, );
+            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
