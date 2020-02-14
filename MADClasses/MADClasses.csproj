@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsEmployee.cs" />
     <Compile Include="clsSuppliers.cs" />
     <Compile Include="clsDataConnection.cs" />
     <Compile Include="clsStock.cs" />

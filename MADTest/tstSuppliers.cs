@@ -31,9 +31,19 @@ namespace MADTest
         public void SupplierNamePropertyOK()
         {
             clsSuppliers Supplier1 = new clsSuppliers();
-            Boolean TestData = true;
-            Supplier1.Active = TestData;
-            Assert.AreEqual(Supplier1.Active, TestData);
+            string TestData = "Test Name";
+            Supplier1.Name = TestData;
+            Assert.AreEqual(Supplier1.Name, TestData);
+        }
+
+        //Testing the Address property
+        [TestMethod]
+        public void AddressPropertyOK()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            string TestData = "69 Zoo Lane";
+            Supplier1.Address = TestData;
+            Assert.AreEqual(Supplier1.Address, TestData);
         }
 
         //Testing the LastDelivery property
@@ -41,9 +51,9 @@ namespace MADTest
         public void LastDeliveryPropertyOK()
         {
             clsSuppliers Supplier1 = new clsSuppliers();
-            Boolean TestData = true;
-            Supplier1.Active = TestData;
-            Assert.AreEqual(Supplier1.Active, TestData);
+            DateTime TestData = DateTime.Now;
+            Supplier1.LastDelivery = TestData;
+            Assert.AreEqual(Supplier1.LastDelivery, TestData);
         }
 
         //Testing the Email property
@@ -51,9 +61,9 @@ namespace MADTest
         public void EmailPropertyOK()
         {
             clsSuppliers Supplier1 = new clsSuppliers();
-            Boolean TestData = true;
-            Supplier1.Active = TestData;
-            Assert.AreEqual(Supplier1.Active, TestData);
+            string TestData = "email@address.com";
+            Supplier1.Email = TestData;
+            Assert.AreEqual(Supplier1.Email, TestData);
         }
 
         //Testing the SupplierID property
@@ -61,7 +71,110 @@ namespace MADTest
         public void SupplierIDPropertyOK()
         {
             clsSuppliers Supplier1 = new clsSuppliers();
-            Assert.IsNotNull(Supplier1.ID);
+            int TestData = 0;
+            Assert.AreEqual(Supplier1.ID, TestData);
+        }
+
+        //Testing the find method
+        [TestMethod]
+        public void FindMethodOk()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            int ID = 1;
+            bool found = Supplier1.Find(ID);
+            Assert.IsTrue(found);
+        }
+
+        //Testing finding the supplier ID
+        [TestMethod]
+        public void TestSupplierIDFound()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            bool Found = false;
+            bool OK = true;
+            int ID = 5;
+            Found = Supplier1.Find(ID);
+            if (Supplier1.ID != 5)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        //Testing finding the supplier active property
+        [TestMethod]
+        public void TestSupplierActiveFound()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            bool Found = false;
+            bool OK = true;
+            int ID = 5;
+            Found = Supplier1.Find(ID);
+            if (Supplier1.Active != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        //Testing finding the supplier delivery
+        [TestMethod]
+        public void TestSupplierDeliveryFound()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            bool Found = false;
+            bool OK = true;
+            int ID = 5;
+            Found = Supplier1.Find(ID);
+            if (Supplier1.LastDelivery != Convert.ToDateTime("23/02/1995"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        //Testing finding the supplier email
+        [TestMethod]
+        public void TestSupplierEmailFound()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            bool Found = false;
+            bool OK = true;
+            int ID = 5;
+            Found = Supplier1.Find(ID);
+            if (Supplier1.Email != "test@web.site")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        //Testing finding the supplier name
+        [TestMethod]
+        public void TestSupplierNameFound()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            bool Found = false;
+            bool OK = true;
+            int ID = 5;
+            Found = Supplier1.Find(ID);
+            if (Supplier1.Name != "Image Comics")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        //Testing finding the supplier address
+        [TestMethod]
+        public void TestSupplierAddressFound()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            bool Found = false;
+            bool OK = true;
+            int ID = 5;
+            Found = Supplier1.Find(ID);
+            if (Supplier1.Address != "69 Zoo Lane")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
     }
 }

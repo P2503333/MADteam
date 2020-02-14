@@ -8,11 +8,104 @@ namespace MADClasses
 {
     public class clsSuppliers
     {
-        public bool Active { get; set; }
-        public int ID { get; set; }
-        public DateTime LastDelivery { get; set; }
-        public string Email { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
+        private Boolean mActive;
+        public bool Active
+        {
+            get
+            {
+                return mActive;
+            }
+            set
+            {
+                mActive = value;
+            }
+        }
+
+        private Int32 mID;
+        public int ID
+        {
+            get
+            {
+                return mID;
+            }
+            set
+            {
+                mID = value;
+            }
+
+        }
+
+        private DateTime mLastDelivery;
+        public DateTime LastDelivery
+        {
+            get
+            {
+                return mLastDelivery;
+            }
+            set
+            {
+                mLastDelivery = value;
+            }
+        }
+
+        private string mEmail;
+        public string Email
+        {
+            get
+            {
+                return mEmail;
+            }
+            set
+            {
+                mEmail = value;
+            }
+        }
+
+        private string mName;
+        public string Name
+        {
+            get
+            {
+                return mName;
+            }
+            set
+            {
+                mName = value;
+            }
+
+        }
+
+        private string mAddress;
+        public string Address
+        {
+            get
+            {
+                return mAddress;
+            }
+            set
+            {
+                mAddress = value;
+            }
+
+        }
+
+        public bool Find(int ID)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ID", ID);
+            DB.Execute("sproc_tblSuppliers_FindID");
+
+            if(DB.Count == 1)
+            {
+                mID = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                mLastDelivery = Convert.ToDateTime(DB.DataTable.Rows[0]["LastDelivery"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["SupplierName"]);
+                mAddress = Convert.ToString(DB.DataTable.Rows[0]["Address"]);
+                return true;
+            }
+            return false;
+        }
     }
 }
