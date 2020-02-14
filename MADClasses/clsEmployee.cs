@@ -24,7 +24,7 @@ namespace MADClasses
         private int mdep_ID;
 
         //public property for Employee ID
-        public int emp_ID
+        public int Emp_ID
         {
             get
             {
@@ -36,7 +36,7 @@ namespace MADClasses
             }
         }
         //public property for Employee Name
-        public string emp_Name
+        public string Emp_Name
         {
             get
             {
@@ -48,7 +48,7 @@ namespace MADClasses
             }
         }
         //public property for Job Name
-        public String job_Name
+        public String Job_Name
         {
             get
             {
@@ -60,7 +60,7 @@ namespace MADClasses
             }
         }
         //public property for  Manager ID
-        public Int32 manager_ID
+        public Int32 Manager_ID
         {
             get
             {
@@ -72,7 +72,7 @@ namespace MADClasses
             }
         }
         //public property for Hire Date
-        public DateTime hire_Date
+        public DateTime Hire_Date
         {
             get
             {
@@ -84,7 +84,7 @@ namespace MADClasses
             }
         }
         //public property for Salary
-        public int salary
+        public int Salary
         {
             get
             {
@@ -96,7 +96,7 @@ namespace MADClasses
             }
         }
         //public property for Department ID
-        public int dep_ID
+        public int Dep_ID
         {
             get
             {
@@ -138,7 +138,10 @@ namespace MADClasses
             }
         }
 
-        public String Valid()
+        public string Valid(int emp_ID, string emp_Name, string job_Name, int manager_ID, string hire_Date, int salary, int dep_ID)
+        {
+            return "";
+        }
 
     }
 }
