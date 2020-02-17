@@ -365,8 +365,6 @@ namespace MADTest
             Assert.AreEqual(Error, "");
         }
 
-        [TestMethod]
-        public void nothing()
-        { }
+       
     }
 }
