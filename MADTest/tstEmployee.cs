@@ -364,5 +364,9 @@ namespace MADTest
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
+
+        [TestMethod]
+        public void nothing()
+        { }
     }
 }
