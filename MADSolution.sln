@@ -1,13 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.645
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MADBackOffice", "MADBackOffice\MADBackOffice.csproj", "{E1A932A8-63B4-43EC-8D12-A4E24526C8C1}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MADFrontOffice", "MADFrontOffice\", "{87E6A6E9-7BBD-4C2F-81B0-070869B913E1}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		ProjectReferences = "{621410ec-2921-4f58-a725-c90f494cdbe3}|MADClasses.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_3422"
 		Debug.AspNetCompiler.PhysicalPath = "MADFrontOffice\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3422\"
