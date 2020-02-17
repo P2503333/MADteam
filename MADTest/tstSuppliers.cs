@@ -81,8 +81,10 @@ namespace MADTest
         {
             clsSuppliers Supplier1 = new clsSuppliers();
             int ID = 1;
-            bool found = Supplier1.Find(ID);
-            Assert.IsTrue(found);
+            Console.WriteLine("ID 5 is " + Supplier1.Find(ID));
+            bool Found = Supplier1.Find(ID);
+            Console.WriteLine("Found var is " + Found);
+            Assert.IsTrue(Found);
         }
 
         //Testing finding the supplier ID
@@ -125,7 +127,7 @@ namespace MADTest
             bool OK = true;
             int ID = 5;
             Found = Supplier1.Find(ID);
-            if (Supplier1.LastDelivery != Convert.ToDateTime("23/02/1995"))
+            if (Supplier1.LastDelivery != Convert.ToDateTime("10/10/2020"))
             {
                 OK = false;
             }
@@ -140,7 +142,7 @@ namespace MADTest
             bool OK = true;
             int ID = 5;
             Found = Supplier1.Find(ID);
-            if (Supplier1.Email != "test@web.site")
+            if (Supplier1.Email != "dc@dccomics.com")
             {
                 OK = false;
             }
@@ -155,7 +157,7 @@ namespace MADTest
             bool OK = true;
             int ID = 5;
             Found = Supplier1.Find(ID);
-            if (Supplier1.Name != "Image Comics")
+            if (Supplier1.Name != "DC")
             {
                 OK = false;
             }
@@ -170,7 +172,7 @@ namespace MADTest
             bool OK = true;
             int ID = 5;
             Found = Supplier1.Find(ID);
-            if (Supplier1.Address != "69 Zoo Lane")
+            if (Supplier1.Address != "432 Fourth Avenue")
             {
                 OK = false;
             }

@@ -98,14 +98,30 @@ namespace MADClasses
             if(DB.Count == 1)
             {
                 mID = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
-                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
-                mLastDelivery = Convert.ToDateTime(DB.DataTable.Rows[0]["LastDelivery"]);
-                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
                 mName = Convert.ToString(DB.DataTable.Rows[0]["SupplierName"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
                 mAddress = Convert.ToString(DB.DataTable.Rows[0]["Address"]);
+
+                if (!(DB.DataTable.Rows[0]["LastDelivery"] is DBNull))
+                {
+                    mLastDelivery = Convert.ToDateTime(DB.DataTable.Rows[0]["LastDelivery"]);
+                }
+                else
+                {
+                    mLastDelivery = new DateTime();
+                }
                 return true;
             }
             return false;
+        }
+
+        public string Valid(
+            string SupplierName, 
+            string SupplierEmail, 
+            string SupplierAddress)
+        {
+            return "";
         }
     }
 }
