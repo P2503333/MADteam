@@ -17,6 +17,7 @@ namespace MADTest
         string hire_Date = DateTime.Now.Date.ToString();
         int salary = 15000;
         int dep_ID = 1;
+        bool active = true;
 
 
         [TestMethod]
@@ -180,6 +181,28 @@ namespace MADTest
             //test
 
             Assert.AreEqual(AnEmployee.Dep_ID, TestData);
+        }
+
+        [TestMethod]
+        public void Active_PropertyOK()
+
+        {
+
+            //an instance of the class
+
+            ClsEmployee AnEmployee = new ClsEmployee();
+
+            //test data
+
+            bool TestData = true;
+
+            //assigning data 
+
+            AnEmployee.Active = TestData;
+
+            //test
+
+            Assert.AreEqual(AnEmployee.Active, TestData);
         }
 
         [TestMethod]
@@ -360,7 +383,7 @@ namespace MADTest
             //string variable to store any error message
             String Error = "";
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID );
+            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
