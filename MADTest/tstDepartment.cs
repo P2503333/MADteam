@@ -12,9 +12,9 @@ namespace MADTest
         //good test data
         //TEST DATA
         int Dep_ID = 1;
-        string Dep_Name = "Wilson Fisher";
-        string Dep_Location = "HR Support";
-        int No_Employees = 1;
+        string Dep_Name = "Human Resources";
+        string Dep_Location = "London";
+        int No_Employees = 11;
 
 
         [TestMethod]
@@ -122,7 +122,7 @@ namespace MADTest
             //boolean variable to store the result
             Boolean Found = false;
             //test data
-            int Dep_ID = 38;
+            int Dep_ID = 1;
             //invoke the method
             Found = AnDepartment.Find(Dep_ID);
             //test to see that the result is correct
@@ -165,7 +165,7 @@ namespace MADTest
             //invoke the method
             Found = AnDepartment.Find(Dep_ID);
             //check the Department ID
-            if (AnDepartment.Dep_Name != "Wilson Fischer")
+            if (AnDepartment.Dep_Name != "Human Resources")
             {
                 OK = false;
             }
@@ -187,7 +187,7 @@ namespace MADTest
             //invoke the method
             Found = AnDepartment.Find(Dep_ID);
             //check the Department ID
-            if (AnDepartment.Dep_Location != "HP Support")
+            if (AnDepartment.Dep_Location != "London")
             {
                 OK = false;
             }
@@ -209,7 +209,7 @@ namespace MADTest
             //invoke the method
             Found = AnDepartment.Find(Dep_ID);
             //check the Department ID
-            if (AnDepartment.No_Employees != 1)
+            if (AnDepartment.No_Employees != 11)
             {
                 OK = false;
             }

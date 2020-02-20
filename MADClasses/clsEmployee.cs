@@ -154,9 +154,18 @@ namespace MADClasses
             }
         }
 
-        public string Valid(int emp_ID, string emp_Name, string job_Name, int manager_ID, string hire_Date, int salary, int dep_ID, bool active)
+        public string Valid(int emp_ID, string emp_Name, string job_Name, int manager_ID, DateTime hire_Date, int salary, int dep_ID, bool active)
         {
-            return "";
+            // create a string variable to store the error
+            String Error = "";
+            //if the Department ID id blank
+            if (emp_Name.Length == 0)
+            {
+                //Recording the error
+                Error += "The employee Name may not be blank : ";
+            }
+            //return any error messages
+            return Error;
         }
 
     }
