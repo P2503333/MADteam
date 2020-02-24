@@ -8,27 +8,45 @@ using MADClasses;
 
 public partial class AnEmployee : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    int emp_ID;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //create a new instance of clsEmployee
-        ClsEmployee AnEmployee = new ClsEmployee();
-        //capture the employee ID
-        AnEmployee.Emp_ID = txtemp_ID.Text;
-        //get the data from the session object
-        AnEmployee = (ClsEmployee)Session["AnEmployee"];
-        //display the employee ID for this entry
-        Response.Write(AnEmployee.Emp_ID);
+        ClsEmployee anEmployee = new ClsEmployee();
+
+        anEmployee = (ClsEmployee)Session["anEmployee"];
+        Response.Write(anEmployee.Emp_ID);
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance of the employee class
-        ClsEmployee AnEmployee = new ClsEmployee();
-        //capture the employee ID
-        AnEmployee.Emp_ID = txtemp_ID.Text;
-        Session["AnEmployee"] = AnEmployee;
-        //redirect to the viewer page
-        Response.Redirect("EmployeeViewer.aspx");
+        ClsEmployee anEmployee = new ClsEmployee();
+
+        anEmployee.Emp_ID = txtemp_ID.Text;
+        anEmployee.Emp_Name = txtemp_Name.Text;
+        anEmployee.Job_Name = txtjob_Name.Text;
+        anEmployee.Manager_ID = txtmanager_ID.Text;
+        anEmployee.Hire_Date = Convert.ToDateTime( txthire_Date.Text);
+        anEmployee.Salary = txtsalary.Text;
+        anEmployee.Dep_ID = txtdep_ID.Text;
+        anEmployee.Active = txtactive.Text;
+        Session["AnEmployee"] = anEmployee;
+
+        Response.Write("EmployeeViewer.aspx");
+    }
+    void DisplayEmployee()
+    {
+        ClsEmployee anEmployee= new ClsEmployee();
+
+        anEmployee.Find(emp_ID);
+        //display the data
+        txtemp_ID.Text = anEmployee.Emp_ID;
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect to the main page
+        Response.Redirect("Default.aspx");
     }
 }

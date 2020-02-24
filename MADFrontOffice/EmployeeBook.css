@@ -1,0 +1,37 @@
+﻿body {
+    background-color: #fff;
+}
+
+header {
+    background-color: #4E6C7B;
+    text-align: center;
+    height: 10%;
+    position: fixed;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    color: white;
+    text-transform: uppercase;
+    font-size: xx-large;
+}
+
+article {
+    background-color: #91ADB9;
+    position: fixed;
+    width: 40%;
+    top: 20%;
+    left: 30%;
+    height: 450px;
+    color: white;
+}
+
+footer {
+    background-color: #295367;
+    height: 10%;
+    position: fixed;
+    width: 100%;
+    top: 90%;
+    left: 0%;
+    color: white;
+}
+
