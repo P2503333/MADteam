@@ -1,44 +1,35 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AnEmployee.aspx.cs" Inherits="AnEmployee" %>
+﻿<%@  Page Title="" Page Language="C#" MasterPageFile="~/EmployeeBook.master" AutoEventWireup="true" CodeFile="AnEmployee.aspx.cs" Inherits="AnEmployee" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+            <asp:Label ID="lblemp_ID" runat="server" Text="Employee ID" Width="100px"></asp:Label>
+            &nbsp;<asp:TextBox ID="txtemp_ID" runat="server" Width="127px" ></asp:TextBox>
+            <br />
+            <asp:Label ID="lblemp_Name" runat="server" Text="Employee Name" Width="100px"></asp:Label>
+            &nbsp;<asp:TextBox ID="txtemp_Name" runat="server" ></asp:TextBox>
+            <br />
+            <asp:Label ID="lbljob_Name" runat="server"  Text="Job Name" Width="100px"></asp:Label>
+            &nbsp;<asp:TextBox ID="txtjob_Name" runat="server" ></asp:TextBox>
+            <br />
+            <asp:Label ID="lblmanager_ID" runat="server" Text="Manager ID" Width="100px"></asp:Label>
+            &nbsp;<asp:TextBox ID="txtmanager_ID" runat="server" ></asp:TextBox>
+            <br />
+            <asp:Label ID="lblhire_Date" runat="server" Text="Hire Date" Width="100px"></asp:Label>
+            &nbsp;<asp:TextBox ID="txthire_Date" runat="server" ></asp:TextBox>
+            <br />
+            <asp:Label ID="lblsalary" runat="server" Text="Salary" Width="100px"></asp:Label>
+            &nbsp;<asp:TextBox ID="txtsalary" runat="server" ></asp:TextBox>
+            <br />
+            <asp:Label ID="lbldep_ID" runat="server" Text="Department ID" Width="100px"></asp:Label>
+            &nbsp;<asp:TextBox ID="txtdep_ID" runat="server" ></asp:TextBox>
+            <br />
+            <br />
+            <asp:CheckBox ID="chkActive" runat="server" style="z-index: 1;" Text="Active" />
+            <br />
+            <br />
+            <asp:Label ID="lblError" runat="server" ></asp:Label>            
+            <br />
+            <br />
+            <asp:Button ID="btnOK" runat="server" height="26px" Text="OK" width="61px" OnClick="btnOK_Click" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1;" Text="Cancel" height="26px" width="61px" OnClick="btnCancel_Click" />
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            Empoyee ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtemp_ID" runat="server"></asp:TextBox>
-            <br />
-            Employee Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtemp_Name" runat="server"></asp:TextBox>
-            <br />
-            Job Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtjob_Name" runat="server"></asp:TextBox>
-            <br />
-            Manager ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <asp:TextBox ID="txtmanager_ID" runat="server"></asp:TextBox>
-            <br />
-            Hire Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <asp:TextBox ID="txthire_Date" runat="server"></asp:TextBox>
-            <br />
-            Salary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <asp:TextBox ID="txtsalary" runat="server"></asp:TextBox>
-            <br />
-            Department ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-            <asp:TextBox ID="txtdep_ID" runat="server"></asp:TextBox>
-            <br />
-            <br />
-            <asp:CheckBox ID="active" runat="server" />
-            <br />
-            <br />
-            <asp:Button ID="Button1" runat="server" Text="OK" />
-            <asp:Button ID="Button2" runat="server" Text="Cancel" />
-
-
-        </div>
-    </form>
-</body>
-</html>
+</asp:Content>
