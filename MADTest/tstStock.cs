@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MADTest
 {
     [TestClass]
-    public class tstStock
+    public class TstStock
     {
         [TestMethod]
         public void InstanceOK()
@@ -21,10 +21,9 @@ namespace MADTest
             clsStock stock = new clsStock();
             //variable to store result
             Boolean Found = false;
-            //make something to look for
-            string isbn = "1234567891234";
+            string ISBN = "1111111111111";
             //invoke the method
-            Found = stock.Find(isbn);
+            Found = stock.Find(ISBN);
             //test the result
             Assert.IsTrue(Found);
         }
@@ -37,12 +36,12 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1234567891234";
+            string isbn = "1111111111111";
             //invoke the method
             Found = stock.Find(isbn);
             //check the isbn
 
-            if (stock.ISBN != "1234567891234")
+            if (stock.ISBN != "1111111111111")
             {
                 OK = false;
             }
@@ -60,11 +59,11 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1234567891234";
+            string isbn = "1111111111111";
             //invoke the method
             Found = stock.Find(isbn);
             //check the price
-            if (stock.Price != 9.99) 
+            if (stock.Price != 5.9900) 
             {
                 OK = false;
             }
@@ -81,11 +80,11 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1234567891234";
+            string isbn = "1111111111111";
             //invoke the method
             Found = stock.Find(isbn);
             //check the supplier ID
-            if (stock.SupplierID != 1)
+            if (stock.SupplierID != 2)
             {
                 OK = false;
             }
@@ -103,11 +102,11 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1234567891234";
+            string isbn = "1111111111111";
             //invoke the method
             Found = stock.Find(isbn);
             //check the Stock Level
-            if (stock.StockLevel != 100)
+            if (stock.StockLevel != 50)
             {
                 OK = false;
             }
@@ -124,11 +123,11 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1234567891234";
+            string isbn = "1111111111111";
             //invoke the method
             Found = stock.Find(isbn);
             //check the book name
-            if (stock.BookName != "Great Expectations")
+            if (stock.BookName != "Guards! Guards!")
             {
                 OK = false;
             }
@@ -145,11 +144,11 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1234567891234";
+            string isbn = "1111111111111";
             //invoke the method
             Found = stock.Find(isbn);
             //check the date
-            if (stock.ReleaseDate != Convert.ToDateTime("1/1/1990"))
+            if (stock.ReleaseDate != Convert.ToDateTime("28/01/1980"))
             {
                 OK = false;
             }
@@ -165,11 +164,11 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1234567891234";
+            string isbn = "1111111111111";
             //invoke the method
             Found = stock.Find(isbn);
             //check if it's on order
-            if (stock.OnOrder != true)
+            if (stock.OnOrder != false)
             {
                 OK = false;
             }
@@ -186,11 +185,11 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1234567891234";
+            string isbn = "1111111111111";
             //invoke the method
             Found = stock.Find(isbn);
             //check the Author
-            if (stock.Author != "Charles Dickens")
+            if (stock.Author != "Terry Pratchett")
             {
                 OK = false;
             }

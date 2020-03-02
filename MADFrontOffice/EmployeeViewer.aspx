@@ -1,4 +1,4 @@
-﻿<%@ page language="C#" autoeventwireup="true" inherits="_Default, App_Web_2ypbi2dy" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="EmployeeViewer.aspx.cs" Inherits="EmployeeViewer" %>
 
 <!DOCTYPE html>
 

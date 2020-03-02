@@ -14,9 +14,10 @@ namespace MADTest
         string emp_Name = "Wilson Fisher";
         string job_Name = "HR Support";
         int manager_ID = 1;
-        string hire_Date = DateTime.Now.Date.ToString();
+        DateTime hire_Date = Convert.ToDateTime("15/01/2019");
         int salary = 15000;
         int dep_ID = 1;
+        bool active = true;
 
 
         [TestMethod]
@@ -183,6 +184,28 @@ namespace MADTest
         }
 
         [TestMethod]
+        public void Active_PropertyOK()
+
+        {
+
+            //an instance of the class
+
+            ClsEmployee AnEmployee = new ClsEmployee();
+
+            //test data
+
+            bool TestData = true;
+
+            //assigning data 
+
+            AnEmployee.Active = TestData;
+
+            //test
+
+            Assert.AreEqual(AnEmployee.Active, TestData);
+        }
+
+        [TestMethod]
         public void FindMethodOK()
         {
             //creates an instance
@@ -233,7 +256,7 @@ namespace MADTest
             //invoke the method
             Found = AnEmployee.Find(emp_ID);
             //check the employee ID
-            if (AnEmployee.Emp_Name != "Wilson Fischer")
+            if (AnEmployee.Emp_Name != "Wilson Fisher")
             {
                 OK = false;
             }
@@ -255,7 +278,7 @@ namespace MADTest
             //invoke the method
             Found = AnEmployee.Find(emp_ID);
             //check the employee ID
-            if (AnEmployee.Emp_Name != "HP Support")
+            if (AnEmployee.Job_Name != "HR Support")
             {
                 OK = false;
             }
@@ -360,9 +383,11 @@ namespace MADTest
             //string variable to store any error message
             String Error = "";
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID );
+            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
+
+       
     }
 }

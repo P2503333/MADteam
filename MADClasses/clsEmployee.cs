@@ -22,6 +22,8 @@ namespace MADClasses
         private int msalary;
         //private data member for Department ID
         private int mdep_ID;
+        //private data member for Active
+        private bool mactive;
 
         //public property for Employee ID
         public int Emp_ID
@@ -108,6 +110,19 @@ namespace MADClasses
             }
         }
 
+        //public property for Active
+        public bool Active
+        {
+            get
+            {
+                return mactive;
+            }
+            set
+            {
+                mactive = value;
+            }
+        }
+
         public bool Find(int emp_ID)
         {
             //create an instance of the data connection
@@ -127,6 +142,7 @@ namespace MADClasses
                 mhire_Date = Convert.ToDateTime(DB.DataTable.Rows[0]["hire_Date"]);
                 msalary = Convert.ToInt32(DB.DataTable.Rows[0]["salary"]);
                 mdep_ID = Convert.ToInt32(DB.DataTable.Rows[0]["dep_ID"]);
+                mactive = Convert.ToBoolean(DB.DataTable.Rows[0]["active"]);
                 //return that everything worked OK
                 return true;
             }
@@ -138,9 +154,18 @@ namespace MADClasses
             }
         }
 
-        public string Valid(int emp_ID, string emp_Name, string job_Name, int manager_ID, string hire_Date, int salary, int dep_ID)
+        public string Valid(int emp_ID, string emp_Name, string job_Name, int manager_ID, DateTime hire_Date, int salary, int dep_ID, bool active)
         {
-            return "";
+            // create a string variable to store the error
+            String Error = "";
+            //if the Department ID id blank
+            if (emp_Name.Length == 0)
+            {
+                //Recording the error
+                Error += "The employee Name may not be blank : ";
+            }
+            //return any error messages
+            return Error;
         }
 
     }
