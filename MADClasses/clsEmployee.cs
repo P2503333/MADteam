@@ -8,6 +8,11 @@ namespace MADClasses
 {
     public class ClsEmployee
     {
+        //--------Add to DB sproc_tblEmployee_Insert ----
+        //--------and sproc_tblEmployee_SelectAll -------
+        //--------and sproc_tblEmployee_Update ----------
+        //--------and sproc_tblEmployee_Delete ----------
+        // -------and sproc_tblAddress_FilterByemp_Name ---
         //private data member for Employee ID
         private Int32 memp_ID;
         //private data member for Employee Name
@@ -158,13 +163,117 @@ namespace MADClasses
         {
             // create a string variable to store the error
             String Error = "";
-            //if the Department ID id blank
+            //creating a temporary variable to store the date
+            DateTime DateTemp;
+            //--------------------Employee ID Validating--------------------
+            //if the Employee ID is blank
+            if (emp_ID == 0)
+            {
+                //Recording the error
+                Error += "The Employee ID may not be blank : ";
+            }
+            if (emp_ID > 200)
+            {
+                //Recording the error
+                Error += "The Employee ID must be an employee : ";
+            }
+            if (emp_ID < 0)
+            {
+                //Recording the error
+                Error += "The Employee ID must be greater than 0 : ";
+            }
+            //--------------------Employee Name Validating--------------------
+            //if the employee name is blank
             if (emp_Name.Length == 0)
             {
                 //Recording the error
                 Error += "The employee Name may not be blank : ";
             }
-            //return any error messages
+            if (emp_Name.Length > 50)
+            {
+                //Recording the error
+                Error += "The employee Name must be less thn 50 characters : ";
+            }
+            //--------------------Job Name Validating--------------------
+            if (job_Name.Length > 50)
+            {
+                //Recording the error
+                Error += "The Job Name must be less thn 50 characters : ";
+            }
+            //--------------------Manager ID Validating--------------------
+            //if the Manager ID is blank
+            if (manager_ID == 0)
+            {
+                //Recording the error
+                Error += "The Manager ID may not be blank : ";
+            }
+            if (manager_ID > 200)
+            {
+                //Recording the error
+                Error += "The Manager ID must be an employee : ";
+            }
+            //--------------------Hire Date Validating--------------------
+            try
+            {
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = hire_Date;
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+            //--------------------Salary Validating--------------------
+            //if the Salary is blank
+            if (salary == 0)
+            {
+                //Recording the error
+                Error += "The Salary may not be blank : ";
+            }
+            if (salary > 200000)
+            {
+                //Recording the error
+                Error += "The Salary must be an employee : ";
+            }
+            if (salary < 0)
+            {
+                //Recording the error
+                Error += "The Salary must be greater than 0";
+            }
+            //--------------------Department ID Validating--------------------
+            //if the Department ID is blank
+            if (dep_ID == 0)
+            {
+                //Recording the error
+                Error += "The Department ID may not be blank : ";
+            }
+            if (dep_ID > 200)
+            {
+                //Recording the error
+                Error += "The Department ID must be an employee : ";
+            }
+            if (dep_ID < 0)
+            {
+                //Recording the error
+                Error += "The Department ID must greater that 0 : ";
+            }
+            //--------------------Active Validating--------------------
+            if (active != true && active != false)
+            {
+                //Recording the error
+                Error += "The employee must be either active or not active : ";
+            }
             return Error;
         }
 

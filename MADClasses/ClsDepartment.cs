@@ -97,7 +97,66 @@ namespace MADClasses
 
     public string Valid(int dep_ID, string dep_Name, string dep_Location, int no_Employees)
     {
-        return "";
+            String Error = "";
+            //--------------------Department ID Validating--------------------
+            //if the Department ID is blank
+            if (dep_ID == 0)
+            {
+                //Recording the error
+                Error += "The Department ID may not be blank : ";
+            }
+            if (dep_ID > 200)
+            {
+                //Recording the error
+                Error += "The Department ID must be an employee : ";
+            }
+            if (dep_ID < 0)
+            {
+                //Recording the error
+                Error += "The Department ID must greater that 0 : ";
+            }
+            //--------------------Department Name Validating--------------------
+            //if the employee name is blank
+            if (dep_Name.Length == 0)
+            {
+                //Recording the error
+                Error += "The Department Name may not be blank : ";
+            }
+            if (dep_Name.Length > 50)
+            {
+                //Recording the error
+                Error += "The Department Name must be less thn 50 characters : ";
+            }
+            //--------------------Department Location Validating--------------------
+            //if the employee name is blank
+            if (dep_Location.Length == 0)
+            {
+                //Recording the error
+                Error += "The Department Location may not be blank : ";
+            }
+            if (dep_Location.Length > 50)
+            {
+                //Recording the error
+                Error += "The Department Location must be less thn 50 characters : ";
+            }
+            //--------------------No Employees Validating--------------------
+            //if the Department ID is blank
+            if (no_Employees == 0)
+            {
+                //Recording the error
+                Error += "The Number of Employees may not be blank : ";
+            }
+            if (no_Employees > 200)
+            {
+                //Recording the error
+                Error += "The Number of Employees must be below 200 : ";
+            }
+            if (no_Employees < 0)
+            {
+                //Recording the error
+                Error += "The Number of Employees must greater that 0 : ";
+            }
+            return Error;
     }
 
     }
