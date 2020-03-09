@@ -116,10 +116,11 @@ namespace MADClasses
             return false;
         }
 
-        public string Valid(
-            string SupplierName, 
-            string SupplierEmail, 
-            string SupplierAddress)
+        public string Valid(string SupplierName, 
+                            string SupplierEmail, 
+                            string SupplierAddress,
+                            DateTime LastDelivery,
+                            Boolean Active)
         {
             return "";
         }

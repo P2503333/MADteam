@@ -8,6 +8,13 @@ namespace MADTest
     public class tstSuppliers
     {
 
+        string Name = "Wizards of the Coast";
+        string Email = "maro@wotc.com";
+        string Address = "Ravnica";
+        DateTime LastDelivery = DateTime.Now.Date;
+        Boolean Active = true;
+
+
         //Testing the initialisation
         [TestMethod]
         public void InstanceOK()
@@ -177,6 +184,15 @@ namespace MADTest
                 OK = false;
             }
             Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            Error = Supplier1.Valid(Name, Address, Email, LastDelivery, Active);
+            Assert.AreEqual(Error, "");
         }
     }
 }
