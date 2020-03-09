@@ -389,7 +389,7 @@ namespace MADTest
             //invoke the method
             Found = AnEmployee.Find(emp_ID);
             //check the employee ID
-            if (AnEmployee.Active != true)
+            if (AnEmployee.Active != false)
             {
                 OK = false;
             }

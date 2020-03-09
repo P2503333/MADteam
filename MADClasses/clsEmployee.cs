@@ -12,7 +12,7 @@ namespace MADClasses
         //--------and sproc_tblEmployee_SelectAll -------
         //--------and sproc_tblEmployee_Update ----------
         //--------and sproc_tblEmployee_Delete ----------
-        // -------and sproc_tblAddress_FilterByemp_Name ---
+        // -------and sproc_tblEmployee_FilterByemp_Name ---
         //private data member for Employee ID
         private Int32 memp_ID;
         //private data member for Employee Name

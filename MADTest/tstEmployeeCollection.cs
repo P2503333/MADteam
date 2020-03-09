@@ -29,9 +29,10 @@ namespace MADTest
             //create the item of test data
             ClsEmployee TestEmployee = new ClsEmployee();
             //set its properties
-            TestEmployee.Emp_ID = 111;
+            TestEmployee.Emp_ID = 113;
             TestEmployee.Emp_Name = "Jake Wills";
             TestEmployee.Job_Name = "Supporter";
+            TestEmployee.Manager_ID = 2;
             TestEmployee.Hire_Date = DateTime.Now.Date;
             TestEmployee.Salary = 22000;
             TestEmployee.Dep_ID = 3;
@@ -44,18 +45,18 @@ namespace MADTest
             Assert.AreEqual(AllEmployees.EmployeeList, TestList);
         }
 
-        //[TestMethod]
-        //public void CountPropertyOK()
-        //{
-        //    //create an instance of the class we want to create
-        //    clsEmployeeCollection AllEmployee = new clsEmployeeCollection();
-        //    //create some test data to assign to the property
-        //    Int32 SomeCount = 2;
-        //    //assign the data to the property
-        //    AllEmployee.Count = SomeCount;
-        //    //test to see that the two values are the same
-        //    Assert.AreEqual(AllAddresses.Count, SomeCount);
-        //}
+        [TestMethod]
+        public void CountPropertyOK()
+        {
+            //create an instance of the class we want to create
+            clsEmployeeCollection AllEmployee = new clsEmployeeCollection();
+            //create some test data to assign to the property
+            Int32 SomeCount = 117;
+            //assign the data to the property
+            AllEmployee.Count = SomeCount;
+            //test to see that the two values are the same
+            Assert.AreEqual(AllEmployee.Count, SomeCount);
+        }
 
         [TestMethod]
         public void ThisEmployeePropertyOK()
@@ -65,9 +66,10 @@ namespace MADTest
             //create some test data to assign to the property
             ClsEmployee TestEmployee = new ClsEmployee();
             //set the properties of the test object
-            TestEmployee.Emp_ID = 111;
+            TestEmployee.Emp_ID = 113;
             TestEmployee.Emp_Name = "Jake Wills";
             TestEmployee.Job_Name = "Supporter";
+            TestEmployee.Manager_ID = 2;
             TestEmployee.Hire_Date = DateTime.Now.Date;
             TestEmployee.Salary = 22000;
             TestEmployee.Dep_ID = 3;
@@ -90,9 +92,10 @@ namespace MADTest
             //create the item of test data
             ClsEmployee TestEmployee = new ClsEmployee();
             //set its properties
-            TestEmployee.Emp_ID = 111;
+            TestEmployee.Emp_ID = 113;
             TestEmployee.Emp_Name = "Jake Wills";
             TestEmployee.Job_Name = "Supporter";
+            TestEmployee.Manager_ID = 2;
             TestEmployee.Hire_Date = DateTime.Now.Date;
             TestEmployee.Salary = 22000;
             TestEmployee.Dep_ID = 3;
@@ -105,15 +108,6 @@ namespace MADTest
             Assert.AreEqual(AllEmployee.Count, TestList.Count);
         }
 
-        //[TestMethod]
-        //public void TwoRecordsPresent()
-        //{
-        //    //create an instance of the class we want to create
-        //    clsAddressCollection AllAddresses = new clsAddressCollection();
-        //    //test to see that the two values are the same
-        //    Assert.AreEqual(AllAddresses.Count, 2);
-        //}
-
         [TestMethod]
         public void AddMethodOK()
         {
@@ -122,21 +116,21 @@ namespace MADTest
             //create the item of test data
             ClsEmployee TestEmployee = new ClsEmployee();
             //var to store the primary key
-            Int32 PrimaryKey = 0;
+            Int32 PrimaryKey = 115;
             //set its properties
-            TestEmployee.Emp_ID = 111;
+            TestEmployee.Emp_ID = PrimaryKey;
             TestEmployee.Emp_Name = "Jake Wills";
             TestEmployee.Job_Name = "Supporter";
+            TestEmployee.Manager_ID = 2;
             TestEmployee.Hire_Date = DateTime.Now.Date;
             TestEmployee.Salary = 22000;
             TestEmployee.Dep_ID = 3;
             TestEmployee.Active = true;
-            //set ThisAddress to the test data
+            //set ThisEmployee to the test data
             AllEmployee.ThisEmployee = TestEmployee;
             //add the record
-            PrimaryKey = AllEmployee.Add();
+            AllEmployee.Add();
             //set the primary key of the test data
-            TestEmployee.Emp_ID = PrimaryKey;
             //find the record
             AllEmployee.ThisEmployee.Find(PrimaryKey);
             //test to see that the two values are the same
@@ -151,11 +145,12 @@ namespace MADTest
             //create the item of test data
             ClsEmployee TestEmployee = new ClsEmployee();
             //var to store the primary key
-            Int32 PrimaryKey = 0;
+            Int32 PrimaryKey = 116;
             //set its properties
-            TestEmployee.Emp_ID = 111;
+            TestEmployee.Emp_ID = 116;
             TestEmployee.Emp_Name = "Jake Wills";
             TestEmployee.Job_Name = "Supporter";
+            TestEmployee.Manager_ID = 2;
             TestEmployee.Hire_Date = DateTime.Now.Date;
             TestEmployee.Salary = 22000;
             TestEmployee.Dep_ID = 3;
@@ -184,11 +179,12 @@ namespace MADTest
             //create the item of test data
             ClsEmployee TestEmployee = new ClsEmployee();
             //var to store the primary key
-            Int32 PrimaryKey = 0;
+            Int32 PrimaryKey = 113;
             //set its properties
-            TestEmployee.Emp_ID = 111;
+            TestEmployee.Emp_ID = 113;
             TestEmployee.Emp_Name = "Jake Wills";
             TestEmployee.Job_Name = "Supporter";
+            TestEmployee.Manager_ID = 2;
             TestEmployee.Hire_Date = DateTime.Now.Date;
             TestEmployee.Salary = 22000;
             TestEmployee.Dep_ID = 3;
@@ -200,9 +196,10 @@ namespace MADTest
             //set the primary key of the test data
             TestEmployee.Emp_ID = PrimaryKey;
             //modify the test data
-            TestEmployee.Emp_ID = 111;
+            TestEmployee.Emp_ID = 113;
             TestEmployee.Emp_Name = "Jake Williams";
             TestEmployee.Job_Name = "Supporter";
+            TestEmployee.Manager_ID = 2;
             TestEmployee.Hire_Date = DateTime.Now.Date;
             TestEmployee.Salary = 22000;
             TestEmployee.Dep_ID = 3;
@@ -218,7 +215,7 @@ namespace MADTest
         }
 
         [TestMethod]
-        public void ReportByPostCodeMethodOK()
+        public void ReportByEmployeeNameMethodOK()
         {
             //create an instance of the class containing unfiltered results
             clsEmployeeCollection AllEmpoyees = new clsEmployeeCollection();
@@ -231,25 +228,26 @@ namespace MADTest
         }
 
         [TestMethod]
-        public void ReportByPostCodeNoneFound()
+        public void ReportByEmployeeNameNoneFound()
         {
             //create an instance of the filtered data
             clsEmployeeCollection FilteredEmployees = new clsEmployeeCollection();
             //apply a post code that doesn't exist
-            FilteredEmployees.ReportByEmployeeName("enewn enwdss");
+            string test = "";
+            FilteredEmployees.ReportByEmployeeName(test);
             //test to see that there are no records
             Assert.AreEqual(0, FilteredEmployees.Count);
         }
 
         [TestMethod]
-        public void ReportByPostCodeTestDataFound()
+        public void ReportByEmployeeNameTestDataFound()
         {
             //create an instance of the filtered data
             clsEmployeeCollection FilteredEmployees = new clsEmployeeCollection();
             //var to store outcome
             Boolean OK = true;
             //apply a Name that doesn't exist
-            FilteredEmployees.ReportByEmployeeName("yourgon smeagol");
+            FilteredEmployees.ReportByEmployeeName("Thomas Wilson");
             //check that the correct number of records are found
             if (FilteredEmployees.Count == 2)
             {

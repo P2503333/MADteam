@@ -149,13 +149,13 @@ namespace MADClasses
 
         public void ReportByEmployeeName(string emp_Name)
         {
-            //filters the records based on a Department ID
+            //filters the records based on an Employee Name
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
-            //send the Department ID parameter to the database
+            //send the Employee Name parameter to the database
             DB.AddParameter("@emp_Name", mAnEmployee.Emp_Name);
             //execute the stored procedure
-            DB.Execute("sproc_tblAddress_FilterByemp_Name");
+            DB.Execute("sproc_tblEmployee_FilterByemp_Name");
             //populate the array list with the data table
             PopulateArray(DB);
         }

@@ -373,11 +373,11 @@ namespace MADTest
             //string variable to store any error message
             String Error = "";  
             //create some test data to pass to the method
-            string Dep_Name = ""; //this should be ok
+            string Dep_Name = ""; //this should be not ok
             //invoke the method
             Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -479,11 +479,11 @@ namespace MADTest
             //string variable to store any error message
             String Error = "";  
             //create some test data to pass to the method
-            string Dep_Location = ""; //this should be ok
+            string Dep_Location = ""; //this should not be ok
             //invoke the method
             Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
-            Assert.AreEqual(Error, "");
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
