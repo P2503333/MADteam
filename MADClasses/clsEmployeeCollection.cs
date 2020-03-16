@@ -153,7 +153,7 @@ namespace MADClasses
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //send the Employee Name parameter to the database
-            DB.AddParameter("@emp_Name", mAnEmployee.Emp_Name);
+            DB.AddParameter("@emp_Name", emp_Name);
             //execute the stored procedure
             DB.Execute("sproc_tblEmployee_FilterByemp_Name");
             //populate the array list with the data table

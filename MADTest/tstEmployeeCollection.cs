@@ -249,15 +249,20 @@ namespace MADTest
             //apply a Name that doesn't exist
             FilteredEmployees.ReportByEmployeeName("Thomas Wilson");
             //check that the correct number of records are found
-            if (FilteredEmployees.Count == 2)
+            if (FilteredEmployees.Count == 3)
             {
-                //check that the first record is ID 36
-                if (FilteredEmployees.EmployeeList[0].Emp_ID != 36)
+                //check that the first record is ID 1
+                if (FilteredEmployees.EmployeeList[0].Emp_ID != 1)
                 {
                     OK = false;
                 }
-                //check that the first record is ID 37
-                if (FilteredEmployees.EmployeeList[1].Emp_ID != 37)
+                //check that the first record is ID 67
+                if (FilteredEmployees.EmployeeList[1].Emp_ID != 67)
+                {
+                    OK = false;
+                }
+                //check that the first record is ID 106
+                if (FilteredEmployees.EmployeeList[2].Emp_ID != 106)
                 {
                     OK = false;
                 }
