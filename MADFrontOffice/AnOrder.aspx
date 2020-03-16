@@ -39,6 +39,12 @@
             <br />
             <br />
             <br />
+            ISBN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:TextBox ID="TextISBN" runat="server" Width="183px"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+            <br />
+            <br />
             <asp:Button ID="Button1" runat="server" Text="Confirm Order" style="margin-left: 117px" Width="130px" />
             &nbsp;&nbsp;&nbsp;
             <asp:Button ID="Button2" runat="server" Text="Cancel" style="margin-left: 116px" Width="130px" />

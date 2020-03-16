@@ -4,6 +4,8 @@ namespace MADClasses
 {
     public class clsOrder
     {
+        public object Order_ISBN;
+
         public int Order_ID { get; set; }
         public int CustomerId { get; set; }
         public int emp_ID { get; set; }
@@ -11,5 +13,8 @@ namespace MADClasses
         public float TotalAmount { get; set; }
         public DateTime Order_Date { get; set; }
         public bool Dispatch { get; set; }
+        public string ISBN { get; set; }
+
+   
     }
 }

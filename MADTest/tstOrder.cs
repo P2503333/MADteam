@@ -139,8 +139,20 @@ namespace MADTest
 
             //test 
             Assert.AreEqual(AnOrder.Dispatch, TestData);
+        
 
         }
+        public void TestISBN()
+            //an instance of the class 
+            clsOrder AnOrder = new clsOrder();
 
+            //test data 
+            String TestData = 1;
+        
+            //assigning data to the property 
+            AnOrder.ISBN = TestData;
+
+            //test 
+            Assert.AreEqual(AnOrder.ISBN, TestData);
     }
 }
