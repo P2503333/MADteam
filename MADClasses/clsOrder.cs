@@ -11,5 +11,6 @@ namespace MADClasses
         public float TotalAmount { get; set; }
         public DateTime Order_Date { get; set; }
         public bool Dispatch { get; set; }
+        public string ISBN { get; set; }
     }
 }
