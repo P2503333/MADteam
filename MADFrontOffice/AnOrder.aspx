@@ -32,7 +32,7 @@
             <asp:TextBox ID="txtTotalAmount" runat="server" Height="17px" style="margin-left: 101px" Width="183px"></asp:TextBox>
             <br />
             <br />
-            &nbsp;<asp:Label ID="Order_Date" runat="server" Text="Order_Date"></asp:Label>
+            &nbsp;<asp:Label ID="Order_Date" runat="server" Text="Date"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="txtOrder_Date" runat="server" Height="17px" style="margin-left: 59px" Width="183px"></asp:TextBox>
             <br />
