@@ -46,6 +46,8 @@ public partial class OrderViewer : System.Web.UI.Page
 
         //capture the Dispatch 
         AnOrder.Dispatch = txtDispatch.Text;
+        // CAPTURE THE ISBN 
+        AnOrder.Order_ISBN = txtISBN.Text;
 
         //store the address in the session object 
         Session["AnOrder"] = AnOrder;
