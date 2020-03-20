@@ -4,6 +4,7 @@ using System.Text;
 
 
 
+
 namespace MADClasses
 {
     public class clsOrder
@@ -29,7 +30,8 @@ namespace MADClasses
                 }
         private int mCustomerId;
         //public property for customer id 
-        public int CustomerId {
+        public int CustomerId
+        {
             get
             {
                 //this line of code send data out of property 
@@ -41,6 +43,7 @@ namespace MADClasses
                 //this line of the code allows data into the property
                 mCustomerId = value;
             }
+        }
 
             private int memp_ID;
         //public property for employee id
@@ -109,7 +112,7 @@ namespace MADClasses
             get
             {
                 //this line of code send data out of property 
-                return mDispacth;
+                return mDispatch;
             }
 
             set
@@ -134,20 +137,28 @@ namespace MADClasses
                 mISBN = value;
             }
         }
+
        // public int mOrder_ID { get; private set; }
 
         public bool Find(int Order_ID)
         {
-            clsDataConnection DB = new clsDataConnection();
+          //  clsDataConnection DB = new clsDataConnection();
 
             //add the parameter for theorder to search for 
-            DataMisalignedException.AddParameter("@Order_ID", Order_ID);
+           // DataMisalignedException.AddParameter("@Order_ID", Order_ID);
             //execute the sorted procedure 
-            DB.Execute("sproc_tblOrder_FilterOrder_ID");
+           // DB.Execute("sproc_tblOrder_FilterOrder_ID");
 
             //set the private data memebers to the test data value 
             mOrder_ID = 1;
+            mCustomerId = 1;
+            memp_ID = 1;
+            mQuantity = 1;
+            mTotalAmount = 1;
             mOrder_Date = Convert.ToDateTime("16/09/2019");
+            mDispatch = true;
+            mISBN = "1111111111111";
+
             //always return true 
             return true;
                     }
