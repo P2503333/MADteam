@@ -7,12 +7,11 @@ namespace MADTest
     [TestClass]
     public class tstSuppliers
     {
-
+        string ID = "0";
         string Name = "Wizards of the Coast";
         string Email = "maro@wotc.com";
         string Address = "Ravnica";
-        DateTime LastDelivery = DateTime.Now.Date;
-        Boolean Active = true;
+        string LastDelivery = DateTime.Now.Date.ToString();
 
 
         //Testing the initialisation
@@ -186,13 +185,476 @@ namespace MADTest
             Assert.IsTrue(OK);
         }
 
+        //Testing that the validate method works
         [TestMethod]
         public void ValidMethodOK()
         {
             clsSuppliers Supplier1 = new clsSuppliers();
             String Error = "";
-            Error = Supplier1.Valid(Name, Address, Email, LastDelivery, Active);
+            Error = Supplier1.Valid(ID, Name, Address, Email, LastDelivery);
             Assert.AreEqual(Error, "");
+        }
+
+        //Testing ID's extreme min
+        [TestMethod]
+        public void IDExtremeMin()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string ID = "-1000";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing ID's min - 1
+        [TestMethod]
+        public void IDMinMinusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string ID = "-1";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing ID's min
+        [TestMethod]
+        public void IDMin()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string ID = "0";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+        
+        //Testing ID's min + 1
+        [TestMethod]
+        public void IDMinPlusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string ID = "1";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+        
+        //Testing ID's max - 1
+        [TestMethod]
+        public void IDMaxMinusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string ID = Convert.ToString(int.MaxValue-1);
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+        
+        //Testing ID's max
+        [TestMethod]
+        public void IDMax()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string ID = Convert.ToString(int.MaxValue);
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+        
+        //Testing ID's max + 1
+        [TestMethod]
+        public void IDMaxPlusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string ID = Convert.ToString(Convert.ToInt64(int.MaxValue)+1);
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+        
+        //Testing ID's invalid data
+        [TestMethod]
+        public void IDInvalid()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string ID = "Hello";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Name's min - 1
+        [TestMethod]
+        public void NameMinMinusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Name = "";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Name's min
+        [TestMethod]
+        public void NameMin()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Name = "0";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Name's min + 1
+        [TestMethod]
+        public void NameMinPlusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Name = "01";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Name's max - 1
+        [TestMethod]
+        public void NameMaxMinusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Name = "0123456789012345678901234567890123456789012345678";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Name's max
+        [TestMethod]
+        public void NameMax()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Name = "01234567890123456789012345678901234567890123456789";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Name's max + 1
+        [TestMethod]
+        public void NameMaxPlusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Name = "012345678901234567890123456789012345678901234567890";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Name's mid
+        [TestMethod]
+        public void NameMid()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Name = "0123456789012345678901234";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Name's extreme max
+        [TestMethod]
+        public void NameExtremeMax()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Name = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Email's min - 1
+        [TestMethod]
+        public void EmailMinMinusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Email = "";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Email's min
+        [TestMethod]
+        public void EmailMin()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Email = "0";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Email's min + 1
+        [TestMethod]
+        public void EmailMinPlusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Email = "01";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Email's max - 1
+        [TestMethod]
+        public void EmailMaxMinusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Email = "0123456789012345678901234567890123456789012345678";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Email's max
+        [TestMethod]
+        public void EmailMax()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Email = "01234567890123456789012345678901234567890123456789";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Email's max + 1
+        [TestMethod]
+        public void EmailMaxPlusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Email = "012345678901234567890123456789012345678901234567890";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Email's mid
+        [TestMethod]
+        public void EmailMid()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Email = "0123456789012345678901234";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Email's extreme max
+        [TestMethod]
+        public void EmailExtremeMax()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Email = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Address's min - 1
+        [TestMethod]
+        public void AddressMinMinusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Address = "";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Address's min
+        [TestMethod]
+        public void AddressMin()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Address = "0";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Address's min + 1
+        [TestMethod]
+        public void AddressMinPlusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Address = "01";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Address's max - 1
+        [TestMethod]
+        public void AddressMaxMinusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Address = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Address's max
+        [TestMethod]
+        public void AddressMax()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Address = "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing Address's max + 1
+        [TestMethod]
+        public void AddressMaxPlusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Address = "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Address's mid
+        [TestMethod]
+        public void AddressMid()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Address = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing Address's extreme max
+        [TestMethod]
+        public void AddressExtremeMax()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string Address = "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing LastDelivery's extreme min
+        [TestMethod]
+        public void LastDeliveryExtremeMin()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string LastDelivery = "1/1/1000";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing LastDelivery's min - 1
+        [TestMethod]
+        public void LastDeliveryMinMinusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string LastDelivery = "31/12/1899";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing LastDelivery's min
+        [TestMethod]
+        public void LastDeliveryMin()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string LastDelivery = "1/1/1900";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing LastDelivery's min + 1
+        [TestMethod]
+        public void LastDeliveryMinPlusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string LastDelivery = "2/1/1900";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing LastDelivery's max - 1
+        [TestMethod]
+        public void LastDeliveryMaxMinusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string LastDelivery = "30/12/2099";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing LastDelivery's max
+        [TestMethod]
+        public void LastDeliveryMax()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string LastDelivery = "31/12/2099";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing LastDelivery's max + 1
+        [TestMethod]
+        public void LastDeliveryMaxPlusOne()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string LastDelivery = "1/1/2100";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing LastDelivery's mid
+        [TestMethod]
+        public void LastDeliveryMid()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string LastDelivery = "1/1/2050";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreEqual(Error, "");
+        }
+
+        //Testing LastDelivery's extreme max
+        [TestMethod]
+        public void LastDeliveryExtremeMax()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string LastDelivery = "1/1/3000";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Testing LastDelivery's extreme min
+        [TestMethod]
+        public void LastDeliveryInvalid()
+        {
+            clsSuppliers Supplier1 = new clsSuppliers();
+            String Error = "";
+            string LastDelivery = "Yesterday";
+            Error = Supplier1.Valid(ID, Name, Email, Address, LastDelivery);
+            Assert.AreNotEqual(Error, "");
         }
     }
 }

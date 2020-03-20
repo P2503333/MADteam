@@ -38,6 +38,11 @@ public partial class ASupplier : System.Web.UI.Page
             txtDelivery.Text = Convert.ToString(ASupplier.LastDelivery);
             txtAddress.Text = ASupplier.Address;
             cbxActive.Checked = ASupplier.Active;
+            lblResult.Text = "Successfully found entry " + ID;
+        }
+        else
+        {
+            lblResult.Text = "Could not find entry " + ID;
         }
     }
 }
