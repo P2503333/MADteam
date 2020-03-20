@@ -95,7 +95,7 @@ namespace MADClasses
             DB.AddParameter("@ID", ID);
             DB.Execute("sproc_tblSuppliers_FindID");
 
-            if(DB.Count == 1)
+            if (DB.Count == 1)
             {
                 mID = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
                 mName = Convert.ToString(DB.DataTable.Rows[0]["SupplierName"]);
@@ -115,13 +115,19 @@ namespace MADClasses
             }
             return false;
         }
-
-        public string Valid(
-            string SupplierName, 
-            string SupplierEmail, 
-            string SupplierAddress)
+        public string Valid(string ID,
+                            string SupplierName, 
+                            string SupplierEmail, 
+                            string SupplierAddress,
+                            string LastDelivery)
         {
-            return "";
+            String Error = "";
+            //Testing ID
+
+
+
+
+            return Error;
         }
     }
 }

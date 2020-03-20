@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="clsDepartment.cs" />
     <Compile Include="clsOrder.cs" />
+    <Compile Include="clsSupplierCollection.cs" />
     <Compile Include="clsSuppliers.cs" />
     <Compile Include="clsCustomer.cs" />
     <Compile Include="clsEmployee.cs" />
