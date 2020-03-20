@@ -115,7 +115,6 @@ namespace MADClasses
             }
             return false;
         }
-
         public string Valid(string ID,
                             string SupplierName, 
                             string SupplierEmail, 
