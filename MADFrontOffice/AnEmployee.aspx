@@ -1,4 +1,4 @@
-﻿<%@  Page Title="" Page Language="C#" MasterPageFile="~/EmployeeBook.master" AutoEventWireup="true" CodeFile="AnEmployee.aspx.cs" Inherits="AnEmployee" %>
+﻿<%@  Page Title="" Language="C#" MasterPageFile="~/EmployeeBook.master" AutoEventWireup="true" CodeFile="AnEmployee.aspx.cs" Inherits="AnEmployee" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
             <asp:Label ID="lblemp_ID" runat="server" Text="Employee ID" Width="100px"></asp:Label>
