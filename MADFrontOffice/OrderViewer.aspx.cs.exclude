@@ -18,6 +18,6 @@ public partial class OrderViewer : System.Web.UI.Page
 
         //display the OrderID for this entry 
         Response.Write(AnOrder.Order_ID);
-    
+
     }
-   
+}
