@@ -21,7 +21,7 @@ namespace MADClasses
         {
             get
             {
-                return mSupplierList.Count;s
+                return mSupplierList.Count;
             }
             set
             {
