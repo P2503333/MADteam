@@ -6,6 +6,7 @@ namespace MADClasses
     public class clsStockCollection
     {
         private List<clsStock> mStockList = new List<clsStock>();
+        private clsStock mThisStock = new clsStock();
         public clsStockCollection()
         {
             Int32 Index = 0;
@@ -52,6 +53,32 @@ namespace MADClasses
                 //this comes later
             } 
 }
-        public clsStock ThisStock { get; set; }
+        public clsStock ThisStock
+        {
+            get
+            {
+                return mThisStock;
+            }
+            set
+            {
+                mThisStock = value;
+            }
+        }
+
+        public string Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@ISBN", mThisStock.ISBN);
+            DB.AddParameter("@BookName", mThisStock.BookName);
+            DB.AddParameter("@StockLevel", mThisStock.StockLevel);
+            DB.AddParameter("@Price", mThisStock.Price);
+            DB.AddParameter("@Author", mThisStock.Author);
+            DB.AddParameter("@ReleaseDate", mThisStock.ReleaseDate);
+            DB.AddParameter("@OnOrder", mThisStock.OnOrder);
+            DB.AddParameter("@SupplierID", mThisStock.SupplierID);
+            return Convert.ToString(DB.Execute("sproc_tblStock_InsertInto"));
+           
+        }
     }
 }
