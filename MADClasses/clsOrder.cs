@@ -138,30 +138,44 @@ namespace MADClasses
             }
         }
 
-       // public int mOrder_ID { get; private set; }
+        // public int mOrder_ID { get; private set; }
 
         public bool Find(int Order_ID)
         {
-          //  clsDataConnection DB = new clsDataConnection();
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
 
-            //add the parameter for theorder to search for 
-           // DataMisalignedException.AddParameter("@Order_ID", Order_ID);
+            //add the parameter for the orderid to search for 
+            DB.AddParameter("@Order_ID", Order_ID);
+            //DataMisalignedException.AddParameter("@Order_ID", Order_ID);
+
             //execute the sorted procedure 
-           // DB.Execute("sproc_tblOrder_FilterOrder_ID");
+            DB.Execute("sproc_tblOrder_FilterOrder_ID");
 
-            //set the private data memebers to the test data value 
-            mOrder_ID = 1;
-            mCustomerId = 1;
-            memp_ID = 1;
-            mQuantity = 1;
-            mTotalAmount = 1;
-            mOrder_Date = Convert.ToDateTime("16/09/2019");
-            mDispatch = true;
-            mISBN = "1111111111111";
+            //if one record is found (there should be either one or zero!)
+            if (DB.Count == 1)
+            {
+                //set the private data memebers to the test data value
+                mOrder_ID = Convert.ToInt(DB.DataTable.Rows[0]["Order_ID"]);
+                mCustomerId = Convert.ToInt(DB.DataTable.Rows[0]["CustomerId"]);
+                memp_ID = Convert.ToInt(DB.DataTable.Rows[0]["emp_ID"]);
+                mQuantity = Convert.ToInt(DB.DataTable.Rows[0]["Quantity"]);
+                mTotalAmount = Convert.ToInt(DB.DataTable.Rows[0]["TotalAmount"]);
+                mOrder_Date = Convert.ToDateTime(DB.DataTable.Rows[0]["Order_Date"]);
+                mDispatch = Convert.ToString(DB.DataTable.Rows[0]["Dispatch"]);
+                mISBN = Convert.ToInt(DB.DataTable.Rows[0]["ISBN"]);
 
-            //always return true 
-            return true;
-                    }
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found 
+            else
+            {
+                //return false indicating a problem
+                return true;
+
+            }
+        }
 
        }
 }

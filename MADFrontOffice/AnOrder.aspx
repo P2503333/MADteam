@@ -1,6 +1,82 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AnOrder.aspx.cs" Inherits="AnOrder" %>
 
 <!DOCTYPE html>
+<script runat="server">
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void TextISBN_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnconfirmorder_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btncancel_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void txtTotalAmount_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void txtQuantity_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void txtCustomerNo_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnfind_Click(object sender, EventArgs e)
+    {
+        //create an instance of theaddress class
+        clsOrder AnOrder = new clsOrder();
+        //variable to store the primary key 
+        int Order_ID;
+        //variable to store the result of the find operation 
+        Boolean Found = false;
+        //get the primary key entered by the user
+        Order_ID = Convert.Toint(txtOrder_ID.Text);
+        //find the record 
+        Found = AnOrder.Find(Order_ID);
+        //if found 
+        if (Found == true)
+        {
+            // display the values of the properties in the form 
+            txtOrder_ID.Text = AnOrder.CustomerId;
+            txtOrder_ID.Text = AnOrder.emp_ID;
+            txtOrder_ID.Text = AnOrder.Quantity;
+            txtOrder_ID.Text = AnOrder.TotalAmount;
+            txtOrder_ID.Text = AnOrder.Date.ToString();
+            txtOrder_ID.Text = AnOrder.Dispatch.ToString()
+            txtOrder_ID.Text = AnOrder.ISBN;
+
+
+        }
+    }
+</script>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -9,54 +85,45 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            &nbsp;<asp:Label ID="Order_ID" runat="server" Text="Order ID"></asp:Label>
-            <asp:TextBox ID="txtOrder_ID" runat="server" Height="17px" style="margin-left: 122px" Width="183px"></asp:TextBox>
+            <asp:Label ID="lblOrder_ID" runat="server" Text="Order ID"></asp:Label>
+            <asp:TextBox ID="txtOrder_ID" runat="server" Height="25px" style="margin-left: 122px" Width="183px"></asp:TextBox>
+            <asp:Button ID="btnfind" runat="server" style="margin-left: 40px; height: 29px;" Text="Find" OnClick="btnfind_Click" />
             <br />
             <br />
-            &nbsp;
-            
-         <asp:Label ID="CustomerID" runat="server" Text="Customer ID"></asp:Label> &nbsp;&nbsp;
-            <asp:TextBox ID="txtCustomerNo" runat="server" Height="21px" style="margin-left: 84px" Width="178px"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />
-            <br />
-            &nbsp;<asp:Label ID="emp_ID" runat="server" Text="Employee ID"></asp:Label>
-            &nbsp;&nbsp;
-            <asp:TextBox ID="txtemp_ID" runat="server" Height="17px" style="margin-left: 86px" Width="178px"></asp:TextBox>
-            <br />
-            <br />
-            &nbsp;<asp:Label ID="Quantity" runat="server" Text="Quantity"></asp:Label>
-            &nbsp;<asp:TextBox ID="txtQuantity" runat="server" Height="17px" style="margin-left: 124px" Width="183px"></asp:TextBox>
-            <br />
-            <br />
-&nbsp;<asp:Label ID="TotalAmount" runat="server" Text="TotalAmount"></asp:Label>
-            <asp:TextBox ID="txtTotalAmount" runat="server" Height="17px" style="margin-left: 101px" Width="183px"></asp:TextBox>
-            <br />
-            <br />
-            &nbsp;<asp:Label ID="Order_Date" runat="server" Text="Date"></asp:Label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="txtOrder_Date" runat="server" Height="17px" style="margin-left: 59px" Width="183px"></asp:TextBox>
-            <br />
-            <br />
-            &nbsp;<asp:Label ID="Dispatch" runat="server" Text="Dispatch"></asp:Label>
-&nbsp;<asp:TextBox ID="txtDispatch" runat="server" Height="17px" style="margin-left: 141px" Width="183px"></asp:TextBox>
-            <br />
-            <br />&nbsp;
-            &nbsp;
 
-            <asp:Label ID="ISBN" runat="server" Text="ISBN"></asp:Label>
-            <asp:TextBox ID="TextBox1" runat="server" style="margin-left: 162px" Width="185px"></asp:TextBox>
+            <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID"></asp:Label> 
+            &nbsp;&nbsp; 
+            <asp:TextBox ID="txtCustomerNo" runat="server" Height="25px" style="margin-left: 84px" Width="183px" OnTextChanged="txtCustomerNo_TextChanged"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblemp_ID" runat="server" Text="Employee ID"></asp:Label>
+            &nbsp;
+            <asp:TextBox ID="txtemp_ID" runat="server" Height="25px" style="margin-left: 84px" Width="183px"></asp:TextBox>
+            <br />
+            <br />           
+            <asp:Label ID="lblQuantity" runat="server" Text="Quantity"></asp:Label>
+            <asp:TextBox ID="txtQuantity" runat="server" Height="25px" style="margin-left: 130px" Width="183px" OnTextChanged="txtQuantity_TextChanged"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblTotalAmount" runat="server" Text="TotalAmount"></asp:Label>
+            <asp:TextBox ID="txtTotalAmount" runat="server" Height="25px" style="margin-left: 94px" Width="183px" OnTextChanged="txtTotalAmount_TextChanged"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblOrder_Date" runat="server" Text="Date"></asp:Label>
+            <asp:TextBox ID="txtOrder_Date" runat="server" Height="25px" style="margin-left: 160px" Width="183px"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Label ID="lblDispatch" runat="server" Text="Dispatch"></asp:Label>
+            <asp:TextBox ID="txtDispatch" runat="server" Height="25px" style="margin-left: 129px" Width="183px"></asp:TextBox>
+            <br />
+            <br />            
+            <asp:Label ID="lblISBN" runat="server" Text="ISBN"></asp:Label>
+            <asp:TextBox ID="txtISBN" runat="server"  Height="25px" Width="183px" style="margin-left: 157px"></asp:TextBox>
             <br />
             <br />
             <br />
-            ISBN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="TextISBN" runat="server" Width="183px"></asp:TextBox>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <br />
-            <br />
-            <br />
-            <asp:Button ID="Button1" runat="server" Text="Confirm Order" style="margin-left: 117px" Width="130px" />
-            &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button2" runat="server" Text="Cancel" style="margin-left: 116px" Width="130px" />
+            <asp:Button ID="btnconfirmorder" runat="server" Text="Confirm Order" style="margin-left: 117px" Width="130px" OnClick="btnconfirmorder_Click" />
+            <asp:Button ID="btncancel" runat="server" Text="Cancel" style="margin-left: 116px" Width="130px" OnClick="btncancel_Click" />
             <br />
             <br />
         </div>

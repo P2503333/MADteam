@@ -191,15 +191,22 @@ namespace MADTest
             //boolean variable to store the result of the search 
             Boolean Found = false;
 
+            //boolean variable to record if data is OK (assume it is )
             Boolean OK = true;
+
+            //create some test data to use with the method 
             int Order_ID = 1;
 
+            //invoke the method
             Found = AnOrder.Find(Order_ID);
+
+            // check the Order_ID 
             if (AnOrder.Order_ID != 1)
             {
                 OK = false;
 
             }
+            //test to see that the result is correct 
             Assert.IsTrue(OK);
         }
         [TestMethod]
@@ -212,15 +219,23 @@ namespace MADTest
             //boolean variable to store the result of the search 
             Boolean Found = false;
 
+            //boolean variable to record if data is OK (assume it is )
             Boolean OK = true;
-            int Order_ID = 1;
 
+            //create some test data to use with the method
+            int Order_ID = 1;
+            
+            //invoke the method 
             Found = AnOrder.Find(Order_ID);
+
+            //check the property 
             if (AnOrder.CustomerId != 1)
             {
                 OK = false;
 
             }
+
+            //test to see that the result is correct 
             Assert.IsTrue(OK);
 
         }
@@ -231,16 +246,23 @@ namespace MADTest
 
             //boolean variable to store the result of the search 
             Boolean Found = false;
-
+            
+            //boolean variable to record if data is OK (assume it is )
             Boolean OK = true;
+
+            //create some test data to use with the method
             int Order_ID = 1;
 
+            //invoke the method 
             Found = AnOrder.Find(Order_ID);
+            
+            //check the property 
             if (AnOrder.emp_ID != 1)
             {
                 OK = false;
 
             }
+            //test to see that the result is correct 
             Assert.IsTrue(OK);
 
         }
@@ -254,15 +276,22 @@ namespace MADTest
             //boolean variable to store the result of the search 
             Boolean Found = false;
 
+            //boolean variable  to record if data is OK (assume it is )
             Boolean OK = true;
+
+            //create some test data to use with the method 
             int Order_ID = 1;
 
+            //invoke the method 
             Found = AnOrder.Find(Order_ID);
+
+            //check the property 
             if (AnOrder.Quantity != 1)
             {
                 OK = false;
 
             }
+            //test to see that the result is correct 
             Assert.IsTrue(OK);
         }
 
@@ -275,15 +304,22 @@ namespace MADTest
             //boolean variable to store the result of the search 
             Boolean Found = false;
 
+            //boolean variable  to record if data is OK (assume it is )
             Boolean OK = true;
+
+            //create some test data to use with the method 
             int Order_ID = 1;
 
+            //invoke the method 
             Found = AnOrder.Find(Order_ID);
+
+            //check the property
             if (AnOrder.TotalAmount != 1)
             {
                 OK = false;
 
             }
+            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
 
@@ -298,8 +334,11 @@ namespace MADTest
 
             //boolean variable to store the result of the search 
             Boolean Found = false;
-
+            
+            //boolean variable  to record if data is OK (assume it is )
             Boolean OK = true;
+
+            //create some test data to use with the method 
             int Order_ID = 1;
 
             //invoke the method
@@ -311,6 +350,7 @@ namespace MADTest
                 OK = false;
 
             }
+            //test to see that the result is correct
             Assert.IsTrue(OK);
 
         }
@@ -323,15 +363,22 @@ namespace MADTest
             //boolean variable to store the result of the search 
             Boolean Found = false;
 
+            //boolean variable to record if data is OK (assume it is )
             Boolean OK = true;
+
+            //create some test data to use with the method 
             int Order_ID = 1;
 
+            //invoke the method 
             Found = AnOrder.Find(Order_ID);
+
+            //check the property 
             if (AnOrder.Dispatch != true)
             {
                 OK = false;
 
             }
+            //test to see that the result is correct 
             Assert.IsTrue(OK);
         }
 
@@ -344,15 +391,22 @@ namespace MADTest
             //boolean variable to store the result of the search 
             Boolean Found = false;
 
+            //boolean variable to record 
             Boolean OK = true;
+
+            //create some test data to use with the method 
             int Order_ID = 1;
 
+            //invoke the method 
             Found = AnOrder.Find(Order_ID);
+
+            //check the property 
             if (AnOrder.ISBN != " 1111111111111") 
             {
                 OK = false;
 
             }
+            //test to see that the result is correct 
             Assert.IsTrue(OK);
         }
     }
