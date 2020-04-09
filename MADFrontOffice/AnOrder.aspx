@@ -50,7 +50,7 @@
 
     protected void btnfind_Click(object sender, EventArgs e)
     {
-        //create an instance of theaddress class
+        //create an instance of the address class
         clsOrder AnOrder = new clsOrder();
         //variable to store the primary key 
         int Order_ID;
