@@ -194,8 +194,28 @@ namespace MADClasses
                 Error = Error + "the order id must be less than 10000 :";
 
             }
+            //copy the Order_Date value to the DateTemp variable
+            DateTemp = Convert.ToDateTime(Order_Date);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                //record the error 
+                Error = Error + "The date cannot be in the past:";
+
+            }
+            // check to see if the date is greater than today's date 
+            if (DateTemp > DateTime.Now.Date)
+            {
+                //record the error 
+                Error = Error + "The data cannot be in the future : ";
+
+            }
             //return any error message 
             return Error;
+        }
+
+        public string valid(int order_ID, int customerId, int emp_ID, int quantity, float totalAmount, string order_Date, bool dispatch, string iSBN)
+        {
+            throw new NotImplementedException();
         }
     }
 }
