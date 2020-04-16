@@ -26,8 +26,8 @@ namespace MADClasses
                 mOrder_ID = value;
 
             }
-                
-                }
+
+        }
         private int mCustomerId;
         //public property for customer id 
         public int CustomerId
@@ -45,7 +45,7 @@ namespace MADClasses
             }
         }
 
-            private int memp_ID;
+        private int memp_ID;
         //public property for employee id
         public int emp_ID
         {
@@ -62,7 +62,7 @@ namespace MADClasses
             }
         }
         private int mQuantity;
-    
+
         public int Quantity
         {
             get
@@ -162,8 +162,8 @@ namespace MADClasses
                 mQuantity = Convert.ToInt(DB.DataTable.Rows[0]["Quantity"]);
                 mTotalAmount = Convert.ToInt(DB.DataTable.Rows[0]["TotalAmount"]);
                 mOrder_Date = Convert.ToDateTime(DB.DataTable.Rows[0]["Order_Date"]);
-                mDispatch = Convert.ToString(DB.DataTable.Rows[0]["Dispatch"]);
-                mISBN = Convert.ToInt(DB.DataTable.Rows[0]["ISBN"]);
+                mDispatch = Convert.ToBoolean(DB.DataTable.Rows[0]["Dispatch"]);
+                mISBN = Convert.ToString(DB.DataTable.Rows[0]["ISBN"]);
 
                 //return that everything worked OK
                 return true;
@@ -176,6 +176,26 @@ namespace MADClasses
 
             }
         }
+        //function for the public validation method
+        public string valid(int order_ID, int customerId, int emp_ID, int quantity, float totalAmount, DateTime order_Date, bool dispatch, string iSBN)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //if the Order_ID is blank 
+            if (Order_ID == 0)
+            {
+                //record the error
+                Error = Error + "the Order ID may not be blank :";
+            }
+            //if the order id number is greater  10000
+            if (Order_ID > 10000)
+            {
+                //record the error 
+                Error = Error + "the order id must be less than 10000 :";
 
-       }
+            }
+            //return any error message 
+            return Error;
+        }
+    }
 }
