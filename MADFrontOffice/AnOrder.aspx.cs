@@ -24,7 +24,35 @@ public partial class OrderViewer : System.Web.UI.Page
     {
         //create a new instance of clsAddress
         clsOrder AnOrder = new clsOrder();
+        //capture the order ID
+        int Order_ID = txtOrder_ID.Text;
 
+        //capture the customerId ]
+        int CustomerId = txtCustomerId.Text;
+
+        //capture the employee id 
+        int emp_ID = txtemp_ID.Text;
+
+        //capture the Quantity 
+        int Quantity = txtQuantity.Text;
+
+        //capture the Total amount 
+        float TotalAmount = txtTotalAmount.Text;
+
+        //capture the order_date
+        DateTime Order_Date = Convert.ToDateTime(txtOrder_Date.Text);
+
+        //capture the Dispatch 
+        bool Dispatch = txtDispatch.Text;
+        // CAPTURE THE ISBN 
+        string ISBN = txtISBN.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data 
+        Error = AnOrder.valid(Order_ID, CustomerId, emp_ID, Quantity, TotalAmount, Order_Date, Dispatch, ISBN);
+        if (Error =="")
+
+        { 
         //capture the order ID
         AnOrder.Order_ID = txtOrder_ID.Text;
 
@@ -37,7 +65,6 @@ public partial class OrderViewer : System.Web.UI.Page
         //capture the Quantity 
         AnOrder.Quantity = txtQuantity.Text;
 
-        object txtTotalAmount = null;
         //capture the Total amount 
         AnOrder.TotalAmount = txtTotalAmount.Text;
 
@@ -53,8 +80,13 @@ public partial class OrderViewer : System.Web.UI.Page
         Session["AnOrder"] = AnOrder;
 
         //redirect to the viewer page 
-        Response.Write("AddressViewer.aspx");
+        Response.Write("OrderViewer.aspx");
     }
+        else
+        {
+            //display the error message 
+            lblError.Text = Error;
+        }
     void DisplayOrder()
     {
         clsOrder clsOrder = new clsOrder();
