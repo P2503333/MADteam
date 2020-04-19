@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ABook.aspx.cs" Inherits="ABook" %>
+﻿<%@ page language="C#" autoeventwireup="true" inherits="ABook, App_Web_1j2mx5sq" %>
 
 <!DOCTYPE html>
 

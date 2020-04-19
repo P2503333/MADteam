@@ -80,5 +80,28 @@ namespace MADClasses
             return Convert.ToString(DB.Execute("sproc_tblStock_InsertInto"));
            
         }
+
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ISBN", mThisStock.ISBN);
+            DB.Execute("sproc_tblStock_delete");
+
+        }
+
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+
+            DB.AddParameter("@ISBN", mThisStock.ISBN);
+            DB.AddParameter("@BookName", mThisStock.BookName);
+            DB.AddParameter("@StockLevel", mThisStock.StockLevel);
+            DB.AddParameter("@Price", mThisStock.Price);
+            DB.AddParameter("@Author", mThisStock.Author);
+            DB.AddParameter("@ReleaseDate", mThisStock.ReleaseDate);
+            DB.AddParameter("@OnOrder", mThisStock.OnOrder);
+            DB.AddParameter("@SupplierID", mThisStock.SupplierID);
+            DB.Execute("sproc_tblStock_Update");
+        }
     }
 }
