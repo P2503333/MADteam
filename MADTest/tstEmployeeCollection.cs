@@ -224,7 +224,7 @@ namespace MADTest
             //apply a blank string (should return all records);
             FilteredEmployees.ReportByEmployeeName("");
             //test to see that the two values are the same
-            Assert.AreEqual(FilteredEmployees.Count, FilteredEmployees.Count);
+            Assert.AreEqual(FilteredEmployees.Count, AllEmpoyees.Count);
         }
 
         [TestMethod]

@@ -61,7 +61,7 @@ public partial class AnEmployee : System.Web.UI.Page
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         //redirect to the main page
-        Response.Redirect("Default.aspx");
+        Response.Redirect("DefaultEmployee.aspx");
     }
 
     //function for adding new records
@@ -86,7 +86,7 @@ public partial class AnEmployee : System.Web.UI.Page
             //add the record
             EmployeeBook.Add();
             //all done so redirect back to the main page
-            Response.Redirect("Default.aspx");
+            Response.Redirect("DefaultEmployee.aspx");
         }
         else
         {
@@ -114,11 +114,11 @@ public partial class AnEmployee : System.Web.UI.Page
             EmployeeBook.ThisEmployee.Hire_Date = Convert.ToDateTime(txthire_Date.Text);
             EmployeeBook.ThisEmployee.Salary = Convert.ToInt32(txtsalary.Text);
             EmployeeBook.ThisEmployee.Dep_ID = Convert.ToInt32(txtdep_ID.Text);
-            EmployeeBook.ThisEmployee.Active = chkActive.Checked; ;
+            EmployeeBook.ThisEmployee.Active = chkActive.Checked;
             //update the record
             EmployeeBook.Update();
             //all done so redirect back to the main page
-            Response.Redirect("Default.aspx");
+            Response.Redirect("DefaultEmployee.aspx");
         }
         else
         {
