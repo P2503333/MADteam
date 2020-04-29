@@ -30,7 +30,7 @@ namespace MADTest
             aBook.ReleaseDate = Convert.ToDateTime("25/9/2004");
             TestList.Add(aBook);
             allStock.StockList = TestList;
-            Assert.AreEqual(allStock, TestList);
+            Assert.AreEqual(allStock.StockList, TestList);
         }
         [TestMethod]
         public void ThisStockPropertyOK()
@@ -130,7 +130,7 @@ namespace MADTest
             PrimaryKey = allStock.Add();
             aBook.ISBN = PrimaryKey;
             aBook.ISBN = "1555555555555";
-            aBook.BookName = "Going Pretal";
+            aBook.BookName = "Feet of Clay";
             aBook.Author = "Berry Pratchett";
             aBook.OnOrder = true;
             aBook.StockLevel = 101;
@@ -141,6 +141,44 @@ namespace MADTest
             allStock.Update();
             allStock.ThisStock.Find(PrimaryKey);
             Assert.AreEqual(allStock.ThisStock, aBook);
+        }
+        [TestMethod]
+        public void ReportByBookNameOK()
+        {
+            clsStockCollection allStock = new clsStockCollection();
+            clsStockCollection filteredStock = new clsStockCollection();
+            filteredStock.ReportByBookName("");
+            Assert.AreEqual(allStock.Count, filteredStock.Count);
+        }
+        [TestMethod]
+        public void ReportByBookNameNoneFound()
+        {
+            clsStockCollection filteredStock = new clsStockCollection();
+            filteredStock.ReportByBookName("This book doesn't exist");
+            Assert.AreEqual(0, filteredStock.Count);
+        }
+        [TestMethod]
+        public void ReportByBookNameTestDataFound()
+        {
+            clsStockCollection filteredStock = new clsStockCollection();
+            Boolean OK = true;
+            filteredStock.ReportByBookName("Going");
+            if (filteredStock.Count == 2)
+            {
+                if (filteredStock.StockList[0].StockID != 7)
+                {
+                    OK = false;
+                }
+                if (filteredStock.StockList[1].StockID != 14)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
 
     }

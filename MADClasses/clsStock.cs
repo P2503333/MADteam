@@ -105,6 +105,19 @@ namespace MADClasses
                 mAuthor = value;
             }
         }
+        private int mStockID;
+        public int StockID
+        {
+            get
+            {
+                return mStockID;
+            }
+            set
+            {
+                mStockID = value;
+            }
+        }
+
         public bool Find(string ISBN) {
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();

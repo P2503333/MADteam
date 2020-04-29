@@ -9,25 +9,10 @@ namespace MADClasses
         private clsStock mThisStock = new clsStock();
         public clsStockCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
+           
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblStock_SelectAll");
-            RecordCount = DB.Count;
-            while (Index < RecordCount)
-            {
-                clsStock aBook = new clsStock();
-                aBook.ISBN = Convert.ToString(DB.DataTable.Rows[Index]["ISBN"]);
-                aBook.BookName = Convert.ToString(DB.DataTable.Rows[Index]["BookName"]);
-                aBook.Author = Convert.ToString(DB.DataTable.Rows[Index]["Author"]);
-                aBook.StockLevel = Convert.ToInt32(DB.DataTable.Rows[Index]["StockLevel"]);
-                aBook.Price = Convert.ToDouble(DB.DataTable.Rows[Index]["Price"]);
-                aBook.ReleaseDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["ReleaseDate"]);
-                aBook.SupplierID = Convert.ToInt32(DB.DataTable.Rows[Index]["SupplierID"]);
-                aBook.OnOrder = Convert.ToBoolean(DB.DataTable.Rows[Index]["OnOrder"]);
-                mStockList.Add(aBook);
-                Index++;
-            }
+            PopulateArray(DB);
         }
 
 
@@ -102,6 +87,38 @@ namespace MADClasses
             DB.AddParameter("@OnOrder", mThisStock.OnOrder);
             DB.AddParameter("@SupplierID", mThisStock.SupplierID);
             DB.Execute("sproc_tblStock_Update");
+        }
+
+        public void ReportByBookName(string BookName)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@BookName", BookName);
+            DB.Execute("sproc_tblStock_FilterByBookName");
+            PopulateArray(DB);
+        }
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+            mStockList = new List<clsStock>();
+            while (Index < RecordCount)
+            {
+
+                clsStock aBook = new clsStock();
+                aBook.StockID = Convert.ToInt32(DB.DataTable.Rows[Index]["StockID"]);
+                aBook.ISBN = Convert.ToString(DB.DataTable.Rows[Index]["ISBN"]);
+                aBook.BookName = Convert.ToString(DB.DataTable.Rows[Index]["BookName"]);
+                aBook.Author = Convert.ToString(DB.DataTable.Rows[Index]["Author"]);
+                aBook.StockLevel = Convert.ToInt32(DB.DataTable.Rows[Index]["StockLevel"]);
+                aBook.Price = Convert.ToDouble(DB.DataTable.Rows[Index]["Price"]);
+                aBook.ReleaseDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["ReleaseDate"]);
+                aBook.SupplierID = Convert.ToInt32(DB.DataTable.Rows[Index]["SupplierID"]);
+                aBook.OnOrder = Convert.ToBoolean(DB.DataTable.Rows[Index]["OnOrder"]);
+                mStockList.Add(aBook);
+                Index++;
+
+            }
         }
     }
 }

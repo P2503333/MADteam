@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MADClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,14 +19,7 @@ public partial class StockList : System.Web.UI.Page
             lstStockList.DataBind();
         }
 
-        /*void DisplayStockList()
-        {
-            MADClasses.clsStockCollection Stock = new MADClasses.clsStockCollection();
-            lstStockList.DataSource = Stock.StockList;
-            lstStockList.DataValueField = "ISBN";
-            lstStockList.DataTextField = "BookName";
-            lstStockList.DataBind();
-        }*/
+       
   
 
     }
@@ -76,5 +70,28 @@ public partial class StockList : System.Web.UI.Page
 
             ;
         }
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        clsStockCollection Books = new clsStockCollection();
+        Books.ReportByBookName(txtBookName.Text);
+        lstStockList.DataSource = Books.StockList;
+        lstStockList.DataValueField = "StockID";
+        lstStockList.DataTextField = "BookName";
+        lstStockList.DataBind();
+
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        clsStockCollection Books = new clsStockCollection();
+        Books.ReportByBookName("");
+        txtBookName.Text = "";
+        lstStockList.DataSource = Books.StockList;
+        lstStockList.DataValueField = "StockID";
+        lstStockList.DataTextField = "BookName";
+        lstStockList.DataBind();
+
     }
 }
