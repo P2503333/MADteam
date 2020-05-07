@@ -6,17 +6,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MADClasses;
 
-public partial class Delete : System.Web.UI.Page
+public partial class deleteD : System.Web.UI.Page
 {
 
     //var to store the primary key value of the record to be deleted
-    Int32 emp_ID;
+    Int32 dep_ID;
 
     //event handler for the load event
     protected void Page_Load(object sender, EventArgs e)
     {
         //get the number of the employee to be deleted from the session object
-        emp_ID = Convert.ToInt32(Session["emp_ID"]);
+        dep_ID = Convert.ToInt32(Session["dep_ID"]);
     }
 
     //event handler for the yes button
@@ -24,9 +24,9 @@ public partial class Delete : System.Web.UI.Page
     protected void btnYes_Click(object sender, EventArgs e)
     {
         //delete the record
-        DeleteEmployee();
+        DeleteDepartment();
         //redirect back to the main page
-        Response.Redirect("DefaultEmployee.aspx");
+        Response.Redirect("DefaultDepartment.aspx");
     }
 
     //event handler for the no button
@@ -36,16 +36,16 @@ public partial class Delete : System.Web.UI.Page
         Response.Redirect("DefaultEmployee.aspx");
     }
 
-    void DeleteEmployee()
+    void DeleteDepartment()
     {
         //function to delete the selected record
 
         //create a new instance of the address book
-        clsEmployeeCollection EmployeeBook = new clsEmployeeCollection();
+        clsDepartmentCollection departmentBook = new clsDepartmentCollection();
         //find the record to delete
-        EmployeeBook.ThisEmployee.Find(emp_ID);
+        departmentBook.ThisDepartment.Find(dep_ID);
         //delete the record
-        EmployeeBook.Delete();
+        departmentBook.Delete();
     }
 
 
