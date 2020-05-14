@@ -35,7 +35,7 @@ namespace MADClasses
             }
             set
             {
-                //this comes later
+                //no set
             } 
 }
         public clsStock ThisStock
@@ -96,7 +96,7 @@ namespace MADClasses
             DB.Execute("sproc_tblStock_FilterByBookName");
             PopulateArray(DB);
         }
-        void PopulateArray(clsDataConnection DB)
+        public void PopulateArray(clsDataConnection DB)
         {
             Int32 Index = 0;
             Int32 RecordCount;
