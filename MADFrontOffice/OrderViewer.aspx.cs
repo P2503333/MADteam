@@ -11,7 +11,7 @@ public partial class OrderViewer : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //create a new instance of clsOrder
-        clsOrder AnAddress = new clsOrder();
+        clsOrder AnOrder = new clsOrder();
 
         //get the data from the session object 
         AnOrder = (clsOrder)Session["AnOrder"];
