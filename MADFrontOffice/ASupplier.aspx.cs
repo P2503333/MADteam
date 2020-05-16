@@ -94,6 +94,7 @@ public partial class ASupplier : System.Web.UI.Page
         clsSupplierCollection SupplierCollection = new clsSupplierCollection();
         SupplierCollection.ThisSupplier.Find(ID);
 
+        txtID.Text = Convert.ToString(ID);
         txtName.Text = SupplierCollection.ThisSupplier.Name;
         txtEmail.Text = SupplierCollection.ThisSupplier.Email;
         txtDelivery.Text = Convert.ToString(SupplierCollection.ThisSupplier.LastDelivery);
