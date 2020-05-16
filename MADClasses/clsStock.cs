@@ -105,6 +105,19 @@ namespace MADClasses
                 mAuthor = value;
             }
         }
+        private int mStockID;
+        public int StockID
+        {
+            get
+            {
+                return mStockID;
+            }
+            set
+            {
+                mStockID = value;
+            }
+        }
+
         public bool Find(string ISBN) {
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
@@ -135,16 +148,17 @@ namespace MADClasses
             }
         }
 
-        public string Valid(string iSBN, string price, string stockLevel, string bookName, string author, string onOrder, string supplierId, string releaseDate)
+        public string Valid(string iSBN, string price, string stockLevel, string bookName, string author, string supplierId, string releaseDate)
         {
             string Error = "";
 
             DateTime DateTemp;
             Double PriceTemp;
             int StockTemp;
-            bool OrderTemp;
             int SupplierTemp;
             string PriceDecimal;
+            string[] datesplit;
+            bool isbnNumbers;
             
 
             if (iSBN.Length == 0)
@@ -154,6 +168,19 @@ namespace MADClasses
             if(iSBN.Length != 10 && iSBN.Length !=13 )
             {
                 Error = Error +  "The ISBN must be either 10 or 13 digits long :";
+            }
+            isbnNumbers = true;
+            foreach (char c in iSBN)
+            {
+                if (c< '0' ||  c> '9')
+                {
+                    isbnNumbers = false;
+                }
+
+            }
+            if (isbnNumbers == false)
+            {
+                Error = Error + "a valid ISBN only contains numbers";
             }
             try
             {
@@ -170,7 +197,7 @@ namespace MADClasses
             }
             catch
             {
-                Error = Error + "The entered value was not a valid integer :";
+                Error = Error + "The entered Supplier ID value was not a valid integer :";
             }
             try
             {
@@ -186,7 +213,7 @@ namespace MADClasses
             }
             catch
             {
-                Error = Error + "The entered value was not a valid whole number :";
+                Error = Error + "The entered stock value was not a valid whole number :";
             }
 
             if (bookName.Length == 0)
@@ -215,16 +242,57 @@ namespace MADClasses
                     PriceDecimal = split[1];
                     if (PriceDecimal.Length != 2)
                     {
-                        Error = Error + "The decimal value must be exactly 2 digits :";
+                        Error = Error + "The price decimal value must be exactly 2 digits :";
                     }
                 }
             }
             catch
             {
-                Error = Error + "The value entered was not a valid number ;";
+                Error = Error + "The price value entered was not a valid number ;";
             }
 
+           
+      
+            try
+            {
+                DateTemp = Convert.ToDateTime(releaseDate);
+                if (DateTemp > Convert.ToDateTime("31/12/2099"))
+                {
+                    Error = Error + "The entered release date is too far in the future. Input a date earlier than 31/12/2099";
+                }
+                if (DateTemp < Convert.ToDateTime("1/1/1440") )
+                {
+                    Error = Error + "The entered release date is too early. Input a date later than 1/1/1440";
+                }
+            }
+            catch
+            {
+                Error = Error + "The release date entered was not valid";
+            }
 
+           datesplit = releaseDate.Split('/');
+            try
+            {
+                if (datesplit[2].Length != 4)
+                {
+                    Error = Error + "Please enter the year in full 4-digit format, eg 2019";
+                }
+            }
+            catch
+            {
+                Error = Error + "The release date entered was not valid";
+            }
+
+            if (author.Length > 100)
+            {
+                Error = Error + "Maximum author name length is 100 characters";
+
+            }
+            if (author == "")
+            {
+                Error = Error + "Author field cannot be blank";
+            }
+            //on order test was here. Deemed unneccessary, add back later if needed?
 
 
 

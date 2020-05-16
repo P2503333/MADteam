@@ -54,7 +54,7 @@
     <Compile Include="tstDepartment.cs" />
     <Compile Include="tstDepartmentCollectioncs.cs" />
     <Compile Include="tstEmployee.cs" />
-    <Compile Include="tstOrder.cs" />
+    <Compile Include="tstStockCollection.cs" />
     <Compile Include="tstSupplierCollection.cs" />
     <Compile Include="tstSuppliers.cs" />
     <Compile Include="tstStock.cs" />

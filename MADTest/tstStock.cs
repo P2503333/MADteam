@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MADClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -8,9 +9,9 @@ namespace MADTest
     public class TstStock
     {
         //Valid test data
-        String ISBN = "1234567891234";
+        string ISBN = "1234567891234";
         String Price = "9.99";
-        String OnOrder = "True";
+        //String OnOrder = "True";
         String StockLevel = "99";
         String SupplierId = "1";
         String Author = "Terry Pratchett";
@@ -305,7 +306,7 @@ namespace MADTest
             //variable for error message
             String Error = "";
             //Run the method
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
         }
         [TestMethod]
         public void ISBNExtremeMin()
@@ -313,7 +314,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             String ISBN = "";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -323,7 +324,7 @@ namespace MADTest
             String Error = "";
             String ISBN = "";
             ISBN = ISBN.PadRight(9, '2');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -333,7 +334,7 @@ namespace MADTest
             String Error = "";
             String ISBN = "";
             ISBN = ISBN.PadRight(10, '2');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -343,7 +344,7 @@ namespace MADTest
             String Error = "";
             String ISBN = "";
             ISBN = ISBN.PadRight(11, '2');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -353,7 +354,7 @@ namespace MADTest
             String Error = "";
             String ISBN = "";
             ISBN = ISBN.PadRight(12, '2');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -362,8 +363,8 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             String ISBN = "";
-            ISBN = ISBN.PadRight(13, '2');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            ISBN = ISBN.PadRight(13, '9');
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -373,7 +374,7 @@ namespace MADTest
             String Error = "";
             String ISBN = "";
             ISBN = ISBN.PadRight(14, '2');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -383,26 +384,7 @@ namespace MADTest
             String Error = "";
             String ISBN = "";
             ISBN = ISBN.PadRight(500, '2');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
-            Assert.AreNotEqual(Error, "");
-        }
-        [TestMethod]
-        public void ISBNInvalidType()
-        {
-            /*clsStock stock = new clsStock();
-            String Error = "";
-            Boolean ISBN = true;
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
-            Assert.AreNotEqual(Error, "");*/
-        }
-        [TestMethod]
-        public void ISBNUnique()
-        {
-            clsStock stock = new clsStock();
-            String Error = "";
-            String ISBN = "";
-            ISBN = ISBN.PadRight(13, '1');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -412,7 +394,7 @@ namespace MADTest
             String Error = "";
             String ISBN = "";
             ISBN = ISBN.PadRight(13, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -421,7 +403,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             String SupplierId = "-1";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -430,7 +412,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string SupplierId = "0";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -439,7 +421,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string SupplierId = "1";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -448,7 +430,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string SupplierId = "2";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -457,7 +439,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string SupplierId = "999";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -466,7 +448,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string SupplierId = "1000";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -475,7 +457,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string SupplierId = "1001";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -484,8 +466,8 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string SupplierId = "500";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
-            Assert.AreNotEqual(Error, "");
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void SupplierIDExtremeMax()
@@ -493,7 +475,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string SupplierId = "10000000000";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -502,7 +484,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string SupplierId = "Steve";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -511,7 +493,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string StockLevel = "-999";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -520,7 +502,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string StockLevel = "-1";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -529,7 +511,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string StockLevel = "0";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -538,7 +520,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string StockLevel = "1";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -547,7 +529,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string StockLevel = "999";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -556,7 +538,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string StockLevel = "1000";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -565,7 +547,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string StockLevel = "1001";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -574,7 +556,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string StockLevel = "500";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -583,7 +565,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string StockLevel = "1000000";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -592,7 +574,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string StockLevel = "Steve";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -601,7 +583,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string BookName = "";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -610,7 +592,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string BookName = "a";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -619,7 +601,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string BookName = "ab";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -629,7 +611,7 @@ namespace MADTest
             String Error = "";
             string BookName = "";
             BookName = BookName.PadRight(199, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -639,7 +621,7 @@ namespace MADTest
             String Error = "";
             string BookName = "";
             BookName = BookName.PadRight(200, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -649,7 +631,7 @@ namespace MADTest
             String Error = "";
             string BookName = "";
             BookName = BookName.PadRight(201, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -659,7 +641,7 @@ namespace MADTest
             String Error = "";
             string BookName = "";
             BookName = BookName.PadRight(100, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -669,7 +651,7 @@ namespace MADTest
             String Error = "";
             string BookName = "";
             BookName = BookName.PadRight(800, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -678,7 +660,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string BookName = "True";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -687,7 +669,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string Price = "-1";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -696,7 +678,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string Price = "0";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -705,7 +687,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string Price = "0.01";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -714,7 +696,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string Price = "0.02";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -723,7 +705,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string Price = "999999.99";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -732,7 +714,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string Price = "999999.99";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -741,7 +723,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string Price = "10000000";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -750,7 +732,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string Price = "500000";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -759,7 +741,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string Price = "10000000000";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -768,7 +750,16 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string Price = "Steve";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ReleaseDateFourDigitYear()
+        {
+            clsStock stock = new clsStock();
+            String Error = "";
+            string ReleaseDate = "1/1/1";
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -776,8 +767,8 @@ namespace MADTest
         {
             clsStock stock = new clsStock();
             String Error = "";
-            string ReleaseDate = "1/1/1";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            string ReleaseDate = "1/1/0001";
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -786,7 +777,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string ReleaseDate = "31/12/1439";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -795,7 +786,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string ReleaseDate = "1/1/1440";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -804,7 +795,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string ReleaseDate = "2/1/1440";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -813,7 +804,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string ReleaseDate = "30/12/2099";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -822,7 +813,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string ReleaseDate = "31/12/2099";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -831,7 +822,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string ReleaseDate = "1/1/2100";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -840,7 +831,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string ReleaseDate = "1/1/1880";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -849,8 +840,8 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string ReleaseDate = "1/1/3000";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
-            Assert.AreEqual(Error, "");
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void ReleaseDateWrongType()
@@ -858,34 +849,17 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             string ReleaseDate = "steve";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
-            Assert.AreEqual(Error, "");
-        }
-        [TestMethod]
-        public void OnOrderMin()
-        {
-            clsStock stock = new clsStock();
-            String Error = "";
-            string OnOrder = "True";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
-            Assert.AreEqual(Error, "");
-        }
-        [TestMethod]
-        public void OnOrderWrongType()
-        {
-            clsStock stock = new clsStock();
-            String Error = "";
-            string ReleaseDate = "steve";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
+   
         [TestMethod]
         public void AuthorMinMinusOne()
         {
             clsStock stock = new clsStock();
             String Error = "";
             String Author = "";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -894,7 +868,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             String Author = "a";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -903,7 +877,7 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             String Author = "aa";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -912,8 +886,8 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             String Author = "";
-            Author = Author.PadRight(999, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Author = Author.PadRight(99, 'a');
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -922,8 +896,8 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             String Author = "";
-            Author = Author.PadRight(1000, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Author = Author.PadRight(100, 'a');
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -932,8 +906,8 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             String Author = "";
-            Author = Author.PadRight(1001, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Author = Author.PadRight(101, 'a');
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
@@ -942,8 +916,8 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             String Author = "";
-            Author = Author.PadRight(500, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Author = Author.PadRight(50, 'a');
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
@@ -952,21 +926,13 @@ namespace MADTest
             clsStock stock = new clsStock();
             String Error = "";
             String Author = "";
-            Author = Author.PadRight(10000, 'a');
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
+            Author = Author.PadRight(1000, 'a');
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
-        [TestMethod]
-        public void AuthorWrongType()
-        {
-            clsStock stock = new clsStock();
-            String Error = "";
-            Author = "1/1/1";
-            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, OnOrder, SupplierId, ReleaseDate);
-            Assert.AreNotEqual(Error, "");
-        }
-
+        
 
     }
+    
 
 }
