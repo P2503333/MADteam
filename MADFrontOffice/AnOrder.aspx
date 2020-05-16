@@ -2,79 +2,8 @@
 
 <!DOCTYPE html>
 <script runat="server">
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void Button2_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void TextISBN_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void btnconfirmorder_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void btncancel_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void txtTotalAmount_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void txtQuantity_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void txtCustomerNo_TextChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void btnfind_Click(object sender, EventArgs e)
-    {
-        //create an instance of the order class
-        clsOrder AnOrder = new clsOrder();
-        //variable to store the primary key 
-        int Order_ID;
-        //variable to store the result of the find operation 
-        Boolean Found = false;
-        //get the primary key entered by the user
-        Order_ID = Convert.Toint(txtOrder_ID.Text);
-        //find the record 
-        Found = AnOrder.Find(Order_ID);
-        //if found 
-        if (Found == true)
-        {
-            // display the values of the properties in the form 
-            txtOrder_ID.Text = AnOrder.CustomerId;
-            txtOrder_ID.Text = AnOrder.emp_ID;
-            txtOrder_ID.Text = AnOrder.Quantity;
-            txtOrder_ID.Text = AnOrder.TotalAmount;
-            txtOrder_ID.Text = AnOrder.Date.ToString();
-            txtOrder_ID.Text = AnOrder.Dispatch.ToString()
-            txtOrder_ID.Text = AnOrder.ISBN;
-
-
-        }
-    }
+  
+    
 </script>
 
 
@@ -121,8 +50,11 @@
             <asp:TextBox ID="txtISBN" runat="server"  Height="25px" Width="183px" style="margin-left: 157px"></asp:TextBox>
             <br />
             <br />
+            <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
             <br />
-            <asp:Button ID="btnconfirmorder" runat="server" Text="Confirm Order" style="margin-left: 117px" Width="130px" OnClick="btnconfirmorder_Click" />
+            <br />
+            <br />
+            <asp:Button ID="btnOK" runat="server" Text="OK" style="margin-left: 117px" Width="130px" OnClick="btnOK_Click" />
             <asp:Button ID="btncancel" runat="server" Text="Cancel" style="margin-left: 116px" Width="130px" OnClick="btncancel_Click" />
             <br />
             <br />

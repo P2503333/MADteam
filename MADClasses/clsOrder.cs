@@ -122,6 +122,7 @@ namespace MADClasses
             }
         }
         private string mISBN;
+        private DateTime DateTemp;
 
         public string ISBN
         {
@@ -156,11 +157,11 @@ namespace MADClasses
             if (DB.Count == 1)
             {
                 //set the private data memebers to the test data value
-                mOrder_ID = Convert.ToInt(DB.DataTable.Rows[0]["Order_ID"]);
-                mCustomerId = Convert.ToInt(DB.DataTable.Rows[0]["CustomerId"]);
-                memp_ID = Convert.ToInt(DB.DataTable.Rows[0]["emp_ID"]);
-                mQuantity = Convert.ToInt(DB.DataTable.Rows[0]["Quantity"]);
-                mTotalAmount = Convert.ToInt(DB.DataTable.Rows[0]["TotalAmount"]);
+                mOrder_ID = Convert.ToInt32(DB.DataTable.Rows[0]["Order_ID"]);
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                memp_ID = Convert.ToInt32(DB.DataTable.Rows[0]["emp_ID"]);
+                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
+                mTotalAmount = Convert.ToInt32(DB.DataTable.Rows[0]["TotalAmount"]);
                 mOrder_Date = Convert.ToDateTime(DB.DataTable.Rows[0]["Order_Date"]);
                 mDispatch = Convert.ToBoolean(DB.DataTable.Rows[0]["Dispatch"]);
                 mISBN = Convert.ToString(DB.DataTable.Rows[0]["ISBN"]);
@@ -172,33 +173,46 @@ namespace MADClasses
             else
             {
                 //return false indicating a problem
-                return true;
+                return false;
 
             }
         }
         //function for the public validation method
-        public string valid(int order_ID, int customerId, int emp_ID, int quantity, float totalAmount, DateTime order_Date, bool dispatch, string iSBN)
+        public string Valid(int order_ID, int customerId, int emp_ID, int quantity, float totalAmount, DateTime order_Date, bool dispatch, string iSBN)
         {
             //create a string variable to store the error
             String Error = "";
             //if the Order_ID is blank 
-            if (Order_ID == 0)
+            if (order_ID <= 0)
             {
                 //record the error
-                Error = Error + "the Order ID may not be blank :";
+                Error = Error + "the Order ID can not be less then null` :";
             }
             //if the order id number is greater  10000
-            if (Order_ID > 10000)
+            if (order_ID > 10000)
             {
                 //record the error 
                 Error = Error + "the order id must be less than 10000 :";
 
             }
 
+            if (customerId <= 0)
+            {
+                //record the error
+                Error = Error + "the customer ID can not be less then null` :";
+            }
+            //if the order id number is greater  10000
+            if (customerId > 10000)
+            {
+                //record the error 
+                Error = Error + "the customer id must be less than 10000 :";
+
+            }
+
             try
             {
                 //copy the Order_Date value to the DateTemp variable
-                DateTemp = Convert.ToDateTime(Order_Date);
+                DateTemp = Convert.ToDateTime(order_Date);
                 if (DateTemp < DateTime.Now.Date)
                 {
                     //record the error 
@@ -218,8 +232,57 @@ namespace MADClasses
                 //record the error 
                 Error = Error + "the date was not a valid date :";
             }
+            // 
+            if (emp_ID <= 0)
+            {
+                //record the error
+                Error = Error + "the employee id may not be blank : ";
+            }
+            //if the emp_ID is greater than 10000
+            if (emp_ID > 10000)
+            {
+                Error = Error + "The employee Id must less than 10000:";
+            }
+            
+            if (quantity <= 0)
+            {
+                //record the error
+                Error = Error + "the Quantity may not be blank : ";
+            }
+            //if the quantity is greater than 10000
+            if (quantity > 10000)
+            {
+                Error = Error + "The Quantity must less than 10000:";
+            }
+
+            //if the total amount is equal to 0.01
+            if (totalAmount <= 0.01)
+            {
+                //record the error
+                Error = Error + "The TotalAmount may not be blank :";
+            }
+            //if the total amount is greater than 10000
+            if (totalAmount > 999999.99)
+            {
+                Error = Error + "the total amount must be less than 10000:";
+            }
+
+
+
+
+            //if the ISBN is blank
+            if (iSBN.Length <= 0)
+            { 
+                //record the error
+                Error = Error + "The ISBN may not be blank : ";
+            }
+            //if the ISBN is greater than 10000
+           if (iSBN.Length > 10000)
+           { 
+               Error = Error + "The ISBN must less than 10000:";
+           }
             //return any error message 
             return Error;
-        }           
+        }
     }
 }
