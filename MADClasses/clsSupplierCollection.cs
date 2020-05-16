@@ -77,13 +77,6 @@ namespace MADClasses
             DB.Execute("sproc_tblSuppliers_Delete");
         }
 
-        public void EnableSupplier()
-        {
-            clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@ID", mThisSupplier.ID);
-            DB.Execute("sproc_tblSuppliers_EnableSupplier");
-        }
-
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();

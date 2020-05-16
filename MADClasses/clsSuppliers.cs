@@ -123,69 +123,37 @@ namespace MADClasses
         {
             String Error =  "";
             DateTime time;
-            //int tempID;
-
-            //if (ID.Length == 0)
-            //{
-            //    Error += "ID must not be blank \n";
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        tempID = Convert.ToInt32(ID);
-            //        if (tempID > 0)
-            //        {
-            //            if (!Find(tempID))
-            //            {
-            //                //Error += "ID must exist in the table \n";
-            //            }
-            //        }
-            //        else
-            //        {
-            //            Error += "ID must be greater than 0 \n";
-            //        }
-            //    }
-            //    catch (FormatException)
-            //    {
-            //        Error += "ID must be a number \n";
-            //    }
-            //    catch (OverflowException)
-            //    {
-            //        Error += "ID cannot be that large \n";
-            //    }
-            //}
 
             if (SupplierName.Length == 0)
             {
                 Error += "Name must be longer than 0 characters \n";
             }
-            //           else 
+            else 
             if (SupplierName.Length > 50)
             {
                 Error += "Name must be 50 characters or less \n";
             }
-
+            else
             if (SupplierAddress.Length == 0)
             {
                 Error += "Address must be longer than 0 characters \n";
             }
-            //           else 
+            else 
             if (SupplierAddress.Length > 500)
             {
                 Error += "Address must be 500 characters or less \n";
             }
-
+            else
             if (SupplierEmail.Length == 0)
             {
                 Error += "Email must be longer than 0 characters \n";
             }
-            //else 
+            else 
             if (SupplierEmail.Length > 50)
             {
                 Error += "Email must be 50 characters or less \n";
             }
-
+            else
             try
             {
                 if (LastDelivery != null)

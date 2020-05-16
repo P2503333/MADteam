@@ -8,7 +8,6 @@ namespace MADTest
     [TestClass]
     public class tstSuppliers
     {
-        string ID = "1";
         string Name = "Wizards of the Coast";
         string Email = "maro@wotc.com";
         string Address = "Ravnica";
@@ -194,94 +193,6 @@ namespace MADTest
             Error = Supplier1.Valid(Name, Address, Email, LastDelivery);
             Assert.AreEqual(Error, "");
         }
-
-        ////Testing ID's extreme min
-        //[TestMethod]
-        //public void IDExtremeMin()
-        //{
-        //    clsSuppliers Supplier1 = new clsSuppliers();
-        //    String Error = "";
-        //    string ID = "-1000";
-        //    Error = Supplier1.Valid(Name, Email, Address, LastDelivery);
-        //    Assert.AreNotEqual(Error, "");
-        //}
-
-        ////Testing ID's min - 1
-        //[TestMethod]
-        //public void IDMinMinusOne()
-        //{
-        //    clsSuppliers Supplier1 = new clsSuppliers();
-        //    String Error = "";
-        //    string ID = "-1";
-        //    Error = Supplier1.Valid(Name, Email, Address, LastDelivery);
-        //    Assert.AreNotEqual(Error, "");
-        //}
-
-        ////Testing ID's min
-        //[TestMethod]
-        //public void IDMin()
-        //{
-        //    clsSuppliers Supplier1 = new clsSuppliers();
-        //    String Error = "";
-        //    string ID = "1";
-        //    Error = Supplier1.Valid(Name, Email, Address, LastDelivery);
-        //    Assert.AreEqual(Error, "");
-        //}
-        
-        ////Testing ID's min + 1
-        //[TestMethod]
-        //public void IDMinPlusOne()
-        //{
-        //    clsSuppliers Supplier1 = new clsSuppliers();
-        //    String Error = "";
-        //    string ID = "1";
-        //    Error = Supplier1.Valid(Name, Email, Address, LastDelivery);
-        //    Assert.AreEqual(Error, "");
-        //}
-        
-        ////Testing ID's max - 1
-        //[TestMethod]
-        //public void IDMaxMinusOne()
-        //{
-        //    clsSuppliers Supplier1 = new clsSuppliers();
-        //    String Error = "";
-        //    string ID = Convert.ToString(int.MaxValue-1);
-        //    Error = Supplier1.Valid(Name, Email, Address, LastDelivery);
-        //    Assert.AreEqual(Error, "");
-        //}
-        
-        ////Testing ID's max
-        //[TestMethod]
-        //public void IDMax()
-        //{
-        //    clsSuppliers Supplier1 = new clsSuppliers();
-        //    String Error = "";
-        //    string ID = Convert.ToString(int.MaxValue);
-        //    Error = Supplier1.Valid(Name, Email, Address, LastDelivery);
-        //    Assert.AreEqual(Error, "");
-        //}
-        
-        ////Testing ID's max + 1
-        //[TestMethod]
-        //public void IDMaxPlusOne()
-        //{
-        //    clsSuppliers Supplier1 = new clsSuppliers();
-        //    String Error = "";
-        //    string ID = Convert.ToString(Convert.ToInt64(int.MaxValue)+1);
-        //    Error = Supplier1.Valid(Name, Email, Address, LastDelivery);
-        //    Assert.AreNotEqual(Error, "");
-        //}
-        
-        ////Testing ID's invalid data
-        //[TestMethod]
-        //public void IDInvalid()
-        //{
-        //    clsSuppliers Supplier1 = new clsSuppliers();
-        //    String Error = "";
-        //    string ID = "Hello";
-        //    Error = Supplier1.Valid(Name, Email, Address, LastDelivery);
-        //    Assert.AreNotEqual(Error, "");
-        //}
 
         //Testing Name's min - 1
         [TestMethod]
@@ -656,7 +567,5 @@ namespace MADTest
             Error = Supplier1.Valid(Name, Email, Address, LastDelivery);
             Assert.AreNotEqual(Error, "");
         }
-        
-
     }
 }

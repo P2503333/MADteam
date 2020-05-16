@@ -32,23 +32,6 @@ namespace MADTest
 
         }
 
-        //[TestMethod]
-        //public void ListAndCountOK()
-        //{
-        //    clsSupplierCollection AllSuppliers = new clsSupplierCollection();
-        //    List<clsSuppliers> TestList = new List<clsSuppliers>();
-        //    clsSuppliers TestItem = new clsSuppliers();
-        //    TestItem.Active = true;
-        //    TestItem.Address = "123 WotC Lane";
-        //    TestItem.Email = "wotc@wotc.com";
-        //    TestItem.ID = 10;
-        //    TestItem.LastDelivery = DateTime.Now.Date;
-        //    TestItem.Name = "WotC";
-        //    TestList.Add(TestItem);
-        //    AllSuppliers.SupplierList = TestList;
-        //    Assert.AreEqual(AllSuppliers.Count, TestList.Count);
-        //}
-
         [TestMethod]
         public void SupplierListOK()
         {
@@ -161,37 +144,6 @@ namespace MADTest
             Suppliers.DeleteSupplier();
             Boolean Found = Suppliers.ThisSupplier.Find(PrimaryKey);
             Assert.IsFalse(Found);
-
-        }
-
-        [TestMethod]
-        public void EnableMethodOK()
-        {
-            clsSupplierCollection Suppliers = new clsSupplierCollection();
-
-            clsSuppliers Supplier1 = new clsSuppliers();
-
-            Int32 PrimaryKey = 1;
-
-            Supplier1.Active = true;
-            Supplier1.Address = "64 Zoo Lane";
-            Supplier1.Email = "test.data@email.com";
-            Supplier1.LastDelivery = DateTime.Now.Date;
-            Supplier1.Name = "WotC";
-            Supplier1.ID = PrimaryKey;
-
-            Suppliers.ThisSupplier = Supplier1;
-            PrimaryKey = Suppliers.Add();
-
-            Supplier1.ID = PrimaryKey;
-            Suppliers.ThisSupplier.Find(PrimaryKey);
-
-            Suppliers.EnableSupplier();
-            Suppliers.ThisSupplier.Find(PrimaryKey);
-
-
-            Boolean enabled = Suppliers.ThisSupplier.Active;
-            Assert.IsTrue(enabled);
 
         }
 
