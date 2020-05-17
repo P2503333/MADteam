@@ -12,22 +12,28 @@ public partial class StockList : System.Web.UI.Page
     {
         if (IsPostBack == false)
         {
-            MADClasses.clsStockCollection Stock = new MADClasses.clsStockCollection();
-            lstStockList.DataSource = Stock.StockList;
-            lstStockList.DataValueField = "ISBN";
-            lstStockList.DataTextField = "BookName";
-            lstStockList.DataBind();
+            DisplayStock();
         }
 
-       
-  
+
+
 
     }
+
+    private void DisplayStock()
+    {
+        MADClasses.clsStockCollection Stock = new MADClasses.clsStockCollection();
+        lstStockList.DataSource = Stock.StockList;
+        lstStockList.DataValueField = "StockID";
+        lstStockList.DataTextField = "BookName";
+        lstStockList.DataBind();
+    }
+
     //event handler for add button
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         //store -1 into the session object to indicate this is a new record
-        Session["ISBN"] = "0";
+        Session["StockID"] = -1;
         //redirect to data entry page
         Response.Redirect("ABook.aspx");
     }
@@ -38,12 +44,12 @@ public partial class StockList : System.Web.UI.Page
 
     protected void btnDelete_Click(object sender, EventArgs e)
     {
-        string ISBN;
+        int StockID;
 
         if (lstStockList.SelectedIndex != -1)
         {
-            ISBN = lstStockList.SelectedValue;
-            Session["ISBN"] = ISBN;
+            StockID = Convert.ToInt32(lstStockList.SelectedValue);
+            Session["StockID"] = StockID;
             Response.Redirect("DeleteStock.aspx");
         }
 
@@ -51,16 +57,17 @@ public partial class StockList : System.Web.UI.Page
         {
             labelError.Text = "Please select a record from the list to delete";
 
-;        }
+            ;
+        }
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)
     {
-        string ISBN;
+        int StockID;
         if (lstStockList.SelectedIndex != -1)
         {
-            ISBN = lstStockList.SelectedValue;
-            Session["ISBN"] = ISBN;
+            StockID = Convert.ToInt32(lstStockList.SelectedValue);
+            Session["StockID"] = StockID;
             Response.Redirect("ABook.aspx");
         }
 

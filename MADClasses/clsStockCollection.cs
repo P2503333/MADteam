@@ -9,7 +9,7 @@ namespace MADClasses
         private clsStock mThisStock = new clsStock();
         public clsStockCollection()
         {
-           
+
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblStock_SelectAll");
             PopulateArray(DB);
@@ -36,8 +36,8 @@ namespace MADClasses
             set
             {
                 //no set
-            } 
-}
+            }
+        }
         public clsStock ThisStock
         {
             get
@@ -50,7 +50,7 @@ namespace MADClasses
             }
         }
 
-        public string Add()
+        public int Add()
         {
             clsDataConnection DB = new clsDataConnection();
 
@@ -62,14 +62,14 @@ namespace MADClasses
             DB.AddParameter("@ReleaseDate", mThisStock.ReleaseDate);
             DB.AddParameter("@OnOrder", mThisStock.OnOrder);
             DB.AddParameter("@SupplierID", mThisStock.SupplierID);
-            return Convert.ToString(DB.Execute("sproc_tblStock_InsertInto"));
-           
+            return Convert.ToInt32(DB.Execute("sproc_tblStock_InsertInto"));
+
         }
 
         public void Delete()
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@ISBN", mThisStock.ISBN);
+            DB.AddParameter("@StockID", mThisStock.StockID);
             DB.Execute("sproc_tblStock_delete");
 
         }
@@ -78,6 +78,7 @@ namespace MADClasses
         {
             clsDataConnection DB = new clsDataConnection();
 
+            DB.AddParameter("@StockID", mThisStock.StockID);
             DB.AddParameter("@ISBN", mThisStock.ISBN);
             DB.AddParameter("@BookName", mThisStock.BookName);
             DB.AddParameter("@StockLevel", mThisStock.StockLevel);

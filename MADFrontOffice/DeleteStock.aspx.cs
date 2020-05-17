@@ -8,17 +8,17 @@ using System.Web.UI.WebControls;
 
 public partial class DeleteStock : System.Web.UI.Page
 {
-    private string ISBN;
+    private int StockID;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        ISBN = Convert.ToString(Session["ISBN"]);
+        StockID = Convert.ToInt32(Session["StockID"]);
     }
 
     protected void btnYes_Click(object sender, EventArgs e)
     {
         clsStockCollection allStock = new clsStockCollection();
-        allStock.ThisStock.Find(ISBN);
+        allStock.ThisStock.Find(StockID);
         allStock.Delete();
         Response.Redirect("StockList.aspx");
     }

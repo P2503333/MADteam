@@ -4,18 +4,20 @@ namespace MADClasses
 {
     public class clsStock
     {
+
         private string mISBN;
-        public string ISBN {
+        public string ISBN
+        {
             get
             {
                 return mISBN;
-            } 
+            }
             set
             {
                 mISBN = value;
-            } 
+            }
         }
-        
+
         private double mPrice;
         public double Price
         {
@@ -28,14 +30,15 @@ namespace MADClasses
                 mPrice = value;
             }
         }
-        
+
         private int mSupplierID;
-        public int SupplierID 
-        { get
+        public int SupplierID
+        {
+            get
             {
                 return mSupplierID;
             }
-            set 
+            set
             {
                 mSupplierID = value;
             }
@@ -44,11 +47,11 @@ namespace MADClasses
         private int mStockLevel;
         public int StockLevel
         {
-            get 
+            get
             {
                 return mStockLevel;
             }
-            set 
+            set
             {
                 mStockLevel = value;
             }
@@ -118,15 +121,16 @@ namespace MADClasses
             }
         }
 
-        public bool Find(string ISBN) {
+        public bool Find(int StockID)
+        {
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter of the ISBN to search
-            DB.AddParameter("@ISBN", ISBN);
+            DB.AddParameter("@StockID", StockID);
             //execute the stored procedure
-            DB.Execute("sproc_tblStock_FilterByISBN");
-           //if one record is found
-           if (DB.Count == 1)
+            DB.Execute("sproc_tblStock_FindByStockID");
+            //if one record is found
+            if (DB.Count == 1)
             {
                 //copy the data across to the private fields
                 mISBN = Convert.ToString(DB.DataTable.Rows[0]["ISBN"]);
@@ -137,15 +141,44 @@ namespace MADClasses
                 mReleaseDate = Convert.ToDateTime(DB.DataTable.Rows[0]["ReleaseDate"]);
                 mOnOrder = Convert.ToBoolean(DB.DataTable.Rows[0]["OnOrder"]);
                 mAuthor = Convert.ToString(DB.DataTable.Rows[0]["Author"]);
+                mStockID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
                 //return true to indicate success
                 return true;
             }
-           //if nothing is found
-           else
+            //if nothing is found
+            else
             {
                 //return false to show an error
                 return false;
             }
+        }
+        public bool FindByISBN(String ISBN)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@ISBN", ISBN);
+            DB.Execute("sproc_tblStock_FilterByISBN");
+            if (DB.Count == 1)
+            {
+                //copy the data across to the private fields
+                mISBN = Convert.ToString(DB.DataTable.Rows[0]["ISBN"]);
+                mPrice = Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
+                mSupplierID = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierID"]);
+                mStockLevel = Convert.ToInt32(DB.DataTable.Rows[0]["StockLevel"]);
+                mBookName = Convert.ToString(DB.DataTable.Rows[0]["BookName"]);
+                mReleaseDate = Convert.ToDateTime(DB.DataTable.Rows[0]["ReleaseDate"]);
+                mOnOrder = Convert.ToBoolean(DB.DataTable.Rows[0]["OnOrder"]);
+                mAuthor = Convert.ToString(DB.DataTable.Rows[0]["Author"]);
+                mStockID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
+                //return true to indicate success
+                return true;
+            }
+            //if nothing is found
+            else
+            {
+                //return false to show an error
+                return false;
+            }
+
         }
 
         public string Valid(string iSBN, string price, string stockLevel, string bookName, string author, string supplierId, string releaseDate)
@@ -159,20 +192,25 @@ namespace MADClasses
             string PriceDecimal;
             string[] datesplit;
             bool isbnNumbers;
-            
+            bool isbnUnique;
 
+            isbnUnique = FindByISBN(iSBN);
+            if (isbnUnique == true)
+            {
+                Error = Error + "The ISBN of a book must be unique, this ISBN already exists :";
+            }
             if (iSBN.Length == 0)
             {
                 Error = Error + "The ISBN cannot be blank :";
             }
-            if(iSBN.Length != 10 && iSBN.Length !=13 )
+            if (iSBN.Length != 10 && iSBN.Length != 13)
             {
-                Error = Error +  "The ISBN must be either 10 or 13 digits long :";
+                Error = Error + "The ISBN must be either 10 or 13 digits long :";
             }
             isbnNumbers = true;
             foreach (char c in iSBN)
             {
-                if (c< '0' ||  c> '9')
+                if (c < '0' || c > '9')
                 {
                     isbnNumbers = false;
                 }
@@ -251,48 +289,48 @@ namespace MADClasses
                 Error = Error + "The price value entered was not a valid number ;";
             }
 
-           
-      
+
+
             try
             {
                 DateTemp = Convert.ToDateTime(releaseDate);
                 if (DateTemp > Convert.ToDateTime("31/12/2099"))
                 {
-                    Error = Error + "The entered release date is too far in the future. Input a date earlier than 31/12/2099";
+                    Error = Error + "The entered release date is too far in the future. Input a date earlier than 31/12/2099 :";
                 }
-                if (DateTemp < Convert.ToDateTime("1/1/1440") )
+                if (DateTemp < Convert.ToDateTime("1/1/1440"))
                 {
-                    Error = Error + "The entered release date is too early. Input a date later than 1/1/1440";
+                    Error = Error + "The entered release date is too early. Input a date later than 1/1/1440 :";
                 }
             }
             catch
             {
-                Error = Error + "The release date entered was not valid";
+                Error = Error + "The release date entered was not valid :";
             }
 
-           datesplit = releaseDate.Split('/');
+            datesplit = releaseDate.Split('/');
             try
             {
                 if (datesplit[2].Length != 4)
                 {
-                    Error = Error + "Please enter the year in full 4-digit format, eg 2019";
+                    Error = Error + "Please enter the year in full 4-digit format, eg 2019 :";
                 }
             }
             catch
             {
-                Error = Error + "The release date entered was not valid";
+                Error = Error + "The release date entered was not valid :";
             }
 
             if (author.Length > 100)
             {
-                Error = Error + "Maximum author name length is 100 characters";
+                Error = Error + "Maximum author name length is 100 characters :";
 
             }
             if (author == "")
             {
-                Error = Error + "Author field cannot be blank";
+                Error = Error + "Author field cannot be blank :";
             }
-            //on order test was here. Deemed unneccessary, add back later if needed?
+
 
 
 

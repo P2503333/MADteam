@@ -27,7 +27,7 @@
         <asp:Label ID="LabelAuthor" runat="server" style="z-index: 1; left: 20px; top: 189px; position: absolute" Text="Author"></asp:Label>
         <asp:Label ID="LabelError" runat="server" style="z-index: 1; left: 18px; top: 316px; position: absolute; width: 211px; height: 130px;" Text=""></asp:Label>
         <asp:Button ID="BtnOK" runat="server" style="z-index: 1; left: 18px; top: 286px; position: absolute" Text="OK" OnClick ="BtnOK_Click"/>
-        <asp:Button ID="BtnCancel" runat="server" style="z-index: 1; top: 286px; position: absolute; left: 58px" Text="Cancel" />
+        <asp:Button ID="BtnCancel" runat="server" style="z-index: 1; top: 286px; position: absolute; left: 58px" Text="Cancel" OnClick="BtnCancel_Click" />
     </form>
 </body>
 </html>
