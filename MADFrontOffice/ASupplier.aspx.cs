@@ -32,6 +32,7 @@ public partial class ASupplier : System.Web.UI.Page
 
         if(Error == "")
         {
+            ASupplier.ID = ID;
             ASupplier.Name = Name;
             ASupplier.Address = Address;
             ASupplier.Email = Email;
