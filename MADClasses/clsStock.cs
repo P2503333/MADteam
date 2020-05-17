@@ -118,6 +118,15 @@ namespace MADClasses
             }
         }
 
+        //Written by David for the suppliers page
+        public string SupplierInfo
+        {
+            get
+            {
+                return mBookName + ", " + mAuthor + ": " + mStockLevel;
+            }
+        }
+
         public bool Find(string ISBN) {
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
