@@ -123,9 +123,9 @@ namespace MADTest
             clsStock stock = new clsStock();
             //variable to store result
             Boolean Found = false;
-            string ISBN = "1111111111111";
+            int StockID = 2;
             //invoke the method
-            Found = stock.Find(ISBN);
+            Found = stock.Find(StockID);
             //test the result
             Assert.IsTrue(Found);
         }
@@ -138,9 +138,9 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1111111111111";
+            int StockID = 2;
             //invoke the method
-            Found = stock.Find(isbn);
+            Found = stock.Find(StockID);
             //check the isbn
 
             if (stock.ISBN != "1111111111111")
@@ -161,9 +161,9 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1111111111111";
+            int StockID = 2;
             //invoke the method
-            Found = stock.Find(isbn);
+            Found = stock.Find(StockID);
             //check the price
             if (stock.Price != 5.9900)
             {
@@ -182,9 +182,9 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1111111111111";
+            int StockID = 2;
             //invoke the method
-            Found = stock.Find(isbn);
+            Found = stock.Find(StockID);
             //check the supplier ID
             if (stock.SupplierID != 2)
             {
@@ -204,9 +204,9 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1111111111111";
+            int StockID = 2;
             //invoke the method
-            Found = stock.Find(isbn);
+            Found = stock.Find(StockID);
             //check the Stock Level
             if (stock.StockLevel != 50)
             {
@@ -225,9 +225,9 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1111111111111";
+            int StockID = 2;
             //invoke the method
-            Found = stock.Find(isbn);
+            Found = stock.Find(StockID);
             //check the book name
             if (stock.BookName != "Guards! Guards!")
             {
@@ -246,9 +246,10 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1111111111111";
+            //test data to use
+            int StockID = 2;
             //invoke the method
-            Found = stock.Find(isbn);
+            Found = stock.Find(StockID);
             //check the date
             if (stock.ReleaseDate != Convert.ToDateTime("28/01/1980"))
             {
@@ -266,9 +267,10 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1111111111111";
+            //test data to use
+            int StockID = 2;
             //invoke the method
-            Found = stock.Find(isbn);
+            Found = stock.Find(StockID);
             //check if it's on order
             if (stock.OnOrder != false)
             {
@@ -287,9 +289,10 @@ namespace MADTest
             //variable to record if the data is valid
             Boolean OK = true;
             //test data to use
-            string isbn = "1111111111111";
+            //test data to use
+            int StockID = 2;
             //invoke the method
-            Found = stock.Find(isbn);
+            Found = stock.Find(StockID);
             //check the Author
             if (stock.Author != "Terry Pratchett")
             {
@@ -307,6 +310,15 @@ namespace MADTest
             String Error = "";
             //Run the method
             Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
+        }
+        [TestMethod]
+        public void ISBNUnique()
+        {
+            clsStock stock = new clsStock();
+            string Error = "";
+            String ISBN = "1111111111111";
+            Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
+            Assert.AreNotEqual(Error, "");
         }
         [TestMethod]
         public void ISBNExtremeMin()
@@ -852,7 +864,7 @@ namespace MADTest
             Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
-   
+
         [TestMethod]
         public void AuthorMinMinusOne()
         {
@@ -930,9 +942,21 @@ namespace MADTest
             Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
+        [TestMethod]
+        public void SupplierInfoCorrect()
+        {
+            clsStock stock = new clsStock();
+            stock.StockLevel = 99;
+            stock.Author = "Bookman";
+            stock.BookName = "TheBook";
+            String test = stock.SupplierInfo;
+            Assert.AreEqual(test, "TheBook, Bookman: 99");
+        }
         
 
+
     }
-    
+
 
 }
+

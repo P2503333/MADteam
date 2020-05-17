@@ -8,13 +8,13 @@ using MADClasses;
 
 public partial class ABook : System.Web.UI.Page
 {
-    string nISBN; 
+    int nStockID;
     protected void Page_Load(object sender, EventArgs e)
     {
-        nISBN = Convert.ToString(Session["ISBN"]);
+        nStockID = Convert.ToInt32(Session["StockID"]);
         if (IsPostBack == false)
         {
-            if (nISBN != "0")
+            if (nStockID != -1)
             {
                 DisplayStock();
             }
@@ -24,14 +24,14 @@ public partial class ABook : System.Web.UI.Page
     private void DisplayStock()
     {
         clsStockCollection allStock = new clsStockCollection();
-        allStock.ThisStock.Find(nISBN);
+        allStock.ThisStock.Find(nStockID);
         txtISBN.Text = allStock.ThisStock.ISBN;
         txtPrice.Text = allStock.ThisStock.Price.ToString();
         txtSupplierID.Text = allStock.ThisStock.SupplierID.ToString();
         txtStockLevel.Text = allStock.ThisStock.StockLevel.ToString();
         txtAuthor.Text = allStock.ThisStock.Author;
         txtBookName.Text = allStock.ThisStock.BookName;
-        txtReleaseDate.Text = allStock.ThisStock.ReleaseDate.ToString();
+        txtReleaseDate.Text = allStock.ThisStock.ReleaseDate.ToShortDateString();
         chkOnOrder.Checked = allStock.ThisStock.OnOrder;
 
     }
@@ -51,6 +51,7 @@ public partial class ABook : System.Web.UI.Page
         Boolean OnOrder = chkOnOrder.Checked;
         //String to contain any errors
         string Error = "";
+        //validate
         Error = ABook.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierID, ReleaseDate);
         if (Error == "")
         {
@@ -64,7 +65,7 @@ public partial class ABook : System.Web.UI.Page
             ABook.OnOrder = OnOrder;
 
             clsStockCollection StockList = new clsStockCollection();
-            if (nISBN == "0")
+            if (nStockID == -1)
             {
                 StockList.ThisStock = ABook;
                 StockList.Add();
@@ -72,9 +73,10 @@ public partial class ABook : System.Web.UI.Page
             }
             else
             {
-                StockList.ThisStock.Find(nISBN);
+                StockList.ThisStock.Find(nStockID);
                 StockList.ThisStock = ABook;
                 StockList.Update();
+                Response.Redirect("StockList.aspx");
             }
         }
         else
@@ -82,5 +84,13 @@ public partial class ABook : System.Web.UI.Page
             LabelError.Text = Error;
         }
 
+    }
+
+
+
+
+    protected void BtnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("StockList.aspx");
     }
 }

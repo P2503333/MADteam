@@ -73,8 +73,8 @@ namespace MADTest
         {
             clsStockCollection allStock = new clsStockCollection();
             clsStock aBook = new clsStock();
-            string PrimaryKey = "";
-            aBook.ISBN = "1444444444444";
+            int PrimaryKey = 0;
+            aBook.ISBN = "88888888888888";
             aBook.BookName = "testbook";
             aBook.Author = "Terry Pratchett";
             aBook.OnOrder = false;
@@ -84,17 +84,22 @@ namespace MADTest
             aBook.ReleaseDate = Convert.ToDateTime("25/9/2004");
             allStock.ThisStock = aBook;
             PrimaryKey = allStock.Add();
-            aBook.ISBN = PrimaryKey;
+
             allStock.ThisStock.Find(PrimaryKey);
             Assert.AreEqual(allStock.ThisStock, aBook);
+            //prevents the data being left in the table and failing future tests due to unique isbn constraint
+            allStock.ThisStock.Find(PrimaryKey);
+            allStock.Delete();
+
+
         }
         [TestMethod]
         public void DeleteMethodOkay()
         {
             clsStockCollection allStock = new clsStockCollection();
             clsStock aBook = new clsStock();
-            string PrimaryKey = "";
-            aBook.ISBN = "1444444444444";
+            int PrimaryKey = 0;
+            aBook.ISBN = "3333333333333";
             aBook.BookName = "testbook";
             aBook.Author = "Terry Pratchett";
             aBook.OnOrder = false;
@@ -104,7 +109,6 @@ namespace MADTest
             aBook.ReleaseDate = Convert.ToDateTime("25/9/2004");
             allStock.ThisStock = aBook;
             PrimaryKey = allStock.Add();
-            aBook.ISBN = PrimaryKey;
             allStock.ThisStock.Find(PrimaryKey);
             allStock.Delete();
             Boolean Found = allStock.ThisStock.Find(PrimaryKey);
@@ -117,7 +121,7 @@ namespace MADTest
         {
             clsStockCollection allStock = new clsStockCollection();
             clsStock aBook = new clsStock();
-            string PrimaryKey = "";
+            int PrimaryKey = 0;
             aBook.ISBN = "1444444444444";
             aBook.BookName = "Testbook";
             aBook.Author = "Terry Pratchett";
@@ -128,7 +132,6 @@ namespace MADTest
             aBook.ReleaseDate = Convert.ToDateTime("25/9/2004");
             allStock.ThisStock = aBook;
             PrimaryKey = allStock.Add();
-            aBook.ISBN = PrimaryKey;
             aBook.ISBN = "1555555555555";
             aBook.BookName = "Feet of Clay";
             aBook.Author = "Berry Pratchett";
@@ -141,6 +144,8 @@ namespace MADTest
             allStock.Update();
             allStock.ThisStock.Find(PrimaryKey);
             Assert.AreEqual(allStock.ThisStock, aBook);
+            //prevents the data being left in the table and failing future tests due to unique isbn constraint
+            allStock.Delete();
         }
         [TestMethod]
         public void ReportByBookNameOK()
@@ -180,6 +185,38 @@ namespace MADTest
             }
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void FilterBySupplierNoneFound()
+        {
+            clsStockCollection filteredStock = new clsStockCollection();
+            filteredStock.FilterBySupplier(99);
+            Assert.AreEqual(0, filteredStock.Count);
+        }
+        [TestMethod]
+        public void FilterBySupplierTestDataFound()
+        {
+            clsStockCollection filteredStock = new clsStockCollection();
+            Boolean OK = true;
+            filteredStock.FilterBySupplier(2);
+            if (filteredStock.Count == 2)
+            {
+                if (filteredStock.StockList[0].StockID != 2)
+                {
+                    OK = false;
+                }
+                if (filteredStock.StockList[1].StockID != 14)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
 
     }
 }
+
