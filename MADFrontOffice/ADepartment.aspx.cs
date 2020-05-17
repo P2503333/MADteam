@@ -13,13 +13,11 @@ public partial class ADepartment : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         {
-            clsDepartment aDepartment = new clsDepartment();
+            
 
-            aDepartment = (clsDepartment)Session["aDepartment"];
+           dep_ID = Convert.ToInt32(Session["dep_ID"]);
             if (IsPostBack == false)
             {
-                DisplayDepartment();
-
                 if (dep_ID != -1)
                 {
                     DisplayDepartment();
@@ -30,16 +28,42 @@ public partial class ADepartment : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        if (dep_ID == -1)
+        clsDepartment ADepartment = new clsDepartment();
+
+
+        string dep_Location = txtdep_Location.Text;
+        string dep_Name = txtdep_Name.Text;
+        string no_Employees = txtno_Employee.Text;
+        string Error = "";
+
+        Error = ADepartment.Valid(dep_Name,dep_Location, no_Employees);
+        if (Error == "")
         {
-            //add the new record
-            Add();
+            ADepartment.Dep_ID = dep_ID;
+            ADepartment.Dep_Name = dep_Name;
+            ADepartment.Dep_Location = dep_Location;
+            ADepartment.No_Employees = Convert.ToInt32(no_Employees);
+
+            clsDepartmentCollection DepartmentList = new clsDepartmentCollection();
+
+            if (Convert.ToInt32(dep_ID) == -1)
+            {
+                DepartmentList.ThisDepartment = ADepartment;
+                DepartmentList.Add();
+            }
+            else
+            {
+                DepartmentList.ThisDepartment.Find(Convert.ToInt32(dep_ID));
+                DepartmentList.ThisDepartment = ADepartment;
+                DepartmentList.Update();
+            }
+            Response.Redirect("DefaultDepartment.aspx");
         }
         else
         {
-            //update the record
-            Update();
+            lblError.Text = Error;
         }
+
     }
 
     void DisplayDepartment()
@@ -61,60 +85,23 @@ public partial class ADepartment : System.Web.UI.Page
         Response.Redirect("DefaultDepartment.aspx");
     }
 
-    void Add()
+    protected void btnFind_Click(object sender, EventArgs e)
     {
-        //create an instance of the address book
-        clsDepartmentCollection DepartmentBook = new clsDepartmentCollection();
-        //validate the data on the web form
-        String Error = DepartmentBook.ThisDepartment.Valid(Convert.ToInt32(txtdep_ID.Text), txtdep_Name.Text, txtdep_Location.Text, Convert.ToInt32(txtno_Employee.Text));
-        //if the data is OK then add it to the object
-        if (Error == "")
+        clsDepartment ADepartment = new clsDepartment();
+        Int32 dep_ID;
+        Boolean Found = false;
+        dep_ID = Convert.ToInt32(txtdep_ID.Text);
+        Found = ADepartment.Find(dep_ID);
+
+        if(Found == true)
         {
-            //get the data entered by the user
-            DepartmentBook.ThisDepartment.Dep_ID = Convert.ToInt32(txtdep_ID.Text);
-            DepartmentBook.ThisDepartment.Dep_Name = txtdep_Name.Text;
-            DepartmentBook.ThisDepartment.Dep_Location = txtdep_Location.Text;
-            DepartmentBook.ThisDepartment.No_Employees = Convert.ToInt32(txtno_Employee.Text);
-            //add the record
-            DepartmentBook.Add();
-            //all done so redirect back to the main page
-            Response.Redirect("DefaultDepartment.aspx");
-        }
-        else
-        {
-            //report an error
-            lblError.Text = "There were problems with the data entered " + Error;
+            txtdep_Location.Text = ADepartment.Dep_Location;
+            txtdep_Name.Text = ADepartment.Dep_Name;
+            txtno_Employee.Text = ADepartment.No_Employees.ToString();
         }
     }
 
-    void Update()
-    {
-        //create an instance of the address book
-        clsDepartmentCollection DepartmentBook = new clsDepartmentCollection();
-        //validate the data on the web form
-        String Error = DepartmentBook.ThisDepartment.Valid(Convert.ToInt32(txtdep_ID.Text), txtdep_Name.Text, txtdep_Location.Text, Convert.ToInt32(txtno_Employee.Text));
-        //if the data is OK then add it to the object
-        if (Error == "")
-        {
-            //find the record to update
-            DepartmentBook.ThisDepartment.Find(dep_ID);
-            //get the data entered by the user
-            DepartmentBook.ThisDepartment.Dep_ID = Convert.ToInt32(txtdep_ID.Text);
-            DepartmentBook.ThisDepartment.Dep_Name = txtdep_Name.Text;
-            DepartmentBook.ThisDepartment.Dep_Location = txtdep_Location.Text;
-            DepartmentBook.ThisDepartment.No_Employees = Convert.ToInt32(txtno_Employee.Text);
 
-            //update the record
-            DepartmentBook.Update();
-            //all done so redirect back to the main page
-            Response.Redirect("DefaultDepartment.aspx");
-        }
-        else
-        {
-            //report an error
-            lblError.Text = "There were problems with the data entered " + Error;
-        }
-    }
 
 
 

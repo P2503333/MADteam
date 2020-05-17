@@ -13,12 +13,10 @@ public partial class AnEmployee : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        ClsEmployee anEmployee = new ClsEmployee();
 
-        anEmployee = (ClsEmployee)Session["anEmployee"];
+        emp_ID = Convert.ToInt32(Session["emp_ID"]);
         if (IsPostBack == false)
         {
-            DisplayEmployee();
 
             if (emp_ID != -1)
             {
@@ -29,16 +27,50 @@ public partial class AnEmployee : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        if (emp_ID == -1)
+        ClsEmployee AnEmployee = new ClsEmployee();
+
+
+        string emp_Name = txtemp_Name.Text;
+        string job_Name = txtjob_Name.Text;
+        string dep_ID = txtdep_ID.Text;
+        string hire_Date = txthire_Date.Text;
+        string manager_ID = txtmanager_ID.Text;
+        string salary = txtsalary.Text;
+        string check = chkActive.Text;
+        string Error = "";
+
+        Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, Convert.ToDateTime(hire_Date), salary, dep_ID, chkActive.Checked);
+        if (Error == "")
         {
-            //add the new record
-            Add();
+            AnEmployee.Emp_ID = emp_ID;
+            AnEmployee.Emp_Name = emp_Name;
+            AnEmployee.Job_Name = job_Name;
+            AnEmployee.Manager_ID = Convert.ToInt32(manager_ID);
+            AnEmployee.Hire_Date = Convert.ToDateTime(hire_Date);
+            AnEmployee.Salary = Convert.ToInt32(salary);
+            AnEmployee.Dep_ID = Convert.ToInt32(dep_ID);
+            AnEmployee.Active = chkActive.Checked;
+
+            clsEmployeeCollection EmployeeList = new clsEmployeeCollection();
+
+            if (Convert.ToInt32(emp_ID) == -1)
+            {
+                EmployeeList.ThisEmployee = AnEmployee;
+                EmployeeList.Add();
+            }
+            else
+            {
+                EmployeeList.ThisEmployee.Find(Convert.ToInt32(emp_ID));
+                EmployeeList.ThisEmployee = AnEmployee;
+                EmployeeList.Update();
+            }
+            Response.Redirect("DefaultEmployee.aspx");
         }
         else
         {
-            //update the record
-            Update();
+            lblError.Text = Error;
         }
+
     }
 
     void DisplayEmployee()
@@ -64,66 +96,31 @@ public partial class AnEmployee : System.Web.UI.Page
         Response.Redirect("DefaultEmployee.aspx");
     }
 
-    //function for adding new records
-    void Add()
+    protected void btnFind_Click(object sender, EventArgs e)
     {
-        //create an instance of the address book
-        clsEmployeeCollection EmployeeBook = new clsEmployeeCollection();
-        //validate the data on the web form
-        String Error = EmployeeBook.ThisEmployee.Valid(Convert.ToInt32(txtemp_ID.Text), txtemp_Name.Text, txtjob_Name.Text, Convert.ToInt32(txtmanager_ID.Text), Convert.ToDateTime(txthire_Date.Text), Convert.ToInt32(txtsalary.Text), Convert.ToInt32(txtdep_ID.Text), chkActive.Checked);
-        //if the data is OK then add it to the object
-        if (Error == "")
-        {
-            //get the data entered by the user
-            EmployeeBook.ThisEmployee.Emp_ID = Convert.ToInt32(txtemp_ID.Text);
-            EmployeeBook.ThisEmployee.Emp_Name = txtemp_Name.Text;
-            EmployeeBook.ThisEmployee.Job_Name = txtjob_Name.Text;
-            EmployeeBook.ThisEmployee.Manager_ID = Convert.ToInt32(txtmanager_ID.Text);
-            EmployeeBook.ThisEmployee.Hire_Date = Convert.ToDateTime(txthire_Date.Text);
-            EmployeeBook.ThisEmployee.Salary = Convert.ToInt32(txtsalary.Text);
-            EmployeeBook.ThisEmployee.Dep_ID = Convert.ToInt32(txtdep_ID.Text);
-            EmployeeBook.ThisEmployee.Active = chkActive.Checked;
-            //add the record
-            EmployeeBook.Add();
-            //all done so redirect back to the main page
-            Response.Redirect("DefaultEmployee.aspx");
+        ClsEmployee AnEmployee = new ClsEmployee();
+        Int32 emp_ID;
+        Boolean Found = false;
+        if (txtemp_ID.Text != "") {
+            emp_ID = Convert.ToInt32(txtemp_ID.Text);
+            Found = AnEmployee.Find(emp_ID);
         }
         else
         {
-            //report an error
-            lblError.Text = "There were problems with the data entered " + Error;
+            lblError.Text = "Please enter a employee ID";
+        }
+
+        if (Found == true)
+        {
+            lblError.Text = "";
+            txtemp_Name.Text = AnEmployee.Emp_Name;
+            txtjob_Name.Text = AnEmployee.Job_Name;
+            txtmanager_ID.Text = AnEmployee.Manager_ID.ToString();
+            txthire_Date.Text = AnEmployee.Hire_Date.ToString();
+            txtsalary.Text = AnEmployee.Salary.ToString();
+            txtdep_ID.Text = AnEmployee.Dep_ID.ToString();
+            chkActive.Checked = AnEmployee.Active;
         }
     }
 
-    void Update()
-    {
-        //create an instance of the address book
-        clsEmployeeCollection EmployeeBook = new clsEmployeeCollection();
-        //validate the data on the web form
-        String Error = EmployeeBook.ThisEmployee.Valid(Convert.ToInt32(txtemp_ID.Text), txtemp_Name.Text, txtjob_Name.Text, Convert.ToInt32(txtmanager_ID.Text), Convert.ToDateTime(txthire_Date.Text), Convert.ToInt32(txtsalary.Text), Convert.ToInt32(txtdep_ID.Text), chkActive.Checked);
-        //if the data is OK then add it to the object
-        if (Error == "")
-        {
-            //find the record to update
-            EmployeeBook.ThisEmployee.Find(emp_ID);
-            //get the data entered by the user
-            EmployeeBook.ThisEmployee.Emp_ID = Convert.ToInt32(txtemp_ID.Text);
-            EmployeeBook.ThisEmployee.Emp_Name = txtemp_Name.Text;
-            EmployeeBook.ThisEmployee.Job_Name = txtjob_Name.Text;
-            EmployeeBook.ThisEmployee.Manager_ID = Convert.ToInt32(txtmanager_ID.Text);
-            EmployeeBook.ThisEmployee.Hire_Date = Convert.ToDateTime(txthire_Date.Text);
-            EmployeeBook.ThisEmployee.Salary = Convert.ToInt32(txtsalary.Text);
-            EmployeeBook.ThisEmployee.Dep_ID = Convert.ToInt32(txtdep_ID.Text);
-            EmployeeBook.ThisEmployee.Active = chkActive.Checked;
-            //update the record
-            EmployeeBook.Update();
-            //all done so redirect back to the main page
-            Response.Redirect("DefaultEmployee.aspx");
-        }
-        else
-        {
-            //report an error
-            lblError.Text = "There were problems with the data entered " + Error;
-        }
-    }
 }

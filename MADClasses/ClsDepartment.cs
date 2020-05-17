@@ -95,26 +95,11 @@ namespace MADClasses
         }
     }
 
-    public string Valid(int dep_ID, string dep_Name, string dep_Location, int no_Employees)
+    public string Valid(string dep_Name, string dep_Location, string no_Employees)
     {
             String Error = "";
-            //--------------------Department ID Validating--------------------
-            //if the Department ID is blank
-            if (dep_ID == 0)
-            {
-                //Recording the error
-                Error += "The Department ID may not be blank : ";
-            }
-            if (dep_ID > 200)
-            {
-                //Recording the error
-                Error += "The Department ID must be an employee : ";
-            }
-            if (dep_ID < 0)
-            {
-                //Recording the error
-                Error += "The Department ID must greater that 0 : ";
-            }
+            int employees;
+            
             //--------------------Department Name Validating--------------------
             //if the employee name is blank
             if (dep_Name.Length == 0)
@@ -140,21 +125,29 @@ namespace MADClasses
                 Error += "The Department Location must be less thn 50 characters : ";
             }
             //--------------------No Employees Validating--------------------
-            //if the Department ID is blank
-            if (no_Employees == 0)
+            bool succeedParse = int.TryParse(no_Employees, out employees);
+            if (succeedParse == false)
             {
-                //Recording the error
-                Error += "The Number of Employees may not be blank : ";
+                Error += "Employees: This is not a number :";
             }
-            if (no_Employees > 200)
+            else
             {
-                //Recording the error
-                Error += "The Number of Employees must be below 200 : ";
-            }
-            if (no_Employees < 0)
-            {
-                //Recording the error
-                Error += "The Number of Employees must greater that 0 : ";
+                //if the Department ID is blank
+                if (employees == 0)
+                {
+                    //Recording the error
+                    Error += "The Number of Employees may not be blank : ";
+                }
+                if (employees > 200)
+                {
+                    //Recording the error
+                    Error += "The Number of Employees must be below 200 : ";
+                }
+                if (employees < 0)
+                {
+                    //Recording the error
+                    Error += "The Number of Employees must greater that 0 : ";
+                }
             }
             return Error;
     }

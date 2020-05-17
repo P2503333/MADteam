@@ -8,11 +8,6 @@ namespace MADClasses
 {
     public class ClsEmployee
     {
-        //--------Add to DB sproc_tblEmployee_Insert ----
-        //--------and sproc_tblEmployee_SelectAll -------
-        //--------and sproc_tblEmployee_Update ----------
-        //--------and sproc_tblEmployee_Delete ----------
-        // -------and sproc_tblEmployee_FilterByemp_Name ---
         //private data member for Employee ID
         private Int32 memp_ID;
         //private data member for Employee Name
@@ -159,29 +154,13 @@ namespace MADClasses
             }
         }
 
-        public string Valid(int emp_ID, string emp_Name, string job_Name, int manager_ID, DateTime hire_Date, int salary, int dep_ID, bool active)
+        public string Valid( string emp_Name, string job_Name, string manager_ID, DateTime hire_Date, string salary, string dep_ID, bool active)
         {
             // create a string variable to store the error
             String Error = "";
             //creating a temporary variable to store the date
             DateTime DateTemp;
-            //--------------------Employee ID Validating--------------------
-            //if the Employee ID is blank
-            if (emp_ID == 0)
-            {
-                //Recording the error
-                Error += "The Employee ID may not be blank : ";
-            }
-            if (emp_ID > 200)
-            {
-                //Recording the error
-                Error += "The Employee ID must be an employee : ";
-            }
-            if (emp_ID < 0)
-            {
-                //Recording the error
-                Error += "The Employee ID must be greater than 0 : ";
-            }
+            int manager, sal, dep;
             //--------------------Employee Name Validating--------------------
             //if the employee name is blank
             if (emp_Name.Length == 0)
@@ -202,26 +181,29 @@ namespace MADClasses
             }
             //--------------------Manager ID Validating--------------------
             //if the Manager ID is blank
-            if (manager_ID == 0)
+            bool succeedMParse = int.TryParse(manager_ID, out manager);
+            if (succeedMParse == false)
             {
-                //Recording the error
-                Error += "The Manager ID may not be blank : ";
+                Error += "Manager ID: This is not a number";
             }
-            if (manager_ID > 200)
+            else
             {
-                //Recording the error
-                Error += "The Manager ID must be an employee : ";
+                if (manager == 0)
+                {
+                    //Recording the error
+                    Error += "The Manager ID may not be blank : ";
+                }
+                if (manager > 200)
+                {
+                    //Recording the error
+                    Error += "The Manager ID must be an employee : ";
+                }
             }
             //--------------------Hire Date Validating--------------------
             try
             {
                 //copy the dateAdded value to the DateTemp variable
                 DateTemp = hire_Date;
-                if (DateTemp < DateTime.Now.Date)
-                {
-                    //record the error
-                    Error = Error + "The date cannot be in the past : ";
-                }
                 //check to see if the date is greater than today's date
                 if (DateTemp > DateTime.Now.Date)
                 {
@@ -236,37 +218,53 @@ namespace MADClasses
             }
             //--------------------Salary Validating--------------------
             //if the Salary is blank
-            if (salary == 0)
+            bool succeedSParse = int.TryParse(salary, out sal);
+            if (succeedSParse == false)
             {
-                //Recording the error
-                Error += "The Salary may not be blank : ";
+                Error += "Salary: This is not a number :";
             }
-            if (salary > 200000)
+            else
             {
-                //Recording the error
-                Error += "The Salary must be an employee : ";
-            }
-            if (salary < 0)
-            {
-                //Recording the error
-                Error += "The Salary must be greater than 0";
+                if (sal == 0)
+                {
+                    //Recording the error
+                    Error += "The Salary may not be blank : ";
+                }
+                if (sal > 200000)
+                {
+                    //Recording the error
+                    Error += "The Salary must be below 200000: ";
+                }
+                if (sal < 0)
+                {
+                    //Recording the error
+                    Error += "The Salary must be greater than 0";
+                }
             }
             //--------------------Department ID Validating--------------------
             //if the Department ID is blank
-            if (dep_ID == 0)
+            bool succeedDParse = int.TryParse(dep_ID, out dep);
+            if (succeedDParse == false)
             {
-                //Recording the error
-                Error += "The Department ID may not be blank : ";
+                Error += "Department ID: This is not a number :";
             }
-            if (dep_ID > 200)
+            else
             {
-                //Recording the error
-                Error += "The Department ID must be an employee : ";
-            }
-            if (dep_ID < 0)
-            {
-                //Recording the error
-                Error += "The Department ID must greater that 0 : ";
+                if (dep == 0)
+                {
+                    //Recording the error
+                    Error += "The Department ID may not be blank : ";
+                }
+                if (dep > 200)
+                {
+                    //Recording the error
+                    Error += "The Department ID must be an employee : ";
+                }
+                if (dep < 0)
+                {
+                    //Recording the error
+                    Error += "The Department ID must greater that 0 : ";
+                }
             }
             //--------------------Active Validating--------------------
             if (active != true && active != false)

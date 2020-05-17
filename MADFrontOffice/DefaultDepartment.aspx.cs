@@ -14,16 +14,16 @@ public partial class DefaultDepartment : System.Web.UI.Page
         if (IsPostBack == false)
         {
             //update the list box
-            DisplayLocation();
+            DisplayName();
         }
     }
 
-    void DisplayLocation()
+    void DisplayName()
     {
         //create an instance of the Employee Collection
-        clsDepartmentCollection Locations = new clsDepartmentCollection();
+        clsDepartmentCollection Names = new clsDepartmentCollection();
         //set the data source to the list of names in the collection
-        lstdepartment.DataSource = Locations.DepartmentList;
+        lstdepartment.DataSource = Names.DepartmentList;
         //set the name of the primary key
         lstdepartment.DataValueField = "dep_ID";
         //set the data field to display
@@ -59,7 +59,7 @@ public partial class DefaultDepartment : System.Web.UI.Page
         else//if no record has been selected
         {
             //display an error
-            lblError.Text = "Please select a record to delete from the list";
+            lblError.Text = "Please select a record to edit from the list";
         }
     }
 
@@ -74,7 +74,7 @@ public partial class DefaultDepartment : System.Web.UI.Page
             //get the primary key value of the record to delete
             dep_ID = Convert.ToInt32(lstdepartment.SelectedValue);
             //store the data in the session object
-            Session["emp_ID"] = dep_ID;
+            Session["dep_ID"] = dep_ID;
             //redirect to the delete page
             Response.Redirect("DeleteD.aspx");
         }
@@ -93,13 +93,24 @@ public partial class DefaultDepartment : System.Web.UI.Page
     //event handler for the apply button
     protected void btnApply_Click(object sender, EventArgs e)
     {
-
+        clsDepartmentCollection departments = new clsDepartmentCollection();
+        departments.ReportByDepartmentName(txtName.Text);
+        lstdepartment.DataSource = departments.DepartmentList;
+        lstdepartment.DataValueField = "dep_ID";
+        lstdepartment.DataTextField = "dep_Name";
+        lstdepartment.DataBind();
     }
 
     //event hanlder for the display all button
-    protected void btnDisplayAll_Click(object sender, EventArgs e)
+    protected void btnClear_Click(object sender, EventArgs e)
     {
-
+        clsDepartmentCollection departments = new clsDepartmentCollection();
+        departments.ReportByDepartmentName("");
+        txtName.Text = "";
+        lstdepartment.DataSource = departments.DepartmentList;
+        lstdepartment.DataValueField = "dep_ID";
+        lstdepartment.DataTextField = "dep_Name";
+        lstdepartment.DataBind();
     }
 
     protected void lstDepartment_SelectedIndexChanged(object sender, EventArgs e)
