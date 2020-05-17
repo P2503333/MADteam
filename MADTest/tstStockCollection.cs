@@ -185,6 +185,37 @@ namespace MADTest
             }
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void FilterBySupplierNoneFound()
+        {
+            clsStockCollection filteredStock = new clsStockCollection();
+            filteredStock.FilterBySupplier(99);
+            Assert.AreEqual(0, filteredStock.Count);
+        }
+        [TestMethod]
+        public void FilterBySupplierTestDataFound()
+        {
+            clsStockCollection filteredStock = new clsStockCollection();
+            Boolean OK = true;
+            filteredStock.FilterBySupplier(2);
+            if (filteredStock.Count == 2)
+            {
+                if (filteredStock.StockList[0].StockID != 2)
+                {
+                    OK = false;
+                }
+                if (filteredStock.StockList[1].StockID != 14)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
 
     }
 }

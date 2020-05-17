@@ -942,6 +942,17 @@ namespace MADTest
             Error = stock.Valid(ISBN, Price, StockLevel, BookName, Author, SupplierId, ReleaseDate);
             Assert.AreNotEqual(Error, "");
         }
+        [TestMethod]
+        public void SupplierInfoCorrect()
+        {
+            clsStock stock = new clsStock();
+            stock.StockLevel = 99;
+            stock.Author = "Bookman";
+            stock.BookName = "TheBook";
+            String test = stock.SupplierInfo;
+            Assert.AreEqual(test, "TheBook, Bookman: 99");
+        }
+        
 
 
     }
