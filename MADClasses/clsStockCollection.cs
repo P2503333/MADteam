@@ -96,6 +96,16 @@ namespace MADClasses
             DB.Execute("sproc_tblStock_FilterByBookName");
             PopulateArray(DB);
         }
+
+        public void FilterBySupplier(int Supplier)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@supplier", Supplier);
+            DB.Execute("sproc_tblStock_FindBooksBySupplier");
+            PopulateArray(DB);
+        }
+
+
         public void PopulateArray(clsDataConnection DB)
         {
             Int32 Index = 0;

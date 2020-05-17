@@ -94,12 +94,14 @@ public partial class ASupplier : System.Web.UI.Page
         clsSupplierCollection SupplierCollection = new clsSupplierCollection();
         SupplierCollection.ThisSupplier.Find(ID);
 
-        txtID.Text = Convert.ToString(ID);
+        if(ID != -1)
+        {
+            txtID.Text = Convert.ToString(ID);
+            txtDelivery.Text = Convert.ToString(SupplierCollection.ThisSupplier.LastDelivery);
+        }
         txtName.Text = SupplierCollection.ThisSupplier.Name;
         txtEmail.Text = SupplierCollection.ThisSupplier.Email;
-        txtDelivery.Text = Convert.ToString(SupplierCollection.ThisSupplier.LastDelivery);
         txtAddress.Text = SupplierCollection.ThisSupplier.Address;
         cbxActive.Checked = SupplierCollection.ThisSupplier.Active;
-        lblResult.Text = "Successfully found entry " + ID;
     }
 }

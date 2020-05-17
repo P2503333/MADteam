@@ -82,4 +82,30 @@ public partial class SupplierList : System.Web.UI.Page
         lstSupplierList.DataTextField = "Name";
         lstSupplierList.DataBind();
     }
+
+    protected void btnOrder_Click(object sender, EventArgs e)
+    {
+        /**
+         * Actual order code would go here.
+         * Felt like it was a little out of 
+         * spec for the supplier table though
+         */
+    }
+
+    protected void btnViewStock_Click(object sender, EventArgs e)
+    {
+        if (lstSupplierList.SelectedIndex != -1)
+        {
+            MADClasses.clsStockCollection Books = new MADClasses.clsStockCollection();
+            Books.FilterBySupplier(Convert.ToInt32(lstSupplierList.SelectedValue));
+            lstBookList.DataSource = Books.StockList;
+            lstBookList.DataValueField = "BookName";
+            lstBookList.DataTextField = "SupplierInfo";
+            lstBookList.DataBind();
+        }
+        else
+        {
+            lblError.Text = "Please select a supplier to show";
+        }
+    }
 }
