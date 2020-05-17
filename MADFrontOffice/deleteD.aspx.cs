@@ -33,7 +33,7 @@ public partial class deleteD : System.Web.UI.Page
     protected void btnNo_Click(object sender, EventArgs e)
     {
         //redirect back to the main page
-        Response.Redirect("DefaultEmployee.aspx");
+        Response.Redirect("DefaultDepartment.aspx");
     }
 
     void DeleteDepartment()

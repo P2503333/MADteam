@@ -103,7 +103,6 @@ namespace MADClasses
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the stored procedure
-            DB.AddParameter("@dep_ID", mADepartment.Dep_ID);
             DB.AddParameter("@dep_Name", mADepartment.Dep_Name);
             DB.AddParameter("@dep_Location", mADepartment.Dep_Location);
             DB.AddParameter("@no_Employees", mADepartment.No_Employees);
@@ -136,15 +135,15 @@ namespace MADClasses
             DB.Execute("sproc_tblDepartment_Update");
         }
 
-        public void ReportByDepartmentLocation(string dep_Location)
+        public void ReportByDepartmentName(string dep_Name)
         {
             //filters the records based on an Employee Name
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //send the Employee Name parameter to the database
-            DB.AddParameter("@dep_Location", dep_Location);
+            DB.AddParameter("@dep_Name", dep_Name);
             //execute the stored procedure
-            DB.Execute("sproc_tblDepartment_FilterBydep_Location");
+            DB.Execute("sproc_tblDepartment_FilterBydep_Name");
             //populate the array list with the data table
             PopulateArray(DB);
         }

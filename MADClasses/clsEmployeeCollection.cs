@@ -106,7 +106,6 @@ namespace MADClasses
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the stored procedure
-            DB.AddParameter("@emp_ID", mAnEmployee.Emp_ID);
             DB.AddParameter("@emp_Name", mAnEmployee.Emp_Name);
             DB.AddParameter("@job_Name", mAnEmployee.Job_Name);
             DB.AddParameter("@manager_ID", mAnEmployee.Manager_ID);

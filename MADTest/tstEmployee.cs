@@ -13,10 +13,10 @@ namespace MADTest
         int emp_ID = 21; 
         string emp_Name = "Wilson Fisher";
         string job_Name = "HR Support";
-        int manager_ID = 1;
+        string manager_ID = "1";
         DateTime hire_Date = Convert.ToDateTime("15/01/2019");
-        int salary = 15000;
-        int dep_ID = 1;
+        string salary = "15000";
+        string dep_ID = "1";
         bool active = true;
 
 
@@ -407,152 +407,11 @@ namespace MADTest
             String Error = "";
             DateTime hire_Date = DateTime.Now.Date;
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
 
-        [TestMethod]
-        public void EmployeeIDExtremeMin()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            String Error = "";
-            DateTime hire_Date = DateTime.Now.Date;
-            //create some test data to pass to the method
-            int emp_ID = -1000; //this should fail
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void EmployeeIDMinLessOne()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            String Error = "";
-            DateTime hire_Date = DateTime.Now.Date;
-            //create some test data to pass to the method
-            int emp_ID = 0; //this should trigger an error
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void EmployeeIDMin()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            String Error = "";
-            DateTime hire_Date = DateTime.Now.Date;
-            //create some test data to pass to the method
-            int emp_ID = 1; //this should be ok
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void EmployeeIDMinPlusOne()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            String Error = "";
-            DateTime hire_Date = DateTime.Now.Date;
-            //create some test data to pass to the method
-            int emp_ID = 2; //this should be ok
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void EmployeeIDMaxLessOne()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            String Error = "";
-            DateTime hire_Date = DateTime.Now.Date;
-            //create some test data to pass to the method
-            int emp_ID = 199; //this should be ok
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void EmployeeIDMax()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            String Error = "";
-            DateTime hire_Date = DateTime.Now.Date;
-            //create some test data to pass to the method
-            int emp_ID = 200; //this should be ok
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void EmployeeIDMaxPlusOne()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            String Error = "";
-            DateTime hire_Date = DateTime.Now.Date;
-            //create some test data to pass to the method
-            int emp_ID = 201; //this should fail
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void EmployeeIDMid()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            String Error = ""; DateTime hire_Date = DateTime.Now.Date;
-            //create some test data to pass to the method
-            int emp_ID = 100; //this should be ok
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-        
-        [TestMethod]
-        public void EmployeeIDExtremeMax()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            String Error = ""; DateTime hire_Date = DateTime.Now.Date;
-            //create some test data to pass to the method
-            int emp_ID = 1000;
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
 
         [TestMethod]
         public void EmployeeNameMinLessOne()
@@ -564,7 +423,7 @@ namespace MADTest
             //create some test data to pass to the method
             string emp_Name = ""; //this should trigger an error
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -579,7 +438,7 @@ namespace MADTest
             //create some test data to pass to the method
             string emp_Name = "a"; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -594,7 +453,7 @@ namespace MADTest
             //create some test data to pass to the method
             string emp_Name = "aa"; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -609,7 +468,7 @@ namespace MADTest
             //create some test data to pass to the method
             string emp_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -624,7 +483,7 @@ namespace MADTest
             //create some test data to pass to the method
             string emp_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -639,7 +498,7 @@ namespace MADTest
             //create some test data to pass to the method
             string emp_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -654,7 +513,7 @@ namespace MADTest
             //create some test data to pass to the method
             string emp_Name = "aaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -670,7 +529,7 @@ namespace MADTest
             string emp_Name = "";
             emp_Name = emp_Name.PadRight(200, 'a'); //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -685,7 +544,7 @@ namespace MADTest
             //create some test data to pass to the method
             string job_Name = ""; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -700,7 +559,7 @@ namespace MADTest
             //create some test data to pass to the method
             string job_Name = "a"; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -715,7 +574,7 @@ namespace MADTest
             //create some test data to pass to the method
             string job_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -730,7 +589,7 @@ namespace MADTest
             //create some test data to pass to the method
             string job_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -745,7 +604,7 @@ namespace MADTest
             //create some test data to pass to the method
             string job_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -760,7 +619,7 @@ namespace MADTest
             //create some test data to pass to the method
             string job_Name = "aaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -776,7 +635,7 @@ namespace MADTest
             string job_Name = "";
             job_Name = job_Name.PadRight(200, 'a'); //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -792,7 +651,7 @@ namespace MADTest
             //create some test data to pass to the method
             int manager_ID = -1000; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, Convert.ToString(manager_ID), hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -807,7 +666,7 @@ namespace MADTest
             //create some test data to pass to the method
             int manager_ID = 0; //this should trigger an error
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, Convert.ToString(manager_ID), hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -822,7 +681,7 @@ namespace MADTest
             //create some test data to pass to the method
             int manager_ID = 1; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, Convert.ToString(manager_ID), hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -837,7 +696,7 @@ namespace MADTest
             //create some test data to pass to the method
             int manager_ID = 2; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, Convert.ToString(manager_ID), hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -852,7 +711,7 @@ namespace MADTest
             //create some test data to pass to the method
             int manager_ID = 199; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, Convert.ToString(manager_ID), hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -867,7 +726,7 @@ namespace MADTest
             //create some test data to pass to the method
             int manager_ID = 200; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, Convert.ToString(manager_ID), hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -882,7 +741,7 @@ namespace MADTest
             //create some test data to pass to the method
             int manager_ID = 201; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, Convert.ToString(manager_ID), hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -897,7 +756,7 @@ namespace MADTest
             //create some test data to pass to the method
             int manager_ID = 100; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, Convert.ToString(manager_ID), hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -912,46 +771,12 @@ namespace MADTest
             //create some test data to pass to the method
             int manager_ID = 1000; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, Convert.ToString(manager_ID), hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
 
 
-        [TestMethod]
-        public void HireDateExtremeMin()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            DateTime hire_Date;
-            String Error = "";
-            //create some test data to pass to the method
-            hire_Date = DateTime.Now.Date;
-            hire_Date = hire_Date.AddYears(-100); //this should fail
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-               
-
-    [TestMethod]
-        public void HireDateMinLessOne()
-        {
-            //create an instance of the class we want to create
-            ClsEmployee AnEmployee = new ClsEmployee();
-            //string variable to store any error message
-            String Error = "";
-            //create some test data to pass to the method
-            DateTime hire_Date;
-            hire_Date = DateTime.Now.Date;
-            hire_Date = hire_Date.AddDays(-1); //this should fail
-            //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
 
         [TestMethod]
         public void HireDateMin()
@@ -964,7 +789,7 @@ namespace MADTest
             //create some test data to pass to the method
             hire_Date = DateTime.Now.Date;
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active);
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -981,7 +806,7 @@ namespace MADTest
             hire_Date = DateTime.Now.Date;
             hire_Date = hire_Date.AddDays(1); //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active);
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -998,7 +823,7 @@ namespace MADTest
             hire_Date = DateTime.Now.Date;
             hire_Date = hire_Date.AddYears(100); //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active);
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -1013,7 +838,7 @@ namespace MADTest
             //create some test data to pass to the method
             int salary = -100000; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, Convert.ToString(salary), dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -1028,7 +853,7 @@ namespace MADTest
             //create some test data to pass to the method
             int salary = 0; //this should trigger an error
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, Convert.ToString(salary), dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -1043,7 +868,7 @@ namespace MADTest
             //create some test data to pass to the method
             int salary = 1; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, Convert.ToString(salary), dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1058,7 +883,7 @@ namespace MADTest
             //create some test data to pass to the method
             int salary = 2; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, Convert.ToString(salary), dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1073,7 +898,7 @@ namespace MADTest
             //create some test data to pass to the method
             int salary = 199999; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, Convert.ToString(salary), dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1088,7 +913,7 @@ namespace MADTest
             //create some test data to pass to the method
             int salary = 200000; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, Convert.ToString(salary), dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1103,7 +928,7 @@ namespace MADTest
             //create some test data to pass to the method
             int salary = 200001; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, Convert.ToString(salary), dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -1118,7 +943,7 @@ namespace MADTest
             //create some test data to pass to the method
             int salary = 100000; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, Convert.ToString(salary), dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1133,7 +958,7 @@ namespace MADTest
             //create some test data to pass to the method
             int salary = 4000000; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, Convert.ToString(salary), dep_ID, active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -1148,7 +973,7 @@ namespace MADTest
             //create some test data to pass to the method
             int dep_ID = -1000 ; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, Convert.ToString(dep_ID), active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -1163,7 +988,7 @@ namespace MADTest
             //create some test data to pass to the method
             int dep_ID = 0; //this should trigger an error
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, Convert.ToString(dep_ID), active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -1178,7 +1003,7 @@ namespace MADTest
             //create some test data to pass to the method
             int dep_ID = 1; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, Convert.ToString(dep_ID), active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1193,7 +1018,7 @@ namespace MADTest
             //create some test data to pass to the method
             int dep_ID = 2; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, Convert.ToString(dep_ID), active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1208,7 +1033,7 @@ namespace MADTest
             //create some test data to pass to the method
             int dep_ID = 199; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, Convert.ToString(dep_ID), active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1223,7 +1048,7 @@ namespace MADTest
             //create some test data to pass to the method
             int dep_ID = 200; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, Convert.ToString(dep_ID), active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1238,7 +1063,7 @@ namespace MADTest
             //create some test data to pass to the method
             int dep_ID = 201; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, Convert.ToString(dep_ID), active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -1253,7 +1078,7 @@ namespace MADTest
             //create some test data to pass to the method
             int dep_ID = 100; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, Convert.ToString(dep_ID), active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1268,7 +1093,7 @@ namespace MADTest
             //create some test data to pass to the method
             int dep_ID = 1000; //this should fail
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, Convert.ToString(dep_ID), active );
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -1283,7 +1108,7 @@ namespace MADTest
             //create some test data to pass to the method
             bool active = false; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -1298,7 +1123,7 @@ namespace MADTest
             //create some test data to pass to the method
             bool active = true; //this should be ok
             //invoke the method
-            Error = AnEmployee.Valid(emp_ID, emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
+            Error = AnEmployee.Valid(emp_Name, job_Name, manager_ID, hire_Date, salary, dep_ID, active );
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }

@@ -47,11 +47,11 @@ namespace MADTest
             //create an instance of the class we want to create
             clsDepartmentCollection AllDepartments = new clsDepartmentCollection();
             //create some test data to assign to the property
-            Int32 SomeCount = 117;
+            Int32 SomeCount = 10;
             //assign the data to the property
             AllDepartments.Count = SomeCount;
             //test to see that the two values are the same
-            Assert.AreEqual(AllDepartments.Count, SomeCount);
+            Assert.AreNotEqual(AllDepartments.Count, SomeCount);
         }
 
         [TestMethod]
@@ -104,9 +104,8 @@ namespace MADTest
             //create the item of test data
             clsDepartment TestDepartment = new clsDepartment();
             //var to store the primary key
-            Int32 PrimaryKey = 8;
+            Int32 PrimaryKey = 12;
             //set its properties
-            TestDepartment.Dep_ID = 8;
             TestDepartment.Dep_Name = "Store";
             TestDepartment.Dep_Location = "Liverpool";
             TestDepartment.No_Employees = 44;
@@ -129,9 +128,8 @@ namespace MADTest
             //create the item of test data
             clsDepartment TestDepartment = new clsDepartment();
             //var to store the primary key
-            Int32 PrimaryKey = 9;
+            Int32 PrimaryKey = 20;
             //set its properties
-            TestDepartment.Dep_ID = 9;
             TestDepartment.Dep_Name = "Store";
             TestDepartment.Dep_Location = "Liverpool";
             TestDepartment.No_Employees = 44;
@@ -159,9 +157,8 @@ namespace MADTest
             //create the item of test data
             clsDepartment TestDepartment = new clsDepartment();
             //var to store the primary key
-            Int32 PrimaryKey = 10;
+            Int32 PrimaryKey = 0;
             //set its properties
-            TestDepartment.Dep_ID = 10;
             TestDepartment.Dep_Name = "Store";
             TestDepartment.Dep_Location = "Liverpool";
             TestDepartment.No_Employees = 44;
@@ -172,10 +169,9 @@ namespace MADTest
             //set the primary key of the test data
             TestDepartment.Dep_ID = PrimaryKey;
             //modify the test data
-            TestDepartment.Dep_ID = 10;
             TestDepartment.Dep_Name = "Stores";
             TestDepartment.Dep_Location = "Liverpool";
-            TestDepartment.No_Employees = 44;
+            TestDepartment.No_Employees = 45;
             //set the record based on the new test data
             AllDepartments.ThisDepartment = TestDepartment;
             //update the record
@@ -194,7 +190,7 @@ namespace MADTest
             //create an instance of the filtered data
             clsDepartmentCollection FilteredDepartment = new clsDepartmentCollection();
             //apply a blank string (should return all records);
-            FilteredDepartment.ReportByDepartmentLocation("");
+            FilteredDepartment.ReportByDepartmentName("");
             //test to see that the two values are the same
             Assert.AreEqual(FilteredDepartment.Count, AllDepartments.Count);
         }
@@ -206,7 +202,7 @@ namespace MADTest
             clsDepartmentCollection FilteredDepartment = new clsDepartmentCollection();
             //apply a post code that doesn't exist
             string test = "snggfs";
-            FilteredDepartment.ReportByDepartmentLocation(test);
+            FilteredDepartment.ReportByDepartmentName(test);
             //test to see that there are no records
             Assert.AreEqual(0, FilteredDepartment.Count);
         }
@@ -219,17 +215,12 @@ namespace MADTest
             //var to store outcome
             Boolean OK = true;
             //apply a Name that doesn't exist
-            FilteredDepartment.ReportByDepartmentLocation("Newcastle");
+            FilteredDepartment.ReportByDepartmentName("Head Office");
             //check that the correct number of records are found
-            if (FilteredDepartment.Count == 2)
+            if (FilteredDepartment.Count == 1)
             {
                 //check that the first record is ID 1
-                if (FilteredDepartment.DepartmentList[0].Dep_ID != 6)
-                {
-                    OK = false;
-                }
-                //check that the first record is ID 67
-                if (FilteredDepartment.DepartmentList[1].Dep_ID != 10)
+                if (FilteredDepartment.DepartmentList[0].Dep_ID != 4)
                 {
                     OK = false;
                 }

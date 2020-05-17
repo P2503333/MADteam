@@ -51,11 +51,11 @@ namespace MADTest
             //create an instance of the class we want to create
             clsEmployeeCollection AllEmployee = new clsEmployeeCollection();
             //create some test data to assign to the property
-            Int32 SomeCount = 117;
+            Int32 SomeCount = 110;
             //assign the data to the property
             AllEmployee.Count = SomeCount;
             //test to see that the two values are the same
-            Assert.AreEqual(AllEmployee.Count, SomeCount);
+            Assert.AreNotEqual(AllEmployee.Count, SomeCount);
         }
 
         [TestMethod]
@@ -116,9 +116,8 @@ namespace MADTest
             //create the item of test data
             ClsEmployee TestEmployee = new ClsEmployee();
             //var to store the primary key
-            Int32 PrimaryKey = 115;
+            Int32 PrimaryKey = 119;
             //set its properties
-            TestEmployee.Emp_ID = PrimaryKey;
             TestEmployee.Emp_Name = "Jake Wills";
             TestEmployee.Job_Name = "Supporter";
             TestEmployee.Manager_ID = 2;
@@ -145,9 +144,8 @@ namespace MADTest
             //create the item of test data
             ClsEmployee TestEmployee = new ClsEmployee();
             //var to store the primary key
-            Int32 PrimaryKey = 116;
+            Int32 PrimaryKey = 117;
             //set its properties
-            TestEmployee.Emp_ID = 116;
             TestEmployee.Emp_Name = "Jake Wills";
             TestEmployee.Job_Name = "Supporter";
             TestEmployee.Manager_ID = 2;
@@ -179,9 +177,8 @@ namespace MADTest
             //create the item of test data
             ClsEmployee TestEmployee = new ClsEmployee();
             //var to store the primary key
-            Int32 PrimaryKey = 113;
+            Int32 PrimaryKey = 117;
             //set its properties
-            TestEmployee.Emp_ID = 113;
             TestEmployee.Emp_Name = "Jake Wills";
             TestEmployee.Job_Name = "Supporter";
             TestEmployee.Manager_ID = 2;
@@ -196,7 +193,6 @@ namespace MADTest
             //set the primary key of the test data
             TestEmployee.Emp_ID = PrimaryKey;
             //modify the test data
-            TestEmployee.Emp_ID = 113;
             TestEmployee.Emp_Name = "Jake Williams";
             TestEmployee.Job_Name = "Supporter";
             TestEmployee.Manager_ID = 2;
@@ -233,7 +229,7 @@ namespace MADTest
             //create an instance of the filtered data
             clsEmployeeCollection FilteredEmployees = new clsEmployeeCollection();
             //apply a post code that doesn't exist
-            string test = "";
+            string test = "ffqobe";
             FilteredEmployees.ReportByEmployeeName(test);
             //test to see that there are no records
             Assert.AreEqual(0, FilteredEmployees.Count);

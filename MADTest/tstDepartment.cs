@@ -14,7 +14,7 @@ namespace MADTest
         int Dep_ID = 1;
         string Dep_Name = "Human Resources";
         string Dep_Location = "London";
-        int No_Employees = 11;
+        string No_Employees = "11";
 
 
         [TestMethod]
@@ -226,158 +226,9 @@ namespace MADTest
             //string variable to store any error message
             String Error = "";
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void DepartmentIDExtremeMin()
-        {
-            //create an instance of the class we want to create
-            clsDepartment AnDepartment = new clsDepartment();
-            //string variable to store any error message
-            String Error = "";  
-            //create some test data to pass to the method
-            int Dep_ID = -1000; //this should fail
-            //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void DepartmentIDMinLessOne()
-        {
-            //create an instance of the class we want to create
-            clsDepartment AnDepartment = new clsDepartment();
-            //string variable to store any error message
-            String Error = "";  
-            //create some test data to pass to the method
-            int Dep_ID = 0; //this should trigger an error
-            //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void DepartmentIDMin()
-        {
-            //create an instance of the class we want to create
-            clsDepartment AnDepartment = new clsDepartment();
-            //string variable to store any error message
-            String Error = "";  
-            //create some test data to pass to the method
-            int Dep_ID = 1; //this should be ok
-            //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void DepartmentIDMinPlusOne()
-        {
-            //create an instance of the class we want to create
-            clsDepartment AnDepartment = new clsDepartment();
-            //string variable to store any error message
-            String Error = "";  
-            //create some test data to pass to the method
-            int Dep_ID = 2; //this should be ok
-            //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void DepartmentIDMaxLessOne()
-        {
-            //create an instance of the class we want to create
-            clsDepartment AnDepartment = new clsDepartment();
-            //string variable to store any error message
-            String Error = "";  
-            //create some test data to pass to the method
-            int Dep_ID = 199; //this should be ok
-            //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void DepartmentIDMax()
-        {
-            //create an instance of the class we want to create
-            clsDepartment AnDepartment = new clsDepartment();
-            //string variable to store any error message
-            String Error = "";  
-            //create some test data to pass to the method
-            int Dep_ID = 200; //this should be ok
-            //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void DepartmentIDMaxPlusOne()
-        {
-            //create an instance of the class we want to create
-            clsDepartment AnDepartment = new clsDepartment();
-            //string variable to store any error message
-            String Error = "";  
-            //create some test data to pass to the method
-            int Dep_ID = 201; //this should fail
-            //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void DepartmentIDMid()
-        {
-            //create an instance of the class we want to create
-            clsDepartment AnDepartment = new clsDepartment();
-            //string variable to store any error message
-            String Error = "";  
-            //create some test data to pass to the method
-            int Dep_ID = 100; //this should be ok
-            //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
-            //test to see that the result is correct
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void DepartmentIDExtremeMax()
-        {
-            //create an instance of the class we want to create
-            clsDepartment AnDepartment = new clsDepartment();
-            //string variable to store any error message
-            String Error = "";  
-            //create some test data to pass to the method
-            int Dep_ID = 1000; //this should fail
-            //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
-        }
-        [TestMethod]
-        public void DepartmentNameMin()
-        {
-            //create an instance of the class we want to create
-            clsDepartment AnDepartment = new clsDepartment();
-            //string variable to store any error message
-            String Error = "";  
-            //create some test data to pass to the method
-            string Dep_Name = ""; //this should be not ok
-            //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
-            //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
@@ -390,7 +241,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Name = "a"; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -405,7 +256,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -420,7 +271,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -435,7 +286,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Name = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should fail
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -450,7 +301,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Name = "aaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -466,7 +317,7 @@ namespace MADTest
             string Dep_Name = "";
             Dep_Name = Dep_Name.PadRight(200, 'a'); //this should fail
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -481,7 +332,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Location = ""; //this should not be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -496,7 +347,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Location = "a"; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -511,7 +362,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Location = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -526,7 +377,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Location = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -541,7 +392,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Location = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"; //this should fail
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -556,7 +407,7 @@ namespace MADTest
             //create some test data to pass to the method
             string Dep_Location = "aaaaaaaaaaaaaaaaaaaaaaaaa"; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -572,7 +423,7 @@ namespace MADTest
             string Dep_Location = "";
             Dep_Location = Dep_Location.PadRight(200, 'a'); //this should fail
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, No_Employees);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -588,7 +439,7 @@ namespace MADTest
             //create some test data to pass to the method
             int No_Employees = -1000; //this should fail
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, Convert.ToString(No_Employees));
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -604,7 +455,7 @@ namespace MADTest
             //create some test data to pass to the method
             int No_Employees = 0; //this should trigger an error
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, Convert.ToString(No_Employees));
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -620,7 +471,7 @@ namespace MADTest
             //create some test data to pass to the method
             int No_Employees = 1; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, Convert.ToString(No_Employees));
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -636,7 +487,7 @@ namespace MADTest
             //create some test data to pass to the method
             int No_Employees = 2; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, Convert.ToString(No_Employees));
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -652,7 +503,7 @@ namespace MADTest
             //create some test data to pass to the method
             int No_Employees = 199; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, Convert.ToString(No_Employees));
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -668,7 +519,7 @@ namespace MADTest
             //create some test data to pass to the method
             int No_Employees = 200; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, Convert.ToString(No_Employees));
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -684,7 +535,7 @@ namespace MADTest
             //create some test data to pass to the method
             int No_Employees = 201; //this should fail
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, Convert.ToString(No_Employees));
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -699,7 +550,7 @@ namespace MADTest
             //create some test data to pass to the method
             int No_Employees = 100; //this should be ok
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, Convert.ToString(No_Employees));
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -714,7 +565,22 @@ namespace MADTest
             //create some test data to pass to the method
             int No_Employees = 1000;
             //invoke the method
-            Error = AnDepartment.Valid(Dep_ID, Dep_Name, Dep_Location, No_Employees);
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location, Convert.ToString(No_Employees));
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NumberOfEmployeesIncorrectFormat()
+        {
+            //create an instance of the class we want to create
+            clsDepartment AnDepartment = new clsDepartment();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            String No_Employees = "two";
+            //invoke the method
+            Error = AnDepartment.Valid(Dep_Name, Dep_Location,No_Employees);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }

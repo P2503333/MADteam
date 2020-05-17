@@ -21,10 +21,10 @@ public partial class DefaultEmployee : System.Web.UI.Page
 
         void DisplayNames()
         {
-            //create an instance of the Employee Collection
-            clsEmployeeCollection Names = new clsEmployeeCollection();
-            //set the data source to the list of names in the collection
-            lstempoyees.DataSource = Names.EmployeeList;
+        //create an instance of the Employee Collection
+        clsEmployeeCollection Names = new clsEmployeeCollection();
+        //set the data source to the list of names in the collection
+        lstempoyees.DataSource = Names.EmployeeList;
         //set the name of the primary key
         lstempoyees.DataValueField = "emp_ID";
         //set the data field to display
@@ -60,7 +60,7 @@ public partial class DefaultEmployee : System.Web.UI.Page
             else//if no record has been selected
             {
                 //display an error
-                lblError.Text = "Please select a record to delete from the list";
+                lblError.Text = "Please select a record to edit from the list";
             }
         }
 
@@ -91,19 +91,30 @@ public partial class DefaultEmployee : System.Web.UI.Page
         Response.Redirect("defaultDepartment.aspx");
            }
 
-        //event handler for the apply button
-        protected void btnApply_Click(object sender, EventArgs e)
-        {
+    //event handler for the apply button
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        clsEmployeeCollection employees = new clsEmployeeCollection();
+        employees.ReportByEmployeeName(txtName.Text);
+        lstempoyees.DataSource = employees.EmployeeList;
+        lstempoyees.DataValueField = "emp_ID";
+        lstempoyees.DataTextField = "emp_Name";
+        lstempoyees.DataBind();
+    }
 
-        }
+    //event hanlder for the display all button
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        clsEmployeeCollection employees = new clsEmployeeCollection();
+        employees.ReportByEmployeeName("");
+        txtName.Text = "";
+        lstempoyees.DataSource = employees.EmployeeList;
+        lstempoyees.DataValueField = "emp_ID";
+        lstempoyees.DataTextField = "emp_Name";
+        lstempoyees.DataBind();
+    }
 
-        //event hanlder for the display all button
-        protected void btnDisplayAll_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void lstEmployees_SelectedIndexChanged(object sender, EventArgs e)
+    protected void lstEmployees_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
