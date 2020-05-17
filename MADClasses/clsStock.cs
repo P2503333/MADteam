@@ -129,8 +129,18 @@ namespace MADClasses
             }
         }
 
-        public bool Find(int StockID)
+
+        //Written by David for the suppliers page
+        public string SupplierInfo
         {
+            get
+            {
+                return mBookName + ", " + mAuthor + ": " + mStockLevel;
+            }
+        }
+
+        public bool Find(int StockID) {
+
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter of the ISBN to search

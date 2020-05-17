@@ -22,7 +22,7 @@
         <asp:Label ID="lblDelivery" runat="server" style="z-index: 1; left: 10px; top: 115px; position: absolute" Text="Last Delivery:"></asp:Label>
         <asp:Label ID="lblActive" runat="server" style="z-index: 1; left: 10px; top: 140px; position: absolute" Text="Active:"></asp:Label>
         <asp:CheckBox ID="cbxActive" runat="server" style="z-index: 1; left: 133px; top: 140px; position: absolute" />
-        <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" style="z-index: 1; left: 90px; top: 165px; position: absolute" Text="Test" />
+        <asp:Button ID="btnSubmit" OnClick="btnSubmit_Click" runat="server" style="z-index: 1; left: 60px; top: 165px; position: absolute" Text="Submit" />
         <asp:Label ID="lblResult" runat="server" style="z-index: 1; left: 10px; top: 190px; position: absolute" Text=""></asp:Label>
         <asp:Button ID="btnFind" OnClick="btnFind_Click" runat="server" style="z-index: 1; left: 133px; top: 165px; position: absolute" Text="Find" />
     </form>

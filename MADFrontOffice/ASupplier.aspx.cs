@@ -9,7 +9,7 @@ public partial class ASupplier : System.Web.UI.Page
         ID = Convert.ToInt32(Session["ID"]);
         if(IsPostBack == false)
         {
-            if(ID != 1)
+            if(ID != -1)
             {
                 DisplaySuppliers();
             }
@@ -32,7 +32,6 @@ public partial class ASupplier : System.Web.UI.Page
 
         if(Error == "")
         {
-            ASupplier.ID = ID;
             ASupplier.Name = Name;
             ASupplier.Address = Address;
             ASupplier.Email = Email;
@@ -73,7 +72,7 @@ public partial class ASupplier : System.Web.UI.Page
             {
                 txtName.Text = ASupplier.Name;
                 txtEmail.Text = ASupplier.Email;
-                txtDelivery.Text = Convert.ToString(ASupplier.LastDelivery);
+                txtDelivery.Text = Convert.ToString(ASupplier.LastDelivery.ToShortDateString());
                 txtAddress.Text = ASupplier.Address;
                 cbxActive.Checked = ASupplier.Active;
                 lblResult.Text = "Successfully found entry " + ID;
@@ -93,12 +92,11 @@ public partial class ASupplier : System.Web.UI.Page
     {
         clsSupplierCollection SupplierCollection = new clsSupplierCollection();
         SupplierCollection.ThisSupplier.Find(ID);
-
+        txtID.Text = Convert.ToString(ID);
+        txtDelivery.Text = Convert.ToString(SupplierCollection.ThisSupplier.LastDelivery.ToShortDateString());
         txtName.Text = SupplierCollection.ThisSupplier.Name;
         txtEmail.Text = SupplierCollection.ThisSupplier.Email;
-        txtDelivery.Text = Convert.ToString(SupplierCollection.ThisSupplier.LastDelivery);
         txtAddress.Text = SupplierCollection.ThisSupplier.Address;
         cbxActive.Checked = SupplierCollection.ThisSupplier.Active;
-        lblResult.Text = "Successfully found entry " + ID;
     }
 }
