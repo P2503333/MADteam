@@ -15,7 +15,7 @@
     <form id="form1" runat="server">
         <div>
             <asp:Label ID="lblOrder_ID" runat="server" Text="Order ID"></asp:Label>
-            <asp:TextBox ID="txtOrder_ID" runat="server" Height="25px" style="margin-left: 122px" Width="183px"></asp:TextBox>
+            <asp:TextBox ID="txtOrder_ID" runat="server" Height="25px" style="margin-left: 122px" Width="183px" OnTextChanged="txtOrder_ID_TextChanged"></asp:TextBox>
             <asp:Button ID="btnfind" runat="server" style="margin-left: 40px; height: 29px;" Text="Find" OnClick="btnfind_Click" />
             <br />
             <br />
